@@ -1579,6 +1579,7 @@ for i in range(1, 11):
 
 Las librerías (o módulos) son conjuntos de funciones predefinidas que extienden las capacidades de Python hasta el infinito, ayudándonos a no tener que inventar la rueda, cuando en la mayoría de los casos ya está inventada y perfeccionada al máximo.
 
+
 ### From pytools
 
 Esta es la herramienta de gestor de librerías de Python más usada y más sencilla. En su gran repositorio ofrece miles de librerías a tu disposición en todas sus versiones.
@@ -1771,6 +1772,75 @@ if __name__ == "__main__":
 ```
 
 
+### Entornos Virtuales (venv)
+
+Los entornos virtuales son espacios aislados donde puedes instalar librerías específicas para cada proyecto sin afectar tu sistema global ni otros proyectos.
+
+#### ¿Por qué usar entornos virtuales?
+
+**Problema sin entornos virtuales:**
+- Proyecto A necesita Django 3.2
+- Proyecto B necesita Django 4.1
+- Ambos comparten las mismas librerías del sistema → CONFLICTO
+
+**Solución con entornos virtuales:**
+- Cada proyecto tiene su propio espacio aislado
+- Puedes tener diferentes versiones de la misma librería
+- No contaminas tu instalación global de Python
+- Facilita compartir proyectos (requirements.txt específico)
+- Evita el temido "funciona en mi máquina" 🐛
+
+#### Crear un entorno virtual
+
+```bash
+# Navega a la carpeta de tu proyecto
+cd /ruta/a/tu/proyecto
+
+# Crea el entorno virtual (crea una carpeta llamada 'venv')
+python3 -m venv venv
+```
+
+Esto crea una carpeta con:
+- Una copia de Python
+- pip independiente
+- Espacio para librerías aisladas
+
+#### Activar el entorno virtual
+
+**En Linux/Mac:**
+```bash
+# Activa el entorno
+source venv/bin/activate
+
+# Verás que tu terminal cambia, mostrando (venv) al inicio:
+# (venv) usuario@ordenador:~/proyecto$
+```
+
+#### Usar el entorno virtual
+
+Una vez activado, todo lo que instales con `pip` se quedará en ese entorno:
+
+```bash
+# El entorno está activo (ves 'venv' en el prompt)
+(venv) $ pip install requests
+(venv) $ pip install flask scapy beautifulsoup4
+
+# Verifica qué librerías tienes instaladas en este entorno
+(venv) $ pip list
+
+# Ejecuta tu script usando las librerías del entorno
+(venv) $ python mi_script.py
+```
+
+#### Desactivar el entorno virtual
+
+```bash
+# Simplemente escribe:
+(venv) $ deactivate
+
+# Tu terminal vuelve a la normalidad:
+# usuario@ordenador:~/proyecto$
+```
 
 ## Debugging
 
