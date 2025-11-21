@@ -214,7 +214,7 @@ mi_variable = "Hola Mundo!"
 
 ##### Print
 
-Es una de las funciones más utilizadas y sirver para mostrar valores en pantalla. Puede imprimir cualquier tipo de variable.
+Es una de las funciones más utilizadas y sirve para mostrar valores en pantalla. Puede imprimir cualquier tipo de variable.
 
 ```python
 # Imprimir texto simple
@@ -229,7 +229,7 @@ print("Nombre:", nombre, "Edad:", edad)
 
 ##### Uso de comillas y comillas dobles
 
-Aquí tienes un ejemplo muy simple que muestra cómo usar comillas simples (' ') y comillas dobles (" ") en Python.Ambas comillas funcionan igual para definir cadenas de texto en Python. Puedes usar una u otra según te convenga, por ejemplo:
+Aquí tienes un ejemplo muy simple que muestra cómo usar comillas simples (' ') y comillas dobles (" ") en Python. Ambas comillas funcionan igual para definir cadenas de texto en Python. Puedes usar una u otra según te convenga, por ejemplo:
 
 - Si tu texto contiene comillas dobles dentro: usa comillas simples afuera.
 - Si contiene comillas simples dentro: usa comillas dobles afuera.
@@ -642,7 +642,7 @@ print(lista[0])                    # 1
 Ejemplo para convertir a csv una lista
 ```python
 lista = [1, 3, 5, "pan"]
-csv = ','.join(lista)
+csv = ','.join(map(str, lista))  # Convierte todos los elementos a string primero
 print(csv)                # "1,3,5,pan"
 ```
 
@@ -787,7 +787,7 @@ print(services_temp)  # {}
 
 ### Identificación de tipos
 
-En muchos casos, recibimos un valor de una función desconocida o librería y debemos averiguar cual es el tipo de dato que nos está retornando. PAra ello podemos usar la función "type".
+En muchos casos, recibimos un valor de una función desconocida o librería y debemos averiguar cual es el tipo de dato que nos está retornando. Para ello podemos usar la función "type".
 
 La función `type()` te permite saber qué tipo de dato es una variable.
 
@@ -1223,10 +1223,9 @@ while i <= 5:
 Ejemplo: While con rango
 ```python
 # Inicializamos la variable de control
-i = 1
-
-# Bucle while que se ejecuta mientras i esté dentro del rango de 1 a 5
 i = 0
+
+# Bucle while que se ejecuta mientras i esté dentro del rango de 0 a 4
 while i in range(5):
     print(i)
     i += 1
@@ -1467,9 +1466,9 @@ for i in range(1, 11):
 Las librerías (o módulos) son conjuntos de funciones predefinidas que extienden las capacidades de Python hasta el infinito, ayudándonos a no tener que inventar la rueda, cuando en la mayoría de los casos ya está inventada y perfeccionada al máximo.
 
 
-### From pytools
+### From PyPI
 
-Esta es la herramienta de gestor de librerías de Python más usada y más sencilla. En su gran repositorio ofrece miles de librerías a tu disposición en todas sus versiones.
+PyPI (Python Package Index) es la herramienta de gestor de librerías de Python más usada y más sencilla. En su gran repositorio ofrece miles de librerías a tu disposición en todas sus versiones.
 
 ```bash
 # Instalar una librería específica
@@ -2024,14 +2023,14 @@ Ejemplo: Añadir contenido (append)
 ```python
 try:
     # Abrir archivo en modo append (modo 'a')
-    file = open("example.txt", "a")
+    file = open("ejemplo.txt", "a")
     # Añadir nueva línea
-    file.write("This is a new line added to the file.\n")
+    file.write("Esta es una nueva línea añadida al archivo.\n")
     # Cerrar archivo
     file.close()
     print("Contenido añadido exitosamente")
 except IOError as error:
-    print("I/O error occurred: ", str(error.errno))
+    print("Error de E/S: ", str(error.errno))
 ```
 
 Ejemplo: Leer línea por línea
@@ -2520,10 +2519,10 @@ python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SO
 Para un hacker, el uso de comandos como python3 -m http.server 8080 (o su equivalente en Python 2) permite levantar rápidamente un servidor web local para compartir archivos, ejecutar pruebas de red o simular servicios HTTP durante ejercicios de pentesting o análisis forense. Por ejemplo, puede usarse para exfiltrar datos en un entorno controlado, probar la descarga de herramientas desde otra máquina en la red, o servir cargas útiles (payloads) durante una auditoría de seguridad. Su simplicidad y portabilidad lo convierten en una herramienta útil y versátil en entornos de laboratorio o situaciones de respuesta rápida.
 
 ```bash
-# For Python 2.5
+# Para Python 2.5
 python2 -m SimpleHTTPServer 8080
 
-# For Python3
+# Para Python 3
 python3 -m http.server 8080
 ```
 
@@ -2867,7 +2866,7 @@ def get_oui_from_bssid(bssid):
 
 # Función de callback para procesar paquetes
 def packet_handler(packet, oui_lookup):
-    # Check if the packet is a beacon frame from an AP
+    # Verificar si el paquete es una trama beacon de un AP
     if packet.haslayer(Dot11Beacon):
         bssid = packet[Dot11].addr2  # Obtener el BSSID (dirección MAC del AP)
         ssid = packet[Dot11Elt].info.decode() if packet[Dot11Elt].info else "SSID Oculto"
