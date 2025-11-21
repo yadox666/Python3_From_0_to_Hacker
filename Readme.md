@@ -242,24 +242,7 @@ print(mensaje)
 
 ##### Formatos
 
-En Python 2 y anteriores y en otros lenguages de programación se utiliza el formato clásico de printf con "%".
-
-```python
-nombre = "Juan"
-años = 3
-proporcion = 0.1
-animal = "camellos"
-
-mensaje = "En %d años yo he visto %g %s." % (años, proporcion, animal)
-print(mensaje)
-# En 3 años yo he visto 0.1 camellos.
-
-# Otros formatos
-print("Nombre: %s, Edad: %d" % ("Ana", 25))
-# Nombre: Ana, Edad: 25
-```
-
-Pero resulta más práctico usar el formato mediante uso de f-strings (recomendado - Python 3.6+)
+En Python 3 resulta muy práctico usar el formato mediante uso de f-strings (recomendado - Python 3.6+)
 
 ```python
 nombre = "María"
@@ -275,13 +258,9 @@ print(f"Tengo {edad} años y mido {altura} metros")
 # Con expresiones
 precio = 100
 descuento = 20
-print(f"Precio final: ${precio - descuento}")
-# Precio final: $80
+print(f"Precio final: {precio - descuento} €")
+# Precio final: 80 €
 
-# Formateo de números
-pi = 3.14159265359
-print(f"Pi con 2 decimales: {pi:.2f}")
-# Pi con 2 decimales: 3.14
 ```
 
 Uso de índices: En Python, las cadenas de tipo string funcionan como listas de caracteres, pudiendo indexarse por el orden de los caracteres del 0 a n.
@@ -378,6 +357,8 @@ mi_funcion()
 print(nombre_global)   # Funciona
 print(nombre_local)    # ❌ Error: no existe fuera de la función
 ```
+
+- Nota: Si deseas modificar el valor global de una variable global debes especificarlo dentro de la función al entrar mediante `global nombre_global`
 
 #### Enteros
 
@@ -514,13 +495,6 @@ Ejemplo: Valor None
 # None representa "sin valor" o "vacío" (función sin retorno)
 resultado = None
 print(resultado)          # None
-
-# Usar None como valor inicial
-nombre = None
-if nombre is None:
-    print("No hay nombre definido")
-    nombre = "Juan"
-print(nombre)             # Juan
 ```
 
 **¿Qué NO representa None?**
@@ -540,7 +514,7 @@ Ejemplo: Métodos de cadenas
 ```python
 texto = "Hola Mundo"
 
-# Ver todos los métodos disponibles
+# Ver todos los métodos disponibles de la clase texto
 print(dir(texto))
 
 # Convertir a minúsculas
@@ -663,10 +637,6 @@ print(numeros)  # [6, 5, 4, 3, 2]
 ```python
 lista = [1, 3, 5, 7]
 print(lista[0])                    # 1
-
-# Lista de listas
-lista_listas = [[1, 2], [3, 4]]
-print(lista_listas[0][0])          # 1
 ```
 
 Ejemplo para convertir a csv una lista
@@ -736,26 +706,16 @@ print(coordenadas)       # (10, 20)
 
 # Esto daría error:
 # coordenadas[0] = 15    # ❌ TypeError
-
-# Desempaquetar tuplas
-x, y = coordenadas
-print(f"x: {x}, y: {y}")  # x: 10, y: 20
-
-# Intercambiar valores fácilmente
-a = 5
-b = 10
-a, b = b, a
-print(f"a: {a}, b: {b}")  # a: 10, b: 5
 ```
 
-Ejemplo: Retornar múltiples valores desde una tupla
+Ejemplo: Retornar múltiples valores desde una tupla (desempaquetar tupla)
 ```python
 def obtener_dimensiones():
     ancho = 1920
     alto = 1080
     return ancho, alto  # Retorna una tupla
 
-# Recibir los valores
+# Recibir los valores desempaquetados
 w, h = obtener_dimensiones()
 print(f"Resolución: {w}x{h}")  # Resolución: 1920x1080
 ```
@@ -961,9 +921,7 @@ print(f"Área: {a}, Perímetro: {p}")  # Área: 15, Perímetro: 16
 
 La función `main()` es una convención para organizar el código principal del programa.
 
-**Ejemplo básico:**
 ```python
-# Global variables
 x = 10
 
 def saludar():
@@ -993,26 +951,6 @@ Esto permite que el archivo pueda:
 - Ejecutarse como programa principal
 - Importarse como módulo sin ejecutar el código principal
 
-```python
-# archivo: utilidades.py
-def sumar(a, b):
-    return a + b
-
-def main():
-    print("Ejecutando utilidades.py")
-    print(f"5 + 3 = {sumar(5, 3)}")
-
-if __name__ == "__main__":
-    main()  # Solo se ejecuta si ejecutamos este archivo directamente
-
-# Si hacemos: python utilidades.py
-# Salida: Ejecutando utilidades.py
-#         5 + 3 = 8
-
-# Si importamos: from utilidades import sumar
-# No se ejecuta main(), solo importa la función sumar
-```
-
 
 ### Uso de Clases y objetos
 
@@ -1020,8 +958,7 @@ Este código define una clase llamada FirewallRule que representa una regla de f
 
 **Ver ejemplo completo:** [`examples/classFirewallRule.py`](examples/classFirewallRule.py)
 
-**Ejemplo de uso clases: `classFirewallRule.py`**
-
+Ejemplo de uso clases: `classFirewallRule.py`
 ```python
 # Clase para representar una regla de firewall
 class ReglaFirewall:
@@ -1087,23 +1024,6 @@ else:
 # Eres mayor de edad
 ```
 
-Ejemplo: if-elif-else
-```python
-nota = 85
-
-if nota >= 90:
-    print("Calificación: A (Excelente)")
-elif nota >= 80:
-    print("Calificación: B (Muy bien)")
-elif nota >= 70:
-    print("Calificación: C (Bien)")
-elif nota >= 60:
-    print("Calificación: D (Suficiente)")
-else:
-    print("Calificación: F (Insuficiente)")
-# Calificación: B (Muy bien)
-```
-
 Ejemplo: Programa interactivo
 ```python
 print("=== Calculadora de IMC ===")
@@ -1164,12 +1084,6 @@ if frutas:
 if "banana" in frutas:
     print("Tenemos bananas")  # Se ejecuta
 
-# Lista vacía
-lista_vacia = []
-if lista_vacia:
-    print("Tiene elementos")
-else:
-    print("La lista está vacía")  # Se ejecuta
 ```
 
 Ejemplo: Condiciones con booleanos
@@ -1190,7 +1104,6 @@ if not tiene_licencia:
 else:
     print("Tiene licencia")  # Se ejecuta
 ```
-
 
 
 #### Anidación de condiciones
@@ -1436,7 +1349,7 @@ Ejemplo básico: Bucle con range
 for i in range(1, 11):
     print(i)
 
-# Salida: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+# Salida: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10...
 ```
 
 Ejemplo: Diferentes usos de range
@@ -1687,7 +1600,7 @@ print(f"Ahora: {now}")
 
 # Convertir a Unix timestamp
 timestamp = int(now.timestamp())
-print(f"Timestamp: {timestamp}")  # Output: Unix timestamp en segundos
+print(f"Timestamp: {timestamp}")  # Salida: Unix timestamp en segundos
 
 # Convertir timestamp a datetime
 fecha_desde_timestamp = datetime.fromtimestamp(timestamp)
@@ -2157,7 +2070,7 @@ El uso de `with` es la forma recomendada porque cierra automáticamente el archi
 Ejemplo: with para escribir
 ```python
 # Abre el archivo en modo append
-with open("eejemploample.txt", "a") as file:
+with open("ejemplo.txt", "a") as file:
     # Añade una linea al final del archivo
     file.write("Nueva linea al final del archivo.\n")
 # El archivo se cierra automáticamente
