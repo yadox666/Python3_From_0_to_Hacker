@@ -1,4 +1,4 @@
-# Python, de 0 a Hacker
+# Python 3: de 0 a Hacker
 
 ![Python 3 - De Cero a Hacker](images/logoPython3.png)
 
