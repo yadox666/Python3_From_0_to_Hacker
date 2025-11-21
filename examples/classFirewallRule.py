@@ -165,12 +165,18 @@ print("-" * 70)
 
 # Podemos leer los atributos usando: objeto.atributo
 print(f"IP origen de regla1: {regla1.ip_origen}")
+# Salida: IP origen de regla1: 192.168.1.10
 print(f"Puerto de regla1: {regla1.puerto}")
+# Salida: Puerto de regla1: 80
 print(f"Acción de regla1: {regla1.accion}")
+# Salida: Acción de regla1: permitir
 print()
 print(f"IP origen de regla2: {regla2.ip_origen}")
+# Salida: IP origen de regla2: 192.168.1.20
 print(f"Puerto de regla2: {regla2.puerto}")
+# Salida: Puerto de regla2: 22
 print(f"Acción de regla2: {regla2.accion}")
+# Salida: Acción de regla2: denegar
 
 print()
 
@@ -185,10 +191,12 @@ print("-" * 70)
 
 # Llamamos al método mostrar_regla() de cada objeto
 regla1.mostrar_regla()  
+# Salida: Regla: PERMITIR tráfico de 192.168.1.10 hacia 10.0.0.5 en el puerto 80
 # Internamente ejecuta: mostrar_regla(regla1)
 # Por eso dentro del método podemos usar self.ip_origen, etc.
 
 regla2.mostrar_regla()
+# Salida: Regla: DENEGAR tráfico de 192.168.1.20 hacia 10.0.0.5 en el puerto 22
 
 print()
 
@@ -203,15 +211,18 @@ print("-" * 70)
 
 resultado1 = regla1.esta_permitido("192.168.1.10", 80)
 print(f"¿Regla1 permite 192.168.1.10:80? {resultado1}")
+# Salida: ¿Regla1 permite 192.168.1.10:80? True
 # True porque la regla1 tiene acción="permitir" para esa IP y puerto
 
 resultado2 = regla2.esta_permitido("192.168.1.20", 22)
 print(f"¿Regla2 permite 192.168.1.20:22? {resultado2}")
+# Salida: ¿Regla2 permite 192.168.1.20:22? False
 # False porque la regla2 tiene acción="denegar" para esa IP y puerto
 
 # Probemos una IP diferente
 resultado3 = regla1.esta_permitido("192.168.1.99", 80)
 print(f"¿Regla1 permite 192.168.1.99:80? {resultado3}")
+# Salida: ¿Regla1 permite 192.168.1.99:80? False
 # False porque la IP no coincide con la de la regla
 
 print()

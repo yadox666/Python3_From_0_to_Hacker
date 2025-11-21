@@ -1768,7 +1768,7 @@ Los entornos virtuales son espacios aislados donde puedes instalar librerías es
 
 ```bash
 # Navega a la carpeta de tu proyecto
-cd /ruta/a/tu/proyecto
+cd examples
 
 # Crea el entorno virtual (crea una carpeta llamada 'venv')
 python3 -m venv venv
