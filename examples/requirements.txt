@@ -1,0 +1,40 @@
+# Requirements para los ejemplos de Python de 0 a Hacker Masterclass
+# ===================================================================
+# 
+# Instalación:
+#   pip install -r requirements.txt
+# 
+# O con pip3:
+#   pip3 install -r requirements.txt
+#
+# Nota: Algunos scripts requieren permisos de administrador (sudo)
+# y herramientas adicionales del sistema (nmap, aircrack-ng, etc.)
+
+# Librería para hacer peticiones HTTP
+# Usada en: check-url.py, api_fuzzer.py, scrap.py, crawler_spider.py, 
+#           get_oui_txt.py, api_honeypot_with_geolocation_data.py
+requests>=2.31.0
+
+# Framework web para crear APIs y servidores
+# Usada en: api_users.py, api_users_443.py, api_honeypot.py, 
+#           api_honeypot_with_geolocation_data.py
+flask>=3.0.0
+
+# Parser HTML/XML para web scraping
+# Usada en: crawler_spider.py
+beautifulsoup4>=4.12.0
+
+# Librería para controlar Nmap desde Python
+# Usada en: nmap_scanner.py
+# Requiere: tener Nmap instalado en el sistema (sudo apt install nmap)
+python-nmap>=0.7.1
+
+# Librería para manipular y analizar paquetes de red
+# Usada en: scapy_get_aps_around.py
+# Requiere: permisos de administrador y tarjeta Wi-Fi en modo monitor
+scapy>=2.5.0
+
+# Librería para manejar advertencias SSL (opcional pero recomendada)
+# Usada en: api_fuzzer.py
+urllib3>=2.0.0
+

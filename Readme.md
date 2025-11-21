@@ -314,7 +314,7 @@ print(nombre_completo)  # "Ana García"
 # Utilizar formato f-string
 nombre = "Ana"
 apellido = "García"
-print(f"{nombre_completo} {apellido}")  # "Ana García"
+print(f"{nombre} {apellido}")  # "Ana García"
 
 # Repetir cadenas
 print("Hola " * 3)  # "Hola Hola Hola "
@@ -428,11 +428,11 @@ print(a / b)  # 3.333...
 # División entera (truncada)
 print(a // b)  # 3
 
-# Potencia
-print(a ** b)  # 1000 (10 elevado a 3)
-
 # Módulo (resto de la división)
 print(a % b)  # 1
+
+# Potencia
+print(a ** b)  # 1000 (10 elevado a 3)
 ```
 
 Uso de variables en operaciones:
@@ -541,10 +541,7 @@ Ejemplo: Métodos de cadenas
 texto = "Hola Mundo"
 
 # Ver todos los métodos disponibles
-# print(dir(texto))
-
-# Longitud de la cadena
-print(len(texto))  # 10
+print(dir(texto))
 
 # Convertir a minúsculas
 print(texto.lower())       # "hola mundo"
@@ -567,6 +564,9 @@ email = "usuario@ejemplo.com"
 usuario, dominio = email.split('@')
 print(f"Usuario: {usuario}")           # Usuario: usuario
 print(f"Dominio: {dominio}")           # Dominio: ejemplo.com
+
+cadena = "123"    # aunque podría ser un entero, se define como cadena
+print(cadena.isnumeric())    # devuelve True porque podría ser convertido a entero
 ```
 
 Ejemplo: Más métodos útiles
@@ -822,36 +822,6 @@ print(services)  # DNS eliminado
 services_temp = {"A": 1, "B": 2}
 services_temp.clear()
 print(services_temp)  # {}
-```
-
-Ejemplo: Iterar sobre diccionarios
-```python
-estudiantes = {
-    "Ana": 95,
-    "Luis": 87,
-    "María": 92
-}
-
-# Iterar sobre claves
-for nombre in estudiantes:
-    print(nombre)
-# Ana
-# Luis
-# María
-
-# Iterar sobre valores
-for nota in estudiantes.values():
-    print(nota)
-# 95
-# 87
-# 92
-
-# Iterar sobre clave y valor
-for nombre, nota in estudiantes.items():
-    print(f"{nombre}: {nota}")
-# Ana: 95
-# Luis: 87
-# María: 92
 ```
 
 
