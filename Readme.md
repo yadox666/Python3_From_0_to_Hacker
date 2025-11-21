@@ -1046,6 +1046,8 @@ if __name__ == "__main__":
 
 Este código define una clase llamada FirewallRule que representa una regla de firewall: especifica si se debe permitir o bloquear el tráfico de red desde una IP origen a una IP destino en un puerto específico. Cada objeto de esta clase contiene los datos de una regla y puede mostrarla o evaluar si cierto tráfico está permitido. Este ejemplo es ideal para aprender sobre clases, atributos, métodos y lógica condicional en Python aplicados a un caso práctico de ciberseguridad.
 
+**Ver ejemplo completo:** [`examples/classFirewallRule.py`](examples/classFirewallRule.py)
+
 **Ejemplo de uso clases: `classFirewallRule.py`**
 
 ```python
@@ -2064,6 +2066,11 @@ if __name__ == "__main__":
 
 Aprender a manejar argumentos en Python es esencial para escribir scripts que acepten valores desde la línea de comandos.  
 
+**Ver ejemplos completos:**
+- [`examples/argv_usage.py`](examples/argv_usage.py) - Uso básico con sys.argv
+- [`examples/argparse_usage.py`](examples/argparse_usage.py) - Uso básico con argparse
+- [`examples/argparse_usage_advanced.py`](examples/argparse_usage_advanced.py) - Uso avanzado con argparse
+
 Ejemplo básico de uso de argumentos mediante libreria sys: `argv_usage.py`
 ```python
 import sys
@@ -2278,6 +2285,11 @@ En esta sección se presentan algunos ejemplos sencillos de programación en Pyt
 
 JSON (JavaScript Object Notation) es un formato muy similar a los diccionarios de Python y se usa mucho para intercambiar datos entre aplicaciones o funciones.
 
+**Ver ejemplos completos:**
+- [`examples/json_from_dict.py`](examples/json_from_dict.py) - Guardar diccionario como JSON
+- [`examples/json_file_to_dict.py`](examples/json_file_to_dict.py) - Leer archivo JSON a diccionario
+- [`examples/csv_process.py`](examples/csv_process.py) - Procesar archivos CSV
+
 #### 1. Ejemplo de manejo de archivos JSON. Guardar diccionario como json `json_from_dict.py`
 
 Este script define un diccionario con información sobre puertos comunes en ciberseguridad (como HTTP, FTP o SSH), imprime sus datos en pantalla y luego guarda todo en un archivo .json llamado cybersecurity_ports.json. Este ejemplo es excelente para aprender cómo estructurar información en Python, cómo recorrerla con bucles, y cómo almacenarla en un formato que se puede compartir y reutilizar fácilmente.
@@ -2343,6 +2355,8 @@ for servicio in datos["puertos"]:
 
 Este script utiliza la herramienta Nmap (a través de su módulo de Python) para escanear los primeros 1024 puertos de una dirección IP local o remota. Detecta si esos puertos están abiertos, qué servicios están corriendo y guarda toda esa información en un archivo .json. Es una introducción muy útil para quienes quieren aprender sobre redes, puertos, servicios y automatización con Python.
 
+**Ver ejemplo completo:** [`examples/nmap_scanner.py`](examples/nmap_scanner.py)
+
 ```python
 # Requisitos:
 # - Tener Nmap instalado en el sistema
@@ -2396,6 +2410,8 @@ print(f"Resultados guardados en: {archivo_salida}")
 #### 4. Ejemplo manejo de txt, json and requests: `get_oui.py`
 
 Este programa descarga una lista de identificadores de fabricantes de dispositivos de red (OUI) desde el sitio oficial de IEEE, los convierte a un formato más sencillo (JSON), y los guarda localmente. El OUI forma parte de la dirección MAC y sirve para identificar al fabricante de un dispositivo. Este script es útil para aprender sobre manejo de texto, uso de archivos, procesamiento de datos desde internet, y conversión a formatos como JSON.
+
+**Ver ejemplo completo:** [`examples/get_oui_txt.py`](examples/get_oui_txt.py)
 
 ```python
 # Requiere tener instalada la librería requests: pip install requests
@@ -2461,6 +2477,8 @@ if __name__ == "__main__":
 
 Este programa explora un rango de puertos TCP en un equipo (por defecto, en 127.0.0.1, es decir, tu propio ordenador) y verifica cuáles están abiertos. Utiliza la función connect_ex() de la librería socket para intentar conectarse a cada puerto. Si la conexión tiene éxito, se considera que el puerto está "abierto". Es una forma práctica y segura de introducir conceptos como puertos, servicios y escaneo de red.
 
+**Ver ejemplo completo:** [`examples/socket_scanner.py`](examples/socket_scanner.py)
+
 ```python
 import socket  # Módulo para trabajar con conexiones de red
 
@@ -2501,6 +2519,8 @@ escanear_puertos(objetivo, puertos)
 #### 1. Ejemplo de Versión usando multihilo: `socket_scanner_multithreaded.py`
 
 Este script explora puertos en un equipo (por ejemplo, 127.0.0.1) e identifica cuáles están abiertos, igual que un escáner clásico. Pero aquí se introduce el concepto de multihilo: el programa lanza múltiples tareas al mismo tiempo (hasta 100 en paralelo), lo que hace que el escaneo sea mucho más rápido que si se hiciera de uno en uno. En Python, esto se logra con ThreadPoolExecutor, que gestiona un grupo de hilos para ejecutar funciones concurrentemente.
+
+**Ver ejemplo completo:** [`examples/socket_scanner_multithreaded.py`](examples/socket_scanner_multithreaded.py)
 
 ```python
 import socket
@@ -2545,6 +2565,8 @@ if __name__ == "__main__":
 #### 1. Ejemplo de expresiones regulares básicas: `scrap.py`
 
 Este pequeño programa toma una URL como argumento, descarga el contenido HTML del sitio web, y usa una expresión regular para buscar texto dentro de etiquetas <div> que parezca un nombre de dominio (como ejemplo.com). El patrón busca secuencias de letras, números, puntos o guiones. Luego imprime los resultados ordenados y sin duplicados. Es útil como introducción a tareas de web scraping y manejo de expresiones regulares en Python.
+
+**Ver ejemplo completo:** [`examples/scrap.py`](examples/scrap.py)
 
 ```python
 # Uso: python scrap.py http://www.ewhois.com/ebay.com/
@@ -2645,6 +2667,15 @@ pyinstaller --onefile mi_herramienta.py
 
 ### Aplicaciones Web, pentesting web y APIs
 
+**Ver ejemplos completos:**
+- [`examples/check-url.py`](examples/check-url.py) - Verificador de estado HTTP
+- [`examples/api_users.py`](examples/api_users.py) - API REST simple (HTTP)
+- [`examples/api_users_443.py`](examples/api_users_443.py) - API REST con HTTPS
+- [`examples/api_honeypot.py`](examples/api_honeypot.py) - Honeypot básico
+- [`examples/api_honeypot_with_geolocation_data.py`](examples/api_honeypot_with_geolocation_data.py) - Honeypot con geolocalización
+- [`examples/api_fuzzer.py`](examples/api_fuzzer.py) - Fuzzer para descubrir endpoints
+- [`examples/crawler_spider.py`](examples/crawler_spider.py) - Web crawler/araña
+
 #### 1. Ejemplo: Usando requests para ver el estado de una página web `check-url.py`
 
 Este programa permite comprobar si una página web responde correctamente cuando intentamos visitarla. El usuario introduce una URL, y el script envía una petición al sitio usando la librería requests. Según la respuesta del servidor, el programa muestra un código de estado (por ejemplo, 200, 404, 503) junto con una breve explicación. Es un ejercicio útil para aprender cómo funcionan las solicitudes HTTP, cómo manejar errores y cómo trabajar con argumentos desde la línea de comandos en Python.
@@ -2708,6 +2739,10 @@ else:
 
 Este programa crea un pequeño servidor web usando Flask, una librería muy popular en Python para construir APIs. Cuando se accede a la ruta /users, el servidor responde con una lista de usuarios simulados en formato JSON. Si se intenta acceder a cualquier otra ruta, el servidor devolverá un mensaje de error (404). Es una excelente forma de entender cómo funcionan las rutas, las respuestas HTTP y el trabajo con datos en formato JSON.
 
+**Ver ejemplos completos:**
+- [`examples/api_users.py`](examples/api_users.py) - API simple en HTTP (puerto 8000)
+- [`examples/api_users_443.py`](examples/api_users_443.py) - API con HTTPS (puerto 443)
+
 ```python
 # Requiere instalación previa de Flask: pip install flask
 from flask import Flask, jsonify  # Importamos las funciones necesarias
@@ -2742,6 +2777,10 @@ if __name__ == "__main__":
 #### 3. Ejemplo: Crear una API honeypot `api_honeypot.py` y `api_honeypot_with_geolocation_data.py`
 
 Este programa es un honeypot web básico: un servidor que aparenta ser una API real, pero en realidad registra toda interacción sospechosa que reciba. Cualquier acceso a la ruta /api/ (o cualquier subruta de esta) será registrado con detalles como dirección IP, encabezados, tipo de petición, etc., y se guarda todo en un archivo JSON. Además, el servidor usa HTTPS (SSL), lo cual simula una API segura. Esto puede ayudar a detectar escaneos automáticos, bots o intentos de acceso no autorizados.
+
+**Ver ejemplos completos:**
+- [`examples/api_honeypot.py`](examples/api_honeypot.py) - Honeypot básico
+- [`examples/api_honeypot_with_geolocation_data.py`](examples/api_honeypot_with_geolocation_data.py) - Honeypot con geolocalización
 
 ```python
 # Para usar HTTPS necesitas certificados:
@@ -2804,6 +2843,8 @@ if __name__ == "__main__":
 
 Este script intenta encontrar rutas válidas en una API enviando solicitudes a una lista de posibles endpoints, usando métodos HTTP como GET y POST. Por ejemplo, prueba si existen rutas como /login, /user, /admin, etc. Si el servidor responde con un código exitoso (como 200 o 302), el script lo muestra por pantalla. Esto es útil para aprender cómo interactuar con APIs, automatizar pruebas de seguridad básicas o verificar rutas activas.
 
+**Ver ejemplo completo:** [`examples/api_fuzzer.py`](examples/api_fuzzer.py)
+
 ```python
 # Requiere: pip install requests
 import requests
@@ -2846,6 +2887,8 @@ for ruta in rutas:
 #### 5. Ejemplo: Crear una araña `crawler_spider.py`
 
 Este script básico en Python implementa un "web spider", es decir, un programa que visita una página web y sigue los enlaces que encuentra para visitar otras páginas, hasta una cierta profundidad (nivel). El objetivo es mostrar cómo recorrer sitios web automáticamente y extraer contenido. Utiliza la librería requests para obtener el contenido HTML, BeautifulSoup para analizarlo, y urljoin para construir enlaces completos a partir de enlaces relativos.
+
+**Ver ejemplo completo:** [`examples/crawler_spider.py`](examples/crawler_spider.py)
 
 ```python
 # Este programa explora un sitio web y sigue enlaces hasta una cierta profundidad.
@@ -2902,6 +2945,8 @@ if __name__ == "__main__":
 Este script en Python escanea redes Wi-Fi cercanas y muestra el nombre de la red (SSID), su dirección MAC (BSSID) y, si es posible, el nombre del fabricante del dispositivo que la emite, usando un archivo de datos llamado oui_list.json. Los puntos de acceso Wi-Fi (routers, por ejemplo) emiten señales llamadas tramas beacon, que este programa detecta usando la librería scapy. Cada dispositivo tiene una dirección MAC, y los primeros tres bloques (el OUI) indican quién lo fabricó (por ejemplo, TP-Link, Cisco, etc.).
 
 Cuando el programa detecta una de estas señales, extrae el BSSID, obtiene el OUI y lo busca en el archivo oui_list.json para identificar la organización. Esta información se imprime en pantalla. Así, el programa actúa como un escáner de redes Wi-Fi con identificación del fabricante.
+
+**Ver ejemplo completo:** [`examples/scapy_get_aps_around.py`](examples/scapy_get_aps_around.py)
 
 - Necesita tener la OUI list actualizada con el nombre `oui_list.json`
 
