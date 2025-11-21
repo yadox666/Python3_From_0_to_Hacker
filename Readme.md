@@ -136,7 +136,6 @@ Fecha: AAAA-MM-DD
 
 La indentación en Python es el uso de espacios al inicio de una línea para definir bloques de código. Python usa **4 espacios** por nivel (estándar PEP 8).
 
-Ejemplo 1: Función simple
 ```python
 # ✅ CORRECTO
 def saludar():
@@ -153,7 +152,6 @@ print("Hola")              # IndentationError!
 print("Bienvenido")
 ```
 
-Ejemplo 2: Condicionales anidadas
 ```python
 # ✅ CORRECTO - Múltiples niveles
 edad = 20
@@ -1044,9 +1042,11 @@ else:
     print("Obesidad")
 ```
 
-Ejemplo: Condiciones con strings
+Ejemplo: Condiciones con diferentes tipos de datos
 ```python
+# ===== STRINGS =====
 nombre = "Juan"
+texto_vacio = ""
 
 # Verificar si string tiene contenido
 if nombre:
@@ -1060,21 +1060,16 @@ if nombre == "Juan":
 nombre_completo = "Yago Hansen"
 if "Hansen" in nombre_completo:
     print("El apellido Hansen está presente")  # Se ejecuta
-```
 
-Ejemplo: String vacío
-```python
-texto = ""
-
-if texto:
+# String vacío se evalúa como False
+if texto_vacio:
     print("Hay texto")
 else:
-    print("No hay texto")  # Se ejecuta porque texto está vacío
-```
+    print("No hay texto")  # Se ejecuta porque texto_vacio está vacío
 
-Ejemplo: Condiciones con listas
-```python
+# ===== LISTAS =====
 frutas = ["manzana", "banana", "cereza"]
+lista_vacia = []
 
 # Verificar si lista tiene elementos
 if frutas:
@@ -1084,21 +1079,25 @@ if frutas:
 if "banana" in frutas:
     print("Tenemos bananas")  # Se ejecuta
 
-```
+# Lista vacía se evalúa como False
+if lista_vacia:
+    print("Hay elementos")
+else:
+    print("La lista está vacía")  # Se ejecuta
 
-Ejemplo: Condiciones con booleanos
-```python
+# ===== BOOLEANOS =====
 tiene_licencia = True
 mayor_de_edad = True
 
+# Valor booleano directo
 if tiene_licencia:
     print("Tiene licencia de conducir")  # Se ejecuta
 
-# Combinar condiciones
+# Combinar condiciones con AND
 if tiene_licencia and mayor_de_edad:
     print("Puede conducir")  # Se ejecuta
 
-# Negación
+# Negación con NOT
 if not tiene_licencia:
     print("No tiene licencia")
 else:
@@ -1218,37 +1217,6 @@ while i <= 5:
 # Número: 3
 # Número: 4
 # Número: 5
-```
-
-Ejemplo: While con rango
-```python
-# Inicializamos la variable de control
-i = 0
-
-# Bucle while que se ejecuta mientras i esté dentro del rango de 0 a 4
-while i in range(5):
-    print(i)
-    i += 1
-# Salida: 0, 1, 2, 3, 4
-```
-
-Ejemplo: Suma acumulativa
-```python
-suma = 0
-numero = 1
-
-while numero <= 5:
-    suma += numero  # suma = suma + numero
-    print(f"Sumando {numero}, total: {suma}")
-    numero += 1
-
-print(f"Suma final: {suma}")
-# Sumando 1, total: 1
-# Sumando 2, total: 3
-# Sumando 3, total: 6
-# Sumando 4, total: 10
-# Sumando 5, total: 15
-# Suma final: 15
 ```
 
 #### Break (salir del bucle)
@@ -1410,15 +1378,6 @@ for indice, color in enumerate(colores):
 # 0: rojo
 # 1: verde
 # 2: azul
-
-# Empezar desde 1
-for indice, color in enumerate(colores, 1):
-    print(f"{indice}. {color}")
-
-# Salida:
-# 1. rojo
-# 2. verde
-# 3. azul
 ```
 
 Ejemplo: Iterar sobre diccionario
@@ -1428,10 +1387,6 @@ estudiante = {
     "edad": 20,
     "carrera": "Ingeniería"
 }
-
-# Iterar sobre claves
-for clave in estudiante:
-    print(f"{clave}: {estudiante[clave]}")
 
 # Iterar sobre clave y valor
 for clave, valor in estudiante.items():
@@ -1456,7 +1411,6 @@ for i in range(1, 11):
 # Tabla de multiplicar del 5:
 # 5 x 1 = 5
 # 5 x 2 = 10
-# 5 x 3 = 15
 # ... hasta 50
 ```
 
@@ -1525,10 +1479,6 @@ import os, sys, json
 from datetime import datetime
 now = datetime.now()
 print(now)
-
-# Importar todo de un módulo (no recomendado)
-from math import *
-print(sqrt(16))  # 4.0
 ```
 
 Ejemplo: Trabajar con módulos estándar de Python
@@ -1542,13 +1492,6 @@ print(os.listdir('.'))  # Listar archivos
 import sys
 print(sys.version)  # Versión de Python
 print(sys.argv)  # Argumentos de línea de comandos
-
-# datetime - Fecha y hora
-from datetime import datetime
-ahora = datetime.now()
-print(f"Fecha y hora: {ahora}")
-print(f"Solo fecha: {ahora.date()}")
-print(f"Solo hora: {ahora.time()}")
 ```
 
 Ejemplo: Librería requests (HTTP)
@@ -1589,27 +1532,6 @@ with open('datos.json', 'r') as archivo:
     print(datos)
 ```
 
-Ejemplo: Current datetime y timestamp
-```python
-from datetime import datetime
-
-# Fecha y hora actual
-now = datetime.now()
-print(f"Ahora: {now}")
-
-# Convertir a Unix timestamp
-timestamp = int(now.timestamp())
-print(f"Timestamp: {timestamp}")  # Salida: Unix timestamp en segundos
-
-# Convertir timestamp a datetime
-fecha_desde_timestamp = datetime.fromtimestamp(timestamp)
-print(f"Fecha desde timestamp: {fecha_desde_timestamp}")
-
-# Formatear fecha
-fecha_formateada = now.strftime("%Y-%m-%d %H:%M:%S")
-print(f"Formateada: {fecha_formateada}")  # 2024-01-15 14:30:45
-```
-
 Ejemplo: Crear alias para módulos
 ```python
 # Usar alias para nombres largos
@@ -1619,42 +1541,6 @@ import pandas as pd  # Convención común
 
 ahora = dt.datetime.now()
 print(ahora)
-```
-
-Ejemplo práctico: Script completo con múltiples librerías
-```python
-#!/usr/bin/env python3
-"""
-Script de ejemplo que usa múltiples librerías
-"""
-import os
-import sys
-import json
-from datetime import datetime
-
-def main():
-    # Información del sistema
-    print("=== Información del Sistema ===")
-    print(f"Python version: {sys.version}")
-    print(f"Directorio actual: {os.getcwd()}")
-    
-    # Fecha y hora
-    print("\n=== Fecha y Hora ===")
-    ahora = datetime.now()
-    print(f"Fecha actual: {ahora.strftime('%Y-%m-%d')}")
-    print(f"Hora actual: {ahora.strftime('%H:%M:%S')}")
-    
-    # Trabajar con JSON
-    print("\n=== Trabajando con JSON ===")
-    datos = {
-        "nombre": "Script de ejemplo",
-        "version": "1.0",
-        "fecha": ahora.isoformat()
-    }
-    print(json.dumps(datos, indent=2))
-
-if __name__ == "__main__":
-    main()
 ```
 
 
@@ -1990,7 +1876,7 @@ Python permite trabajar fácilmente con archivos para leer, escribir y modificar
 
 ### Lectura, escritura, append
 
-Al abrir un archivo, se debe especificar si se desea abrir para solo-lectura (sin alterar el contenido), para escritura (se desea alterar su contenido) o en modo append (solo para añadir datos al final del archivo). Es muy importante definir el tipo de operación y cerrar el archivo al terminar de usarlo.
+Al abrir un archivo, se debe especificar si se desea abrir para solo-lectura (sin alterar el contenido), para escritura (se desea alterar su contenido) o en modo append (solo para añadir datos al final del archivo). Es muy importante definir el tipo de operación y **cerrar el archivo** al terminar de usarlo.
 
 **Modos de apertura:**
 - `'r'`: Lectura (por defecto)
@@ -2007,50 +1893,7 @@ archivo = open("ejemplo.txt", "w")
 archivo.write("Hola Mundo\n")
 archivo.write("Esta es la segunda línea\n")
 archivo.close()
-print("Archivo creado y escrito")
 ```
-
-Ejemplo: Leer un archivo
-```python
-# Leer todo el contenido (modo 'r' - read)
-archivo = open("ejemplo.txt", "r")
-contenido = archivo.read()
-print(contenido)
-archivo.close()
-```
-
-Ejemplo: Añadir contenido (append)
-```python
-try:
-    # Abrir archivo en modo append (modo 'a')
-    file = open("ejemplo.txt", "a")
-    # Añadir nueva línea
-    file.write("Esta es una nueva línea añadida al archivo.\n")
-    # Cerrar archivo
-    file.close()
-    print("Contenido añadido exitosamente")
-except IOError as error:
-    print("Error de E/S: ", str(error.errno))
-```
-
-Ejemplo: Leer línea por línea
-```python
-# Método 1: readline()
-archivo = open("ejemplo.txt", "r")
-linea1 = archivo.readline()
-linea2 = archivo.readline()
-print(linea1)
-print(linea2)
-archivo.close()
-
-# Método 2: readlines() - retorna lista
-archivo = open("ejemplo.txt", "r")
-lineas = archivo.readlines()
-for linea in lineas:
-    print(linea.strip())  # strip() elimina \n
-archivo.close()
-```
-
 
 ### Métodos de archivo
 
@@ -2064,7 +1907,7 @@ archivo.close()
 
 ### Usando with (recomendado)
 
-El uso de `with` es la forma recomendada porque cierra automáticamente el archivo.
+El uso de `with` es la forma recomendada para trabajar con archivos porque se ocupa de cerrar automáticamente el archivo al finalizar.
 
 Ejemplo: with para escribir
 ```python
@@ -2093,24 +1936,10 @@ with open("original.txt", "r") as origen:
 print("Archivo copiado exitosamente")
 ```
 
-
 ### Recorriendo líneas
 
-Ejemplo: Procesar archivo línea por línea
+Ejemplo: Procesar archivo línea por línea y buscar una palabra
 ```python
-# Contar líneas
-contador = 0
-with open("datos.txt", "r") as manejador:
-    for linea in manejador:
-        contador += 1
-        print(f"Línea {contador}: {linea.rstrip()}")
-
-print(f"Total de líneas: {contador}")
-```
-
-Ejemplo: Buscar en un archivo
-```python
-# Buscar líneas que contengan una palabra
 palabra_buscar = "Python"
 
 with open("documento.txt", "r") as archivo:
@@ -2119,46 +1948,13 @@ with open("documento.txt", "r") as archivo:
             print(f"Línea {numero_linea}: {linea.strip()}")
 ```
 
-Ejemplo práctico: Procesar archivo CSV manualmente
-```python
-# Leer y procesar archivo CSV
-with open("estudiantes.csv", "r") as archivo:
-    # Leer encabezado
-    encabezado = archivo.readline().strip().split(",")
-    print(f"Columnas: {encabezado}")
-    
-    # Procesar datos
-    for linea in archivo:
-        datos = linea.strip().split(",")
-        nombre, edad, nota = datos
-        print(f"{nombre}: {nota} puntos")
-```
-
-Ejemplo: Contar palabras en un archivo
-```python
-def contar_palabras(nombre_archivo):
-    try:
-        with open(nombre_archivo, "r") as archivo:
-            contenido = archivo.read()
-            palabras = contenido.split()
-            return len(palabras)
-    except FileNotFoundError:
-        print(f"Error: Archivo '{nombre_archivo}' no encontrado")
-        return 0
-
-# Uso
-total = contar_palabras("documento.txt")
-print(f"Total de palabras: {total}")
-```
-
-
 ## Acerca del uso de la IA
 
 Es importante entender que la inteligencia artificial (IA) y las herramientas modernas como Cursor (un editor de código con IA integrada) no están aquí para reemplazar el aprendizaje, sino para potenciarlo. Estas herramientas pueden ayudarte a escribir código más rápido, corregir errores, entender fragmentos complicados y explorar nuevas ideas. Por ejemplo, si no sabes cómo usar una función o librería, puedes pedirle a la IA una explicación o un ejemplo práctico, y eso te ahorra tiempo de búsqueda en internet. Además, ver cómo la IA sugiere soluciones puede enseñarte nuevas formas de pensar el código.
 
 Sin embargo, es fundamental no depender ciegamente de estas herramientas. Aprender programación significa entender el “por qué” y el “cómo” detrás de cada línea de código. Usa la IA como un asistente, no como una muleta. Intenta resolver los problemas por tu cuenta primero, y luego consulta a la IA para comparar soluciones o mejorar tu enfoque. Con esta combinación —tu curiosidad y las capacidades de la IA— puedes avanzar mucho más rápido en tu camino como desarrollador.
 
-- Práctica: Usando cursor para mejorar el código
+- Práctica: Usando `cursor.com` para mejorar el código
 
 
 ## Ejemplos prácticos de Python para hackers
@@ -2493,6 +2289,7 @@ Esto se utiliza comúnmente cuando se obtiene un shell limitado (por ejemplo, de
 ```bash
 python -c 'import pty; pty.spawn("/bin/bash")'
 ```
+
 - **Control de tarea**: Usar `Ctrl+C`, `Ctrl+Z`, etc.
 - **Teclas de flechas**: se pueded navegar con las flechas.
 - **Tab completion**: funciona autocompletado con `Tab`.
@@ -2519,9 +2316,6 @@ python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SO
 Para un hacker, el uso de comandos como python3 -m http.server 8080 (o su equivalente en Python 2) permite levantar rápidamente un servidor web local para compartir archivos, ejecutar pruebas de red o simular servicios HTTP durante ejercicios de pentesting o análisis forense. Por ejemplo, puede usarse para exfiltrar datos en un entorno controlado, probar la descarga de herramientas desde otra máquina en la red, o servir cargas útiles (payloads) durante una auditoría de seguridad. Su simplicidad y portabilidad lo convierten en una herramienta útil y versátil en entornos de laboratorio o situaciones de respuesta rápida.
 
 ```bash
-# Para Python 2.5
-python2 -m SimpleHTTPServer 8080
-
 # Para Python 3
 python3 -m http.server 8080
 ```
@@ -2542,11 +2336,11 @@ pip3 install pyinstaller
 pip install pywin32
 
 # Compilar a ejecutable
-cd ruta/a/tu/proyecto
+cd examples
 
 # Compilar
-pyinstaller --onefile mi_herramienta.py
-# El ejecutable estará en: dist/mi_herramienta
+pyinstaller --onefile api_fuzzer.py
+# El ejecutable estará en: dist/api_fuzzer
 ```
 
 ### Aplicaciones Web, pentesting web y APIs
