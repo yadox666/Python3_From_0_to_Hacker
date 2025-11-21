@@ -1,149 +1,171 @@
-<p align="center">
-  <img src="https://www.wireshark.org/assets/theme-2015/images/wireshark_logo.png">
-  <br>
-  <b> Wireshark Cheat Sheet</b>
-</p>
+# Hoja de Referencia de Wireshark
 
-<p> Wireshark, whose old name is Ethereal; It is a program that can run in many operating systems such as Windows, Linux, MacOS or Solaris and can analyze all the traffic going to network cards connected to computer. Analyze over 750 protocols Can capture packets and save them to a file. </p>
+![Wireshark Logo](https://www.wireshark.org/assets/theme-2015/images/wireshark_logo.png)
 
- Logical operators are available for all filtering.
+## ¿Qué es Wireshark?
 
-+ <b> Example: </b> ```http & ip.src == 192.168.0.1```
+Wireshark, cuyo nombre antiguo es Ethereal, es un programa que puede ejecutarse en muchos sistemas operativos como Windows, Linux, MacOS o Solaris y puede analizar todo el tráfico que va a las tarjetas de red conectadas al ordenador. Analiza más de 750 protocolos, puede capturar paquetes y guardarlos en un archivo.
 
-+ <b> Management Frame: </b> The frame for the connection between the network device and the client.
+## Operadores Lógicos
 
-+ <b> Control Frame: </b> Controls the integrity of data traffic between the network device and the client.
+Los operadores lógicos están disponibles para todos los filtros.
 
-+ <b> Data Frame: </b> The frame on which the original data is transferred.
+**Ejemplo:** `http & ip.src == 192.168.0.1`
 
-Only to show the outgoing packets from the management frame.
+## Tipos de Tramas
+
+- **Trama de Gestión (Management Frame):** La trama para la conexión entre el dispositivo de red y el cliente.
+
+- **Trama de Control (Control Frame):** Controla la integridad del tráfico de datos entre el dispositivo de red y el cliente.
+
+- **Trama de Datos (Data Frame):** La trama sobre la cual se transfieren los datos originales.
+
+## Filtros de Wireshark
+
+### Tramas de Gestión (Management Frames)
+
+Mostrar solo los paquetes salientes de la trama de gestión.
  
 ```
 wlan.fc.type==0
 ```
 
-To show incoming, outgoing packets through control frame.
+Mostrar paquetes entrantes y salientes a través de la trama de control.
 
 ```
 wlan.fc.type==1
 ```
 
-To show packets transferred over the data frame.
+Mostrar paquetes transferidos sobre la trama de datos.
 
 ```
 wlan.fc.type==2
 ```
 
-Association lists the requests.
+### Subtipos de Tramas
+
+Lista las peticiones de asociación.
 
 ```
 wlan.fc.type_subtype==0
 ```
 
-Association lists the answers.
+Lista las respuestas de asociación.
 
 ```
 wlan.fc.type_subtype==1
 ```
 
-Probe lists requests.
+Lista las peticiones de sondeo (probe requests).
 
 ```
 wlan.fc.type_subtype==4
 ```
 
-Lists the probe responses.
+Lista las respuestas de sondeo (probe responses).
 
 ```
 wlan.fc.type_subtype==5
 ```
 
-Lists Beacon signals / waves.
+Lista las señales/ondas Beacon.
 
 ```
 wlan.fc.type_subtype==8
 ```
 
-Lists the Authentication requests.
+Lista las peticiones de autenticación.
 
 ```
 wlan.fc.type_subtype==11
 ```
 
-Lists deauthentication requests.
+Lista las peticiones de desautenticación.
 
 ```
 wlan.fc.type_subtype==12
 ```
 
-TCP lists the outgoing packets to the xx port.
+### Filtros TCP
+
+Lista los paquetes TCP salientes hacia el puerto xx.
 
 ```
 tcp.port == xx
 ```
 
-TCP lists packages with the Source xx port.
+Lista los paquetes TCP con puerto de origen xx.
 
 ```
 tcp.srcport == xx
 ```
 
-TCP lists packages with a destination xx port.
+Lista los paquetes TCP con puerto de destino xx.
 
 ```
 tcp.dstport == xx
 ```
 
-UDP lists the outgoing packets to the xx port.
+### Filtros UDP
+
+Lista los paquetes UDP salientes hacia el puerto xx.
 
 ```
 udp.port == xx
 ```
 
-UDP lists packets with a destination xx port.
+Lista los paquetes UDP con puerto de origen xx.
 
 ```
 udp.srcport == xx
 ```
 
-UDP lists packages that have the Source xx port.
+Lista los paquetes UDP con puerto de destino xx.
 
 ```
 udp.dstport == xx
 ```
 
-Lists the HTTP Get requests.
+### Filtros HTTP
+
+Lista las peticiones HTTP Get.
 
 ```
 http.request
 ```
 
-Lists packages for the source or destination mac address.
+### Filtros por Dirección MAC
+
+Lista los paquetes con dirección MAC de origen o destino.
 
 ```
 wlan.addr == MAC-Address
 ```
 
-The source lists packages that have a mac address.
+Lista los paquetes que tienen una dirección MAC de origen específica.
 
 ```
 wlan.sa == MAC-Address
 ```
 
-Lists packages that have a target mac address.
+Lista los paquetes que tienen una dirección MAC de destino específica.
 
 ```
 wlan.da == MAC-Address
 ```
 
-<b> Cloning an Existing Repository ( Clone with HTTPS ) </b>
-```
-root@ismailtasdelen:~# git clone https://github.com/ismailtasdelen/wireshark-cheatsheet.git
+---
+
+## Créditos
+
+Este documento está basado en la hoja de referencia original de [ismailtasdelen/wireshark-cheatsheet](https://github.com/ismailtasdelen/wireshark-cheatsheet)
+
+**Clonar el Repositorio Original (HTTPS):**
+```bash
+git clone https://github.com/ismailtasdelen/wireshark-cheatsheet.git
 ```
 
-<b> Cloning an Existing Repository ( Clone with SSH ) </b>
+**Clonar el Repositorio Original (SSH):**
+```bash
+git clone git@github.com:ismailtasdelen/wireshark-cheatsheet.git
 ```
-root@ismailtasdelen:~# git clone git@github.com:ismailtasdelen/wireshark-cheatsheet.git
-```
-
-You can open the issues to this repo to be support and add new rss lists to this list.
