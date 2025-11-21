@@ -1565,7 +1565,7 @@ Los entornos virtuales son espacios aislados donde puedes instalar librerías es
 #### Crear un entorno virtual
 
 ```bash
-# Navega a la carpeta de tu proyecto
+# Navega a la carpeta de los ejemplos
 cd examples
 
 # Crea el entorno virtual (crea una carpeta llamada 'venv')
@@ -1585,7 +1585,7 @@ Esto crea una carpeta con:
 source venv/bin/activate
 
 # Verás que tu terminal cambia, mostrando (venv) al inicio:
-# (venv) usuario@ordenador:~/proyecto$
+# (venv) usuario@ordenador:~/ejemplos$
 ```
 
 #### Usar el entorno virtual
@@ -1594,14 +1594,10 @@ Una vez activado, todo lo que instales con `pip` se quedará en ese entorno:
 
 ```bash
 # El entorno está activo (ves 'venv' en el prompt)
-(venv) $ pip install requests
-(venv) $ pip install flask scapy beautifulsoup4
-
-# Verifica qué librerías tienes instaladas en este entorno
-(venv) $ pip list
+(venv) $ pip install -r requirements.txt
 
 # Ejecuta tu script usando las librerías del entorno
-(venv) $ python mi_script.py
+(venv) $ python api_fuzzer.py
 ```
 
 #### Desactivar el entorno virtual
@@ -1610,8 +1606,8 @@ Una vez activado, todo lo que instales con `pip` se quedará en ese entorno:
 # Simplemente escribe:
 (venv) $ deactivate
 
-# Tu terminal vuelve a la normalidad:
-# usuario@ordenador:~/proyecto$
+# Tu terminal vuelve a la normalidad y desaparece (venv):
+# usuario@ordenador:~/ejemplos$
 ```
 
 ## Debugging
