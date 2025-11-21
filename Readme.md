@@ -69,17 +69,17 @@ for archivo in archivos:
 ```
 
 ### Ejemplos de utilidades de seguridad
-- AWS programming and hacking. librería boto3
-- Scrapping. librería beautifulsoup
-- Webbrowser emulation. selenium
-- API fuzzing
-- Shellcode and remote shells
-- Reverse engineering
-- La mayor partes de los exploits disponibles
-- Network exploiting and analyisis. scapy
-- Data science with AI. tensorflow, pytorch, pandas
-- Forensics. File forensics, network forensics, etc.
-- Dictionary and bruteforcing. pydictor, psudohash
+- Programación y hacking en AWS. librería boto3
+- Web scraping. librería beautifulsoup
+- Emulación de navegador web. selenium
+- Fuzzing de APIs
+- Shellcode y shells remotos
+- Ingeniería inversa
+- La mayor parte de los exploits disponibles
+- Explotación y análisis de redes. scapy
+- Ciencia de datos con IA. tensorflow, pytorch, pandas
+- Análisis forense. Análisis forense de archivos, análisis forense de red, etc.
+- Diccionarios y fuerza bruta. pydictor, psudohash
 - Obtención de vulnerabilidades usando bases de datos de vulnerabilidades
 
 
@@ -125,10 +125,10 @@ Hola
 # Comentario de línea
 
 """
-Script Name: my_script.py
-Description: Brief description of what the script does.
-Author: Your Name
-Date: YYYY-MM-DD
+Nombre del Script: mi_script.py
+Descripción: Breve descripción de lo que hace el script.
+Autor: Tu Nombre
+Fecha: AAAA-MM-DD
 """
 ```
 
@@ -2710,17 +2710,17 @@ def check_endpoint(url):
 # Traducción simple de algunos códigos de estado comunes
 def translate_status_code(code):
     translations = {
-        0:  "Timeout",
+        0:  "Tiempo de espera agotado",
         99: "Error",
         200: "OK",
-        301: "Moved Permanently",
-        302: "Found",
-        400: "Bad Request",
-        401: "Unauthorized",
-        403: "Forbidden",
-        404: "Not Found",
-        500: "Internal Server Error",
-        503: "Service Unavailable"
+        301: "Movido permanentemente",
+        302: "Encontrado",
+        400: "Solicitud incorrecta",
+        401: "No autorizado",
+        403: "Prohibido",
+        404: "No encontrado",
+        500: "Error interno del servidor",
+        503: "Servicio no disponible"
     }
     return translations.get(code, "Estado desconocido")
 
@@ -2959,52 +2959,52 @@ from scapy.all import *
 import json
 from scapy.layers.dot11 import Dot11, Dot11Beacon
 
-# Path to the JSON file with OUI data
+# Ruta al archivo JSON con datos OUI
 OUI_JSON_FILE = "oui_list.json"
 
-# Wi-Fi interface to use for scanning (e.g., "wlan0")
+# Interfaz Wi-Fi a usar para el escaneo (ej. "wlan0mon")
 INTERFACE = "wlan0mon"
 
-# Load the OUI data from the JSON file
+# Cargar los datos OUI desde el archivo JSON
 def load_oui_data():
     try:
         with open(OUI_JSON_FILE, "r") as f:
             oui_data = json.load(f)
-            # Convert the OUI list to a dictionary for faster lookup
+            # Convertir la lista OUI a un diccionario para búsquedas más rápidas
             return {entry["oui"]: entry["organization"] for entry in oui_data}
     except (IOError, json.JSONDecodeError) as e:
-        print(f"Error loading OUI data: {e}")
+        print(f"Error al cargar datos OUI: {e}")
         return {}
 
 
-# Extract the OUI part (first three octets) from a BSSID
+# Extraer la parte OUI (primeros tres octetos) de un BSSID
 def get_oui_from_bssid(bssid):
     return "".join(bssid.split(":")[:3]).upper()
 
 
-# Callback function for processing packets
+# Función de callback para procesar paquetes
 def packet_handler(packet, oui_lookup):
     # Check if the packet is a beacon frame from an AP
     if packet.haslayer(Dot11Beacon):
-        bssid = packet[Dot11].addr2  # Get the BSSID (MAC address of the AP)
-        ssid = packet[Dot11Elt].info.decode() if packet[Dot11Elt].info else "Hidden SSID"
-        oui = get_oui_from_bssid(bssid)  # Extract OUI part of the BSSID
-        organization = oui_lookup.get(oui, "Unknown")  # Lookup the organization
+        bssid = packet[Dot11].addr2  # Obtener el BSSID (dirección MAC del AP)
+        ssid = packet[Dot11Elt].info.decode() if packet[Dot11Elt].info else "SSID Oculto"
+        oui = get_oui_from_bssid(bssid)  # Extraer la parte OUI del BSSID
+        organization = oui_lookup.get(oui, "Desconocido")  # Buscar la organización
 
-        # Print AP information
-        print(f"SSID: {ssid}, BSSID: {bssid}, Organization: {organization}")
+        # Imprimir información del AP
+        print(f"SSID: {ssid}, BSSID: {bssid}, Organización: {organization}")
 
-# Main function
+# Función principal
 def main():
-    # Load the OUI data
+    # Cargar los datos OUI
     oui_lookup = load_oui_data()
     if not oui_lookup:
-        print("OUI data could not be loaded.")
+        print("No se pudieron cargar los datos OUI.")
         return
 
-    print("Starting Wi-Fi scan... (Press Ctrl+C to stop)")
+    print("Iniciando escaneo Wi-Fi... (Presiona Ctrl+C para detener)")
 
-    # Start sniffing for 802.11 beacon frames on the specified interface
+    # Iniciar captura de tramas beacon 802.11 en la interfaz especificada
     sniff(iface=INTERFACE, prn=lambda pkt: packet_handler(pkt, oui_lookup), store=0)
 
 if __name__ == "__main__":
