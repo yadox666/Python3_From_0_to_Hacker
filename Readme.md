@@ -488,11 +488,15 @@ print(f"¿Puede conducir? {puede_conducir}")  # True
 
 En muchas ocasiones, una función u operación puede retornar un valor esperado o no hacerlo. Cuando no lo hace, puede retornar un valor nulo o no estar definida.
 
-Ejemplo: Valor None
 ```python
-# None representa "sin valor" o "vacío" (función sin retorno)
-resultado = None
-print(resultado)          # None
+vacio = None
+
+def saludar():
+    print("Hola!")
+
+resultado = saludar()
+print(resultado)   # Imprime: None
+print(vacio)   # Imprime: None
 ```
 
 **¿Qué NO representa None?**
@@ -783,7 +787,7 @@ print(services_temp)  # {}
 ```
 
 
-### Identificación de tipos
+### Identificación y conversión de tipos
 
 En muchos casos, recibimos un valor de una función desconocida o librería y debemos averiguar cual es el tipo de dato que nos está retornando. Para ello podemos usar la función "type".
 
@@ -840,7 +844,6 @@ print(lista_letras)  # ['P', 'y', 't', 'h', 'o', 'n']
 
 Las funciones son bloques de código reutilizable que realizan una tarea específica.
 
-**Ejemplo básico:**
 ```python
 # Definir una función simple
 def saludar():
@@ -855,15 +858,9 @@ saludar()
 
 ### Input arguments (Argumentos de entrada)
 
-**Ejemplo: Funciones con parámetros**
+Los argumentos son la forma más práctica de introducir datos variables en una función, al llamarla. También se usan para modificar su comportamiento.
+
 ```python
-# Función con un parámetro
-def saludar_persona(nombre):
-    print(f"Hola, {nombre}!")
-
-saludar_persona("Ana")   # Hola, Ana!
-saludar_persona("Luis")  # Hola, Luis!
-
 # Función con múltiples parámetros
 def suma(a, b):
     resultado = a + b
@@ -880,9 +877,10 @@ presentar("Juan", 25)  # Me llamo Juan y tengo 25 años
 presentar("Ana")       # Me llamo Ana y tengo 18 años
 ```
 
-### Returns (Retornar valores)
+### Return (Retornar valores)
 
-**Ejemplo: Funciones que retornan valores**
+Algunas funciones son autónomas y realizan un trabajo sin devolver un valor. Pero por lo general, las funciones deben devolver valores tras procesarlos o simplemente devolver un estado (booleano).
+
 ```python
 # Función que retorna un valor
 def sumar(a, b):
@@ -917,7 +915,7 @@ print(f"Área: {a}, Perímetro: {p}")  # Área: 15, Perímetro: 16
 
 ### Main function
 
-La función `main()` es una convención para organizar el código principal del programa.
+La función `main()` es una convención que se debe de utilizar para organizar el código principal del programa.
 
 ```python
 x = 10
@@ -1045,27 +1043,20 @@ else:
 Ejemplo: Condiciones con diferentes tipos de datos
 ```python
 # ===== STRINGS =====
-nombre = "Juan"
-texto_vacio = ""
+nombre = "Yago"
 
 # Verificar si string tiene contenido
 if nombre:
     print(f"Hola, {nombre}")  # Se ejecuta porque nombre no está vacío
 
 # Comparar strings
-if nombre == "Juan":
-    print("El nombre es Juan")  # Se ejecuta
+if nombre == "Yago":
+    print("El nombre es Yago")  # Se ejecuta
 
 # Verificar si un texto está dentro de otro
 nombre_completo = "Yago Hansen"
 if "Hansen" in nombre_completo:
     print("El apellido Hansen está presente")  # Se ejecuta
-
-# String vacío se evalúa como False
-if texto_vacio:
-    print("Hay texto")
-else:
-    print("No hay texto")  # Se ejecuta porque texto_vacio está vacío
 
 # ===== LISTAS =====
 frutas = ["manzana", "banana", "cereza"]
@@ -1107,7 +1098,8 @@ else:
 
 #### Anidación de condiciones
 
-**Ejemplo: Condiciones anidadas**
+La comprobación de condiciones se puede representar con `and` o mediante anidación de `if` en algunos casos y en otros se debe de utilizar anidación siempre dependiendo del uso de `else` que hagamos.
+
 ```python
 edad = 25
 tiene_licencia = True
@@ -1128,7 +1120,6 @@ print(categoria)  # Adulto
 
 #### Negación
 
-**Ejemplo: Operador not**
 ```python
 llueve = False
 
@@ -1147,7 +1138,7 @@ if numero not in numeros_pares:
 
 #### Uso en variables
 
-**Ejemplo: Asignación condicional (operador ternario)**
+Ejemplo: Asignación condicional (operador ternario)
 ```python
 edad = 20
 
@@ -1172,7 +1163,7 @@ nombre_mostrar = nombre or "Anónimo"
 print(nombre_mostrar)  # Juan
 ```
 
-**Ejemplo práctico: Sistema de descuentos**
+Ejemplo práctico: Sistema de descuentos
 ```python
 precio = 100
 es_estudiante = True
@@ -1294,29 +1285,25 @@ while True:
 print("Programa terminado")
 ```
 
-Ejemplo de bucle infinito con entrada esperada:
-```python
-while True:
-    linea = input('> ')
-    if linea == 'fin':
-        break
-    print(linea)
-print('¡Terminado!')
-```
-
-
 ### Bucle For
 
 El bucle for se usa para recorrer elementos de una secuencia, como listas, cadenas de texto o rangos de números. Es muy útil cuando se quiere repetir una acción un número determinado de veces o procesar cada elemento de una colección. A diferencia del while, el for trabaja directamente sobre una secuencia y no necesita una condición explícita, lo que lo hace más fácil de controlar y leer en muchas situaciones comunes.
 
 Ejemplo básico: Bucle con range
-
+Ejemplo práctico: Tabla de multiplicar
 ```python
-# Bucle for que recorre el rango de 1 a 10
-for i in range(1, 11):
-    print(i)
+numero = 5
+print(f"Tabla de multiplicar del {numero}:")
 
-# Salida: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10...
+for i in range(1, 11):
+    resultado = numero * i
+    print(f"{numero} x {i} = {resultado}")
+
+# Salida:
+# Tabla de multiplicar del 5:
+# 5 x 1 = 5
+# 5 x 2 = 10
+# ... hasta 50
 ```
 
 Ejemplo: Diferentes usos de range
@@ -1326,15 +1313,11 @@ Ejemplo: Diferentes usos de range
 for i in range(5):
     print(i)  # 0, 1, 2, 3, 4
 
-# range(start, stop) - desde start hasta stop-1
-for i in range(2, 6):
-    print(i)  # 2, 3, 4, 5
-
 # range(start, stop, step) - con incremento personalizado
 for i in range(0, 11, 2):
     print(i)  # 0, 2, 4, 6, 8, 10
 
-# Rango descendente
+# Rango descendente (usa step -1)
 for i in range(10, 0, -1):
     print(i)  # 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
 ```
@@ -1363,8 +1346,7 @@ for fruta in frutas:
 # Salida:
 # Me gusta la manzana
 # Me gusta la banana
-# Me gusta la cereza
-# Me gusta la durazno
+# ...
 ```
 
 Ejemplo: Iterar con índice (enumerate)
@@ -1398,22 +1380,6 @@ for clave, valor in estudiante.items():
 # carrera: Ingeniería
 ```
 
-Ejemplo práctico: Tabla de multiplicar
-```python
-numero = 5
-print(f"Tabla de multiplicar del {numero}:")
-
-for i in range(1, 11):
-    resultado = numero * i
-    print(f"{numero} x {i} = {resultado}")
-
-# Salida:
-# Tabla de multiplicar del 5:
-# 5 x 1 = 5
-# 5 x 2 = 10
-# ... hasta 50
-```
-
 
 ## Instalar, importar y usar librerías
 
@@ -1431,7 +1397,7 @@ pip3 install scapy
 # Instalar múltiples librerías
 pip3 install requests beautifulsoup4 selenium
 
-# Instalar desde un archivo de requisitos
+# Instalar desde un archivo de requisitos (muy utilizado al descargar programas)
 pip3 install -r requirements.txt
 
 # Actualizar una librería
@@ -1441,7 +1407,7 @@ pip3 install --upgrade requests
 pip3 list
 ```
 
-Archivo requirements.txt de ejemplo:
+Ejemplo de archivo requirements.txt:
 ```text
 requests==2.28.0
 beautifulsoup4==4.11.1
@@ -1460,7 +1426,7 @@ apt install python3-requests
 apt install python3-flask
 ```
 
-### Importar librerías en script
+### Importar módulos o librerías en script de Python
 
 ```python
 # Importar módulo completo
@@ -1477,11 +1443,34 @@ import os, sys, json
 
 # Importar función específica
 from datetime import datetime
-now = datetime.now()
+ahora = datetime.now()
 print(now)
+
+# Usar alias para nombres largos
+import datetime as dt
+ahora = dt.datetime.now()
+print(ahora)
+
+```
+Ejemplo: Librería requests (HTTP)
+```python
+import requests
+
+# Hacer una petición GET a una API
+respuesta = requests.get('https://api.github.com')
+print(f"Código de estado: {respuesta.status_code}")
+print(f"Contenido: {respuesta.json()}")
+
+# Hacer una petición POST a un formulario de login
+datos = {'username': 'usuario', 'password': 'clave'}
+respuesta = requests.post('https://ejemplo.com/login', json=datos)
 ```
 
+
 Ejemplo: Trabajar con módulos estándar de Python
+
+Python ya incorpora multiplés módulos o librerías al instalarlo. Para aligerar los programas, éstas no se cargan por defecto y debemos decidir cuando las importamos, si las necesitamos. Estas son algunas de las más comunes:
+
 ```python
 # os - Sistema operativo
 import os
@@ -1492,55 +1481,6 @@ print(os.listdir('.'))  # Listar archivos
 import sys
 print(sys.version)  # Versión de Python
 print(sys.argv)  # Argumentos de línea de comandos
-```
-
-Ejemplo: Librería requests (HTTP)
-```python
-import requests
-
-# Hacer una petición GET
-respuesta = requests.get('https://api.github.com')
-print(f"Código de estado: {respuesta.status_code}")
-print(f"Contenido: {respuesta.json()}")
-
-# Hacer una petición POST
-datos = {'username': 'usuario', 'password': 'clave'}
-respuesta = requests.post('https://ejemplo.com/login', json=datos)
-```
-
-Ejemplo: Librería json
-```python
-import json
-
-# Diccionario a JSON string
-persona = {"nombre": "Juan", "edad": 30}
-json_string = json.dumps(persona)
-print(json_string)  # {"nombre": "Juan", "edad": 30}
-
-# JSON string a diccionario
-datos = '{"producto": "laptop", "precio": 999}'
-producto = json.loads(datos)
-print(producto["producto"])  # laptop
-
-# Guardar JSON en archivo
-with open('datos.json', 'w') as archivo:
-    json.dump(persona, archivo, indent=2)
-
-# Leer JSON desde archivo
-with open('datos.json', 'r') as archivo:
-    datos = json.load(archivo)
-    print(datos)
-```
-
-Ejemplo: Crear alias para módulos
-```python
-# Usar alias para nombres largos
-import datetime as dt
-import numpy as np  # Convención común
-import pandas as pd  # Convención común
-
-ahora = dt.datetime.now()
-print(ahora)
 ```
 
 
@@ -1577,21 +1517,15 @@ Esto crea una carpeta con:
 - pip independiente
 - Espacio para librerías aisladas
 
-#### Activar el entorno virtual
-
-**En Linux/Mac:**
+#### Activar y usar el entorno virtual
 ```bash
 # Activa el entorno
 source venv/bin/activate
-
 # Verás que tu terminal cambia, mostrando (venv) al inicio:
 # (venv) usuario@ordenador:~/ejemplos$
 ```
 
-#### Usar el entorno virtual
-
 Una vez activado, todo lo que instales con `pip` se quedará en ese entorno:
-
 ```bash
 # El entorno está activo (ves 'venv' en el prompt)
 (venv) $ pip install -r requirements.txt
@@ -1600,12 +1534,10 @@ Una vez activado, todo lo que instales con `pip` se quedará en ese entorno:
 (venv) $ python api_fuzzer.py
 ```
 
-#### Desactivar el entorno virtual
-
+Para desactivar el entorno virtual, al terminar de usar el programa
 ```bash
 # Simplemente escribe:
 (venv) $ deactivate
-
 # Tu terminal vuelve a la normalidad y desaparece (venv):
 # usuario@ordenador:~/ejemplos$
 ```
@@ -1696,21 +1628,6 @@ if contenido:
     print(contenido)
 ```
 
-Ejemplo: Múltiples excepciones
-```python
-try:
-    edad = int(input("Ingresa tu edad: "))
-    if edad < 0:
-        raise ValueError("La edad no puede ser negativa")
-    print(f"Tienes {edad} años")
-except ValueError as e:
-    print(f"Error de valor: {e}")
-except KeyboardInterrupt:
-    print("\nPrograma interrumpido por el usuario")
-```
-
----
-
 ### Syslog
 
 Usar syslog en aplicaciones en producción es una excelente práctica porque permite centralizar, registrar y monitorear todo tipo de eventos importantes como errores, advertencias, accesos, y cambios en el sistema o la aplicación. Al enviar los mensajes de log al sistema syslog (o a un servidor remoto), se facilita el seguimiento del comportamiento de la aplicación en tiempo real, la detección de fallos, y el cumplimiento de auditorías o normativas. Además, syslog permite clasificar y filtrar los mensajes por niveles de severidad, lo que ayuda a los equipos de desarrollo y operaciones a actuar rápidamente ante incidentes críticos.
@@ -1769,68 +1686,10 @@ datos = [1, 2, 3, 4, 5]
 procesar_datos(datos)
 ```
 
-Ejemplo práctico: Script con debugging completo
-```python
-#!/usr/bin/env python3
-import logging
-import sys
-
-# Configurar logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
-
-def calcular_promedio(numeros):
-    """Calcula el promedio de una lista de números"""
-    try:
-        if not numeros:
-            raise ValueError("La lista está vacía")
-        
-        logger.debug(f"Calculando promedio de: {numeros}")
-        promedio = sum(numeros) / len(numeros)
-        logger.info(f"Promedio calculado: {promedio}")
-        return promedio
-        
-    except TypeError:
-        logger.error("Error: Se esperaba una lista de números")
-        return None
-    except ZeroDivisionError:
-        logger.error("Error: División por cero")
-        return None
-    except Exception as e:
-        logger.error(f"Error inesperado: {e}")
-        return None
-
-def main():
-    logger.info("Iniciando aplicación")
-    
-    # Prueba 1: Normal
-    resultado = calcular_promedio([10, 20, 30, 40])
-    print(f"Resultado: {resultado}")
-    
-    # Prueba 2: Lista vacía
-    resultado = calcular_promedio([])
-    print(f"Resultado: {resultado}")
-    
-    logger.info("Aplicación finalizada")
-
-if __name__ == "__main__":
-    try:
-        main()
-    except KeyboardInterrupt:
-        logger.warning("Programa interrumpido por el usuario")
-        sys.exit(0)
-    except Exception as e:
-        logger.critical(f"Error fatal: {e}")
-        sys.exit(1)
-```
-
 
 ## Uso de Argumentos
 
-Aprender a manejar argumentos en Python es esencial para escribir scripts que acepten valores desde la línea de comandos.  
+Aprender a manejar argumentos en Python es esencial para escribir scripts que acepten valores desde la línea de comandos o que permiten cambiar su comportamiento mediante opciones.  
 
 **Ver ejemplos completos:**
 - [`examples/argv_usage.py`](examples/argv_usage.py) - Uso básico con sys.argv
@@ -1849,7 +1708,7 @@ print("Lista de argumentos:", sys.argv)
 # Lista de argumentos: ['argv_usage.py', 'uno', 'dos', 'tres']
 ```
 
-Ejemplo usando libreria argparse: `argparse_usage.py`
+Ejemplo usando libreria argparse: `argparse_usage.py` (más versátil)
 ```python
 import argparse
 
@@ -1950,23 +1809,38 @@ Es importante entender que la inteligencia artificial (IA) y las herramientas mo
 
 Sin embargo, es fundamental no depender ciegamente de estas herramientas. Aprender programación significa entender el “por qué” y el “cómo” detrás de cada línea de código. Usa la IA como un asistente, no como una muleta. Intenta resolver los problemas por tu cuenta primero, y luego consulta a la IA para comparar soluciones o mejorar tu enfoque. Con esta combinación —tu curiosidad y las capacidades de la IA— puedes avanzar mucho más rápido en tu camino como desarrollador.
 
-- Práctica: Usando `cursor.com` para mejorar el código
+- Uso de la aplicación `cursor.com` para mejorar el código
+- Uso de Copilot en Visual Studio Code.
 
 
 ## Ejemplos prácticos de Python para hackers
 
-En esta sección se presentan algunos ejemplos sencillos de programación en Python para programadores noveles. 
+En esta sección se presentan algunos ejemplos sencillos de programación en Python para programadores noveles. La idea de esta sección es leer y comprender el código de cada uno de los ejemplos, que están incluidos en el directorio `examples` de este repositorio y ejecutarlos para ver su comportamiento.
+
+__Para su completa funcionalidad es recomendable instalar un entorno virtual de Python como se muestra en siguiente ejemplo, e instalar los requerimientos mediante `pip`.
+
+```bash
+git clone https://github.com/yadox666/Python3_From_0_to_Hacker
+cd Python3_From_0_to_Hacker
+cd examples
+
+python3 -m venv venv
+source venv/bin/activate
+(venv) $ pip install -r requirements.txt
+```
 
 ### Uso de estructuras, JSON y archivos
 
-JSON (JavaScript Object Notation) es un formato muy similar a los diccionarios de Python y se usa mucho para intercambiar datos entre aplicaciones o funciones.
+__JSON (JavaScript Object Notation) es un formato muy similar a los diccionarios de Python y se usa mucho para intercambiar datos entre aplicaciones o funciones.__
 
 **Ver ejemplos completos:**
 - [`examples/json_from_dict.py`](examples/json_from_dict.py) - Guardar diccionario como JSON
 - [`examples/json_file_to_dict.py`](examples/json_file_to_dict.py) - Leer archivo JSON a diccionario
 - [`examples/csv_process.py`](examples/csv_process.py) - Procesar archivos CSV
 
+
 #### 1. Ejemplo de manejo de archivos JSON. Guardar diccionario como json `json_from_dict.py`
+---
 
 Este script define un diccionario con información sobre puertos comunes en ciberseguridad (como HTTP, FTP o SSH), imprime sus datos en pantalla y luego guarda todo en un archivo .json llamado cybersecurity_ports.json. Este ejemplo es excelente para aprender cómo estructurar información en Python, cómo recorrerla con bucles, y cómo almacenarla en un formato que se puede compartir y reutilizar fácilmente.
 
@@ -2005,6 +1879,7 @@ print("Datos guardados en puertos_ciberseguridad.json")
 
 
 #### 2. Ejemplo de manejo de archivos JSON. Leer archivo json a diccionario `json_file_to_dict.py`
+---
 
 Este script abre un archivo llamado cybersecurity_ports.json (creado por el ejemplo anterior), lo lee y convierte su contenido en un diccionario de Python, lo cual permite acceder y manipular los datos directamente desde el código. Luego, recorre cada entrada del archivo y muestra el nombre del servicio, su número de puerto y el protocolo que usa (TCP o UDP). Es una excelente introducción al manejo de archivos, lectura de datos estructurados y uso de bucles en Python.
 
@@ -2028,6 +1903,7 @@ for servicio in datos["puertos"]:
 
 
 #### 3. Ejemplo de guardado de información de nmap en formato json: `nmap_scanner.py`
+---
 
 Este script utiliza la herramienta Nmap (a través de su módulo de Python) para escanear los primeros 1024 puertos de una dirección IP local o remota. Detecta si esos puertos están abiertos, qué servicios están corriendo y guarda toda esa información en un archivo .json. Es una introducción muy útil para quienes quieren aprender sobre redes, puertos, servicios y automatización con Python.
 
@@ -2084,6 +1960,7 @@ print(f"Resultados guardados en: {archivo_salida}")
 
 
 #### 4. Ejemplo manejo de txt, json and requests: `get_oui.py`
+---
 
 Este programa descarga una lista de identificadores de fabricantes de dispositivos de red (OUI) desde el sitio oficial de IEEE, los convierte a un formato más sencillo (JSON), y los guarda localmente. El OUI forma parte de la dirección MAC y sirve para identificar al fabricante de un dispositivo. Este script es útil para aprender sobre manejo de texto, uso de archivos, procesamiento de datos desde internet, y conversión a formatos como JSON.
 
@@ -2150,6 +2027,7 @@ if __name__ == "__main__":
 
 
 #### 5. Ejemplo de Escáner de puertos TCP básico `socket_scanner.py`
+---
 
 Este programa explora un rango de puertos TCP en un equipo (por defecto, en 127.0.0.1, es decir, tu propio ordenador) y verifica cuáles están abiertos. Utiliza la función connect_ex() de la librería socket para intentar conectarse a cada puerto. Si la conexión tiene éxito, se considera que el puerto está "abierto". Es una forma práctica y segura de introducir conceptos como puertos, servicios y escaneo de red.
 
@@ -2193,6 +2071,7 @@ escanear_puertos(objetivo, puertos)
 ### Uso de Threads y Procesos
 
 #### 1. Ejemplo de Versión usando multihilo: `socket_scanner_multithreaded.py`
+---
 
 Este script explora puertos en un equipo (por ejemplo, 127.0.0.1) e identifica cuáles están abiertos, igual que un escáner clásico. Pero aquí se introduce el concepto de multihilo: el programa lanza múltiples tareas al mismo tiempo (hasta 100 en paralelo), lo que hace que el escaneo sea mucho más rápido que si se hiciera de uno en uno. En Python, esto se logra con ThreadPoolExecutor, que gestiona un grupo de hilos para ejecutar funciones concurrentemente.
 
@@ -2239,6 +2118,7 @@ if __name__ == "__main__":
 ### Expresiones regulares
 
 #### 1. Ejemplo de expresiones regulares básicas: `scrap.py`
+---
 
 Este pequeño programa toma una URL como argumento, descarga el contenido HTML del sitio web, y usa una expresión regular para buscar texto dentro de etiquetas <div> que parezca un nombre de dominio (como ejemplo.com). El patrón busca secuencias de letras, números, puntos o guiones. Luego imprime los resultados ordenados y sin duplicados. Es útil como introducción a tareas de web scraping y manejo de expresiones regulares en Python.
 
@@ -2279,6 +2159,7 @@ if __name__ == "__main__":
 ### Usar Python para lanzar consolas shell y servidores
 
 #### 1. Ejemplo de Shell: `shell_spawn.txt`
+---
 
 Esto se utiliza comúnmente cuando se obtiene un shell limitado (por ejemplo, desde un shell reverso o una sesión SSH sin soporte completo de terminal) y se desea hacerlo interactivo. Un shell interactivo admite funciones como:
 
@@ -2292,6 +2173,7 @@ python -c 'import pty; pty.spawn("/bin/bash")'
 
 
 #### 2. Ejemplo de Shell reversa `shell_reverse.txt`
+---
 
 Una shell reversa permite que un sistema objetivo se conecte de vuelta a un atacante/auditor, proporcionando acceso remoto. Se usa en:
 
@@ -2308,6 +2190,7 @@ python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SO
 ```
 
 #### 3. Ejemplo de Servidor Web básico
+---
 
 Para un hacker, el uso de comandos como python3 -m http.server 8080 (o su equivalente en Python 2) permite levantar rápidamente un servidor web local para compartir archivos, ejecutar pruebas de red o simular servicios HTTP durante ejercicios de pentesting o análisis forense. Por ejemplo, puede usarse para exfiltrar datos en un entorno controlado, probar la descarga de herramientas desde otra máquina en la red, o servir cargas útiles (payloads) durante una auditoría de seguridad. Su simplicidad y portabilidad lo convierten en una herramienta útil y versátil en entornos de laboratorio o situaciones de respuesta rápida.
 
@@ -2321,6 +2204,7 @@ python3 -m http.server 8080
 ### Compilación en Python
 
 #### 1. Ejemplo para Compilar aplicación de python
+---
 
 Este ejemplo explica cómo convertir scripts de Python en archivos ejecutables (.exe) para Windows, útil para distribuir herramientas y utilidades sin requerir que Python esté instalado, algo que se suele hacer mucho para los exploits escritos en Python.
 
@@ -2351,6 +2235,7 @@ pyinstaller --onefile api_fuzzer.py
 - [`examples/crawler_spider.py`](examples/crawler_spider.py) - Web crawler/araña
 
 #### 1. Ejemplo: Usando requests para ver el estado de una página web `check-url.py`
+---
 
 Este programa permite comprobar si una página web responde correctamente cuando intentamos visitarla. El usuario introduce una URL, y el script envía una petición al sitio usando la librería requests. Según la respuesta del servidor, el programa muestra un código de estado (por ejemplo, 200, 404, 503) junto con una breve explicación. Es un ejercicio útil para aprender cómo funcionan las solicitudes HTTP, cómo manejar errores y cómo trabajar con argumentos desde la línea de comandos en Python.
 
@@ -2410,6 +2295,7 @@ else:
 
 
 #### 2. Ejemplo: Crear una API simple mediante Flask `api_users.py` y `api_users_443.py` (SSL en puerto 443)
+---
 
 Este programa crea un pequeño servidor web usando Flask, una librería muy popular en Python para construir APIs. Cuando se accede a la ruta /users, el servidor responde con una lista de usuarios simulados en formato JSON. Si se intenta acceder a cualquier otra ruta, el servidor devolverá un mensaje de error (404). Es una excelente forma de entender cómo funcionan las rutas, las respuestas HTTP y el trabajo con datos en formato JSON.
 
@@ -2449,6 +2335,7 @@ if __name__ == "__main__":
 
 
 #### 3. Ejemplo: Crear una API honeypot `api_honeypot.py` y `api_honeypot_with_geolocation_data.py`
+---
 
 Este programa es un honeypot web básico: un servidor que aparenta ser una API real, pero en realidad registra toda interacción sospechosa que reciba. Cualquier acceso a la ruta /api/ (o cualquier subruta de esta) será registrado con detalles como dirección IP, encabezados, tipo de petición, etc., y se guarda todo en un archivo JSON. Además, el servidor usa HTTPS (SSL), lo cual simula una API segura. Esto puede ayudar a detectar escaneos automáticos, bots o intentos de acceso no autorizados.
 
@@ -2514,6 +2401,7 @@ if __name__ == "__main__":
 
 
 #### 4. Crear un fuzzer simple para pentesting API `api_fuzzer.py`
+---
 
 Este script intenta encontrar rutas válidas en una API enviando solicitudes a una lista de posibles endpoints, usando métodos HTTP como GET y POST. Por ejemplo, prueba si existen rutas como /login, /user, /admin, etc. Si el servidor responde con un código exitoso (como 200 o 302), el script lo muestra por pantalla. Esto es útil para aprender cómo interactuar con APIs, automatizar pruebas de seguridad básicas o verificar rutas activas.
 
@@ -2559,6 +2447,7 @@ for ruta in rutas:
 
 
 #### 5. Ejemplo: Crear una araña `crawler_spider.py`
+---
 
 Este script básico en Python implementa un "web spider", es decir, un programa que visita una página web y sigue los enlaces que encuentra para visitar otras páginas, hasta una cierta profundidad (nivel). El objetivo es mostrar cómo recorrer sitios web automáticamente y extraer contenido. Utiliza la librería requests para obtener el contenido HTML, BeautifulSoup para analizarlo, y urljoin para construir enlaces completos a partir de enlaces relativos.
 
@@ -2615,6 +2504,7 @@ if __name__ == "__main__":
 ### Uso de Python para la monitorización y control de tráfico de Redes
 
 #### 1. Ejemplo: Escáner de APs Wi-Fi avanzado usando scapy y OUI.txt `scapy_get_aps_around.py`
+---
 
 Este script en Python escanea redes Wi-Fi cercanas y muestra el nombre de la red (SSID), su dirección MAC (BSSID) y, si es posible, el nombre del fabricante del dispositivo que la emite, usando un archivo de datos llamado oui_list.json. Los puntos de acceso Wi-Fi (routers, por ejemplo) emiten señales llamadas tramas beacon, que este programa detecta usando la librería scapy. Cada dispositivo tiene una dirección MAC, y los primeros tres bloques (el OUI) indican quién lo fabricó (por ejemplo, TP-Link, Cisco, etc.).
 
@@ -2685,4 +2575,4 @@ if __name__ == "__main__":
 ```
 
 ---
-
+__Autor: Yago Hansen (2025)__
