@@ -1815,7 +1815,7 @@ Sin embargo, es fundamental no depender ciegamente de estas herramientas. Aprend
 
 ## Ejemplos prácticos de Python para hackers
 
-En esta sección se presentan algunos ejemplos sencillos de programación en Python para programadores noveles. La idea de esta sección es leer y comprender el código de cada uno de los ejemplos, que están incluidos en el directorio `examples` de este repositorio y ejecutarlos para ver su comportamiento.
+En esta sección se presentan algunos ejemplos sencillos de programación en Python para programadores noveles. La idea de esta sección es leer y comprender el código de cada uno de los ejemplos, que están incluidos en el directorio  [`examples/`](examples/) de este repositorio y ejecutarlos para ver su comportamiento.
 
 _Para su completa funcionalidad es recomendable instalar un entorno virtual de Python como se muestra en siguiente ejemplo, e instalar los requerimientos mediante `pip`._
 
