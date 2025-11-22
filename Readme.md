@@ -1817,7 +1817,7 @@ Sin embargo, es fundamental no depender ciegamente de estas herramientas. Aprend
 
 En esta sección se presentan algunos ejemplos sencillos de programación en Python para programadores noveles. La idea de esta sección es leer y comprender el código de cada uno de los ejemplos, que están incluidos en el directorio `examples` de este repositorio y ejecutarlos para ver su comportamiento.
 
-__Para su completa funcionalidad es recomendable instalar un entorno virtual de Python como se muestra en siguiente ejemplo, e instalar los requerimientos mediante `pip`.
+_Para su completa funcionalidad es recomendable instalar un entorno virtual de Python como se muestra en siguiente ejemplo, e instalar los requerimientos mediante `pip`._
 
 ```bash
 git clone https://github.com/yadox666/Python3_From_0_to_Hacker
@@ -1831,7 +1831,7 @@ source venv/bin/activate
 
 ### Uso de estructuras, JSON y archivos
 
-__JSON (JavaScript Object Notation) es un formato muy similar a los diccionarios de Python y se usa mucho para intercambiar datos entre aplicaciones o funciones.__
+_JSON (JavaScript Object Notation) es un formato muy similar a los diccionarios de Python y se usa mucho para intercambiar datos entre aplicaciones o funciones._
 
 **Ver ejemplos completos:**
 - [`examples/json_from_dict.py`](examples/json_from_dict.py) - Guardar diccionario como JSON
@@ -2575,4 +2575,4 @@ if __name__ == "__main__":
 ```
 
 ---
-__Autor: Yago Hansen (2025)__
+_Autor: Yago Hansen (2025)_
