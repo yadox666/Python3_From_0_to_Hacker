@@ -2576,10 +2576,17 @@ if __name__ == "__main__":
 
 ## Referencias
 
-### Python desde cero para principiantes (mouredev)
-https://www.youtube.com/watch?v=Kp4Mvapo5kc
+### Cursos
 
+- [Python desde cero para principiantes (mouredev)](https://www.youtube.com/watch?v=Kp4Mvapo5kc)
 
+### Libros
+
+- [Cheatsheet_Python.pdf](Books/Cheatsheet_Python.pdf) - Guía rápida de referencia de Python
+- [Python 2.5 para todos.pdf](Books/Python%202.5%20para%20todos.pdf) - Manual completo de Python 2.5
+- [Python 3 para todos.pdf](Books/Python%203%20para%20todos.pdf) - Manual completo de Python 3
+- [The_Very_Unofficial_Dummies_Guide_To_Sca.pdf](Books/The_Very_Unofficial_Dummies_Guide_To_Sca.pdf) - Guía no oficial de Scapy para principiantes
+- [WiresharkCheatlist.md](Books/WiresharkCheatlist.md) - Lista de referencia rápida de Wireshark
 
 ---
 _Autor: Yago Hansen (2025)_
