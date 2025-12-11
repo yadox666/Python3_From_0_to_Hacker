@@ -2574,5 +2574,12 @@ if __name__ == "__main__":
 
 ```
 
+## Referencias
+
+### Python desde cero para principiantes (mouredev)
+https://www.youtube.com/watch?v=Kp4Mvapo5kc
+
+
+
 ---
 _Autor: Yago Hansen (2025)_
