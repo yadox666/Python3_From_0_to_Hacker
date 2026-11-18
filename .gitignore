@@ -86,6 +86,16 @@ nosetests.xml
 *.env
 .secrets
 *.key
+*.pem
+cookies.txt
+
+########################
+# Ficheros generados por los ejemplos
+########################
+puertos_ciberseguridad.json
+resultados_escaneo.json
+registro_honeypot.json
+honeypot_log.json
 
 ########################
 # Node / JS projects (optional)

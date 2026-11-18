@@ -45,7 +45,7 @@ import json      # Para guardar los datos en formato JSON
 URL_OUI = "http://standards-oui.ieee.org/oui/oui.txt"
 
 # Nombre del archivo de salida donde guardaremos los datos procesados
-ARCHIVO_SALIDA = "lista_oui.json"
+ARCHIVO_SALIDA = "oui_list.json"
 
 
 # FUNCIÓN 1: DESCARGAR ARCHIVO OUI
@@ -96,8 +96,8 @@ def analizar_oui(texto):
         A4-C3-F0   (base 16)		Apple, Inc.
         00-1B-63   (base 16)		Apple, Inc.
     
-    Lo convertimos a:
-        {"oui": "A4:C3:F0", "organizacion": "Apple, Inc."}
+    Lo convertimos a (mismo formato que espera scapy_get_aps_around.py):
+        {"oui": "A4C3F0", "organization": "Apple, Inc."}
     
     Parámetros:
         texto (str): Contenido completo del archivo OUI
@@ -126,9 +126,9 @@ def analizar_oui(texto):
             
             # Procesamos el OUI:
             # strip() elimina espacios al inicio y final
-            # replace("-", ":") cambia guiones por dos puntos
-            # Ejemplo: "A4-C3-F0   " → "A4:C3:F0"
-            oui = partes[0].strip().replace("-", ":")
+            # replace("-", "") elimina los guiones y upper() pasa a mayúsculas
+            # Ejemplo: "A4-C3-F0   " → "A4C3F0"
+            oui = partes[0].strip().replace("-", "").upper()
             
             # Procesamos el nombre del fabricante:
             # strip() elimina espacios extras
@@ -136,7 +136,7 @@ def analizar_oui(texto):
             fabricante = partes[1].strip()
             
             # Creamos un diccionario con los datos y lo añadimos a la lista
-            datos.append({"oui": oui, "organizacion": fabricante})
+            datos.append({"oui": oui, "organization": fabricante})
     
     print(f"✓ Se procesaron {len(datos)} registros OUI\n")
     return datos
@@ -215,15 +215,15 @@ if __name__ == "__main__":
 # -----------------------------------
 # [
 #     {
-#         "oui": "A4:C3:F0",
-#         "organizacion": "Apple, Inc."
+#         "oui": "A4C3F0",
+#         "organization": "Apple, Inc."
 #     },
 #     {
-#         "oui": "00:1B:63",
-#         "organizacion": "Apple, Inc."
+#         "oui": "001B63",
+#         "organization": "Apple, Inc."
 #     },
 #     {
-#         "oui": "B8:27:EB",
-#         "organizacion": "Raspberry Pi Foundation"
+#         "oui": "B827EB",
+#         "organization": "Raspberry Pi Foundation"
 #     }
 # ]
