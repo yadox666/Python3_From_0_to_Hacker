@@ -16,6 +16,9 @@
 
 ---
 
+
+<p align="center"><img src="images/hero.svg" alt="Python 3 de cero a hacker" width="100%"></p>
+
 > [!IMPORTANT]
 > Los ejemplos de redes y web de este curso son para **practicar en tu propio equipo (`127.0.0.1`) o en sistemas en los que tengas permiso**. Escanear o atacar sistemas ajenos sin autorización es delito.
 
@@ -51,14 +54,16 @@ pip install -r requirements.txt   # 3. Instala las librerías de los ejemplos
 ```
 
 > [!NOTE]
-> ¿Sin Linux a mano? En la página del repositorio pulsa **Code → Codespaces → Create codespace** y tendrás un editor con Python en el navegador.
+> ¿Sin Linux a mano? En la página del repositorio pulsa **Code → [Codespaces](https://codespaces.new/yadox666/Python3_From_0_to_Hacker) → Create codespace** y tendrás un editor con Python en el navegador.
 
 ---
 
 ## Introducción
 
+<p align="center"><img src="images/01-intro.svg" alt="Introducción" width="100%"></p>
+
 ### Historia de Python
-Python fue creado por Guido van Rossum, un programador holandés que trabajaba en el Centro para las Matemáticas y la Informática (CWI) en Ámsterdam. A finales de los años 80, Guido estaba trabajando en el sistema operativo distribuido Amoeba y necesitaba un lenguaje de scripting que fuera más potente que el shell de Unix pero más simple que C. Durante las vacaciones de Navidad de 1989, decidió crear un nuevo lenguaje de programación como un proyecto paralelo. El nombre "Python" no proviene del reptil, sino de la afición de Guido por el grupo de comediantes británicos "Monty Python's Flying Circus". Guido quería un nombre corto, único y ligeramente misterioso, y siendo fan del programa de comedia británico, eligió Python.
+Python fue creado por Guido van Rossum, un programador holandés que trabajaba en el Centro para las Matemáticas y la Informática (CWI) en Ámsterdam. A finales de los años 80, Guido estaba trabajando en el sistema operativo distribuido Amoeba y necesitaba un lenguaje de scripting que fuera más potente que el shell de Unix pero más simple que C. Durante las vacaciones de Navidad de 1989, decidió crear un nuevo lenguaje de programación como un proyecto paralelo. El nombre "Python" no proviene del reptil, sino de la afición de Guido por el grupo de comediantes británicos "[Monty Python's Flying Circus](https://youtu.be/bHIsvZflIKE?t=134)". Guido quería un nombre corto, único y ligeramente misterioso, y siendo fan del programa de comedia británico, eligió Python.
 
 La primera versión oficial, Python 0.9.0, fue lanzada en febrero de 1991 e incluía ya características fundamentales como clases con herencia, manejo de excepciones, funciones y los tipos de datos principales (list, dict, str). Python fue diseñado desde el principio con la filosofía de que el código debe ser legible y que debería haber una forma obvia de hacer las cosas, principios que se reflejaron en el famoso "Zen de Python". A lo largo de los años 90, Python ganó popularidad gradualmente en la comunidad científica y académica. En 2000, Python 2.0 introdujo importantes mejoras como listas por comprensión y un sistema de recolección de basura. Sin embargo, el cambio más significativo llegó en 2008 con Python 3.0, una versión que rompió la compatibilidad con Python 2 para corregir defectos fundamentales del diseño del lenguaje. Aunque la transición fue controvertida y lenta, Python 3 eventualmente se convirtió en el estándar, y el soporte para Python 2 finalizó oficialmente en enero de 2020. Hoy en día, Python es uno de los lenguajes de programación más populares del mundo, usado en desarrollo web, ciencia de datos, inteligencia artificial, automatización, y prácticamente cualquier campo de la tecnología.
 
@@ -141,6 +146,8 @@ for archivo in archivos:
 - Python Scapy Dot11: Programacion en Python para pentesters Wi-Fi, Yago Hansen
 
 ## Primeros pasos y sintaxis básica
+
+<p align="center"><img src="images/02-primeros-pasos.svg" alt="Primeros pasos y sintaxis básica" width="100%"></p>
 
 ### Consola
 
@@ -259,7 +266,20 @@ chmod +x hola.py   # Permiso de ejecución (solo la primera vez)
 
 ## Estructuras de datos
 
+<p align="center"><img src="images/03-estructuras.svg" alt="Estructuras de datos" width="100%"></p>
+
 ### Variables
+
+<p align="center"><img src="images/d-variable.svg" alt="Una variable es una etiqueta sobre un valor" width="100%"></p>
+
+> [!TIP]
+> **🎮 Mini-reto 1:** ¿qué imprime `print(type("22"))`?
+>
+> <details><summary>🔓 Respuesta</summary>
+>
+> `<class 'str'>`. Las comillas lo convierten en texto, aunque parezca un número.
+>
+> </details>
 
 Las variables son estructuras de datos que se usan para almacenar valores de diversos tipos (numeros, cadenas de texto, listas, etc.) que pueden variar o ser de tipo constante o fijo. Para definirlas se utiliza el símbolo igual "=".
 
@@ -332,6 +352,9 @@ print(f"Precio final: {precio - descuento} €")
 # Precio final: 80 €
 
 ```
+
+
+<p align="center"><img src="images/d-indices.svg" alt="Índices positivos y negativos" width="100%"></p>
 
 Uso de índices: En Python, las cadenas de tipo string funcionan como listas de caracteres, pudiendo indexarse por el orden de los caracteres del 0 a n.
 
@@ -950,9 +973,22 @@ print(f"Host {objetivo['hostname']} ({objetivo['ip']}) tiene {len(objetivo['puer
 
 ## Condiciones, switches y bucles
 
+<p align="center"><img src="images/04-condiciones-bucles.svg" alt="Condiciones, switches y bucles" width="100%"></p>
+
 Esta sección explora las estructuras fundamentales que permiten a un programa tomar decisiones y repetir acciones.
 
 ### If, elif, else
+
+<p align="center"><img src="images/d-flujo-if.svg" alt="Flujo if / elif / else" width="100%"></p>
+
+> [!TIP]
+> **🎮 Mini-reto 2:** ¿qué imprime `print(5 > 3 and not False)`?
+>
+> <details><summary>🔓 Respuesta</summary>
+>
+> `True`. `5 > 3` es verdadero y `not False` también.
+>
+> </details>
 
 Las estructuras if, elif y else se utilizan para tomar decisiones en un programa. Permiten ejecutar diferentes bloques de código dependiendo de si una condición es verdadera o falsa. Por ejemplo, con if puedes comprobar si una variable cumple cierta condición, elif (abreviatura de “else if”) permite agregar más condiciones alternativas, y else se ejecuta solo si ninguna de las anteriores fue verdadera. Esta lógica condicional es esencial para controlar el flujo del programa y reaccionar ante diferentes situaciones. Aprender a usar if, elif y else es uno de los primeros pasos clave en programación.
 
@@ -1140,6 +1176,17 @@ print(f"Precio final: ${precio_final}")
 ```
 
 ### Bucle For
+
+<p align="center"><img src="images/d-bucles.svg" alt="Bucles for y while" width="100%"></p>
+
+> [!TIP]
+> **🎮 Mini-reto 3:** ¿cuántos números imprime `for i in range(2, 10, 3)`?
+>
+> <details><summary>🔓 Respuesta</summary>
+>
+> Tres: `2, 5, 8`. El 11 ya se pasa del límite.
+>
+> </details>
 
 El bucle for se usa para recorrer elementos de una secuencia, como listas, cadenas de texto o rangos de números. Es muy útil cuando se quiere repetir una acción un número determinado de veces o procesar cada elemento de una colección. A diferencia del while, el for trabaja directamente sobre una secuencia y no necesita una condición explícita, lo que lo hace más fácil de controlar y leer en muchas situaciones comunes.
 
@@ -1362,6 +1409,8 @@ print(f"Puertos desconocidos: {desconocidos}")
 
 ## Funciones
 
+<p align="center"><img src="images/05-funciones.svg" alt="Funciones" width="100%"></p>
+
 Las funciones son bloques de código reutilizable que realizan una tarea específica.
 
 ```python
@@ -1398,6 +1447,8 @@ presentar("Ana")       # Me llamo Ana y tengo 18 años
 ```
 
 ### Return (Retornar valores)
+
+<p align="center"><img src="images/d-caja-negra.svg" alt="Una función es una caja negra" width="100%"></p>
 
 Algunas funciones son autónomas y realizan un trabajo sin devolver un valor. Pero por lo general, las funciones deben devolver valores tras procesarlos o simplemente devolver un estado (booleano).
 
@@ -1471,8 +1522,13 @@ Esto permite que el archivo pueda:
 
 ## Clases y objetos (opcional)
 
+<p align="center"><img src="images/06-clases.svg" alt="Clases y objetos (opcional)" width="100%"></p>
+
 > [!NOTE]
 > Las clases no son imprescindibles para empezar: muchos scripts de seguridad son solo funciones. Basta con saber reconocerlas cuando las leas en el código de otros.
+
+
+<p align="center"><img src="images/d-clase-objeto.svg" alt="Clase y objetos" width="100%"></p>
 
 Este código define una clase llamada FirewallRule que representa una regla de firewall: especifica si se debe permitir o bloquear el tráfico de red desde una IP origen a una IP destino en un puerto específico. Cada objeto de esta clase contiene los datos de una regla y puede mostrarla o evaluar si cierto tráfico está permitido. Este ejemplo es ideal para aprender sobre clases, atributos, métodos y lógica condicional en Python aplicados a un caso práctico de ciberseguridad.
 
@@ -1552,9 +1608,13 @@ print(es_ip_valida("hola"))          # False
 
 ## Instalar, importar y usar librerías
 
+<p align="center"><img src="images/07-librerias.svg" alt="Instalar, importar y usar librerías" width="100%"></p>
+
 Las librerías (o módulos) son conjuntos de funciones predefinidas que extienden las capacidades de Python hasta el infinito, ayudándonos a no tener que inventar la rueda, cuando en la mayoría de los casos ya está inventada y perfeccionada al máximo.
 
 ### Entornos Virtuales (venv)
+
+<p align="center"><img src="images/d-venv.svg" alt="Entornos virtuales" width="100%"></p>
 
 Los entornos virtuales son espacios aislados donde puedes instalar librerías específicas para cada proyecto sin afectar tu sistema global ni otros proyectos.
 
@@ -1713,9 +1773,22 @@ print(sys.argv)  # Argumentos de línea de comandos
 
 ## Debugging
 
+<p align="center"><img src="images/08-debugging.svg" alt="Debugging" width="100%"></p>
+
 El debugging es el proceso de encontrar y corregir errores en el código. Siempre debes preparar tu programa pensando que puedan surgir errores de todo tipo y poniendo medidas para controlar y notificar los errores.
 
 ### Try, Except
+
+<p align="center"><img src="images/d-try-except.svg" alt="Flujo try / except" width="100%"></p>
+
+> [!TIP]
+> **🎮 Mini-reto 4:** ¿qué excepción salta con `int("hola")`?
+>
+> <details><summary>🔓 Respuesta</summary>
+>
+> `ValueError`. Python no sabe convertir esa cadena en un entero.
+>
+> </details>
 
 En Python, try y except se usan para manejar errores de forma controlada, evitando que el programa se detenga bruscamente cuando ocurre un problema. El bloque try contiene el código que puede causar un error, y si ocurre una excepción (como dividir entre cero o abrir un archivo que no existe), Python salta al bloque except, donde puedes capturar el error y responder adecuadamente, como mostrar un mensaje o intentar otra acción. Es una herramienta fundamental para hacer que tus programas sean más robustos y seguros frente a situaciones inesperadas.
 
@@ -1886,7 +1959,12 @@ except ValueError:
 
 ## Uso de Argumentos
 
+<p align="center"><img src="images/09-argumentos.svg" alt="Uso de Argumentos" width="100%"></p>
+
 Aprender a manejar argumentos en Python es esencial para escribir scripts que acepten valores desde la línea de comandos o que permiten cambiar su comportamiento mediante opciones.
+
+
+<p align="center"><img src="images/d-argv.svg" alt="sys.argv" width="100%"></p>
 
 Así ve Python el comando `python3 escaner.py 10.0.0.5 22`:
 
@@ -1934,6 +2012,8 @@ print(f"Hola {args.nombre}, tienes {args.edad} años.")
 
 ## Manejo de archivos
 
+<p align="center"><img src="images/10-archivos.svg" alt="Manejo de archivos" width="100%"></p>
+
 Python permite trabajar fácilmente con archivos para leer, escribir y modificar datos.
 
 ### Lectura, escritura, append
@@ -1942,6 +2022,9 @@ Al abrir un archivo con la función `open()`, se debe especificar si se desea ab
 
 > [!CAUTION]
 > El modo `'w'` **borra el contenido anterior** del archivo sin preguntar. Si solo quieres añadir líneas, usa `'a'`.
+
+
+<p align="center"><img src="images/d-modos.svg" alt="Modos de apertura" width="100%"></p>
 
 **Modos de apertura:**
 - `'r'`: Lectura (por defecto)
@@ -2041,6 +2124,8 @@ with open("documento.txt", "r") as archivo:
 ```
 
 ## Ejemplos prácticos de Python para hackers
+
+<p align="center"><img src="images/11-hackers.svg" alt="Ejemplos prácticos de Python para hackers" width="100%"></p>
 
 En esta sección se presentan algunos ejemplos sencillos de programación en Python para programadores noveles. La idea de esta sección es leer y comprender el código de cada uno de los ejemplos, que están incluidos en el directorio  [`examples/`](examples/) de este repositorio y ejecutarlos para ver su comportamiento.
 
@@ -2807,6 +2892,8 @@ if __name__ == "__main__":
 
 ## 🚩 Reto final
 
+<p align="center"><img src="images/12-reto-final.svg" alt="🚩 Reto final" width="100%"></p>
+
 Un servidor SSH ha registrado estos intentos de acceso. Con lo aprendido hoy (listas, bucles, `split`, diccionarios y condiciones), escribe un script que:
 
 1. Cuente cuántos intentos **fallidos** ha hecho cada IP.
@@ -2860,6 +2947,8 @@ for linea in log:
 </details>
 
 ## Acerca del uso de la IA
+
+<p align="center"><img src="images/13-ia.svg" alt="Acerca del uso de la IA" width="100%"></p>
 
 Es importante entender que la inteligencia artificial (IA) y las herramientas modernas como Cursor (un editor de código con IA integrada) no están aquí para reemplazar el aprendizaje, sino para potenciarlo. Estas herramientas pueden ayudarte a escribir código más rápido, corregir errores, entender fragmentos complicados y explorar nuevas ideas. Por ejemplo, si no sabes cómo usar una función o librería, puedes pedirle a la IA una explicación o un ejemplo práctico, y eso te ahorra tiempo de búsqueda en internet. Además, ver cómo la IA sugiere soluciones puede enseñarte nuevas formas de pensar el código.
 
