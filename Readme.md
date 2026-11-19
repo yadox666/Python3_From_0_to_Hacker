@@ -141,9 +141,9 @@ for archivo in archivos:
 - Obtención de vulnerabilidades usando bases de datos de vulnerabilidades
 
 ### Referencias
-- Black Hat Python. Justin Seitz & Tim Arnold
-- Python for Web Hackers. Jason Bourny
-- Python Scapy Dot11: Programacion en Python para pentesters Wi-Fi, Yago Hansen
+- [Black Hat Python, 2nd Edition](https://www.amazon.com/Black-Hat-Python-2nd-Programming/dp/1718501129). Justin Seitz & Tim Arnold
+- [Python for Web Hackers: Mastering Black Hat Techniques](https://www.amazon.com/Python-Web-Hackers-Techniques-Cryptography-ebook/dp/B0D56ZV7KF). Jason Bourny
+- [Python Scapy Dot11: Programación en Python para pentesters Wi-Fi](https://www.amazon.com/Python-Scapy-Dot11-Programacion-pentesters/dp/1542748704). Yago Hansen
 
 ## Primeros pasos y sintaxis básica
 
@@ -295,6 +295,15 @@ Las variables son estructuras de datos que se usan para almacenar valores de div
 | Colecciones | `[21, 22, 80]` | Listas, tuplas, conjuntos y diccionarios |
 
 #### Cadenas de texto o strings
+
+> [!TIP]
+> **🎮 Mini-reto 2:** ¿qué imprime `print("Python"[1:4])`?
+>
+> <details><summary>🔓 Respuesta</summary>
+>
+> `yth`. El índice inicial se incluye, pero el índice final no.
+>
+> </details>
 
 Pueden contener pequeñas o grandes cantidades de texto, además de caracteres especiales o de otros idiomas o páginas de código.
 
@@ -677,6 +686,19 @@ Las colecciones permiten guardar **varios valores en una sola variable**. Python
 
 #### Listas o `list()`
 
+> [!TIP]
+> **🎮 Mini-reto 3:** ¿qué imprime este código?
+>
+> `puertos = [22, 80]`<br>
+> `puertos.append(443)`<br>
+> `print(puertos[-1])`
+>
+> <details><summary>🔓 Respuesta</summary>
+>
+> `443`. `append()` lo añade al final y el índice `-1` obtiene el último elemento.
+>
+> </details>
+
 Una lista es un objeto que almacena multiples valores en un orden establecido. Esta lista de valores no es inmutable y puede modificarse, crecer o reducirse mediante diferentes operaciones.
 
 ```python
@@ -828,6 +850,15 @@ print(f"Conectando a {ip}:{puerto}")  # Conectando a 10.0.0.5:443
 > Así es justo como recibe la dirección la librería `socket`: `s.connect((ip, puerto))` usa una tupla.
 
 #### Diccionarios o `dict()`
+
+> [!TIP]
+> **🎮 Mini-reto 4:** ¿qué devuelve `{"SSH": 22}.get("HTTPS", 443)`?
+>
+> <details><summary>🔓 Respuesta</summary>
+>
+> `443`. Como la clave `HTTPS` no existe, `get()` devuelve el valor predeterminado.
+>
+> </details>
 
 Los diccionarios almacenan pares clave-valor. Son muy útiles para organizar datos relacionados entre si.
 
@@ -982,7 +1013,7 @@ Esta sección explora las estructuras fundamentales que permiten a un programa t
 <p align="center"><img src="images/d-flujo-if.svg" alt="Flujo if / elif / else" width="100%"></p>
 
 > [!TIP]
-> **🎮 Mini-reto 2:** ¿qué imprime `print(5 > 3 and not False)`?
+> **🎮 Mini-reto 5:** ¿qué imprime `print(5 > 3 and not False)`?
 >
 > <details><summary>🔓 Respuesta</summary>
 >
@@ -1180,7 +1211,7 @@ print(f"Precio final: ${precio_final}")
 <p align="center"><img src="images/d-bucles.svg" alt="Bucles for y while" width="100%"></p>
 
 > [!TIP]
-> **🎮 Mini-reto 3:** ¿cuántos números imprime `for i in range(2, 10, 3)`?
+> **🎮 Mini-reto 6:** ¿cuántos números imprime `for i in range(2, 10, 3)`?
 >
 > <details><summary>🔓 Respuesta</summary>
 >
@@ -1280,6 +1311,19 @@ for clave, valor in estudiante.items():
 ```
 
 ### Bucle While
+
+> [!TIP]
+> **🎮 Mini-reto 7:** ¿cuántas veces se ejecuta este bucle?
+>
+> `i = 0`<br>
+> `while i < 3:`<br>
+> `    i += 1`
+>
+> <details><summary>🔓 Respuesta</summary>
+>
+> Tres veces: con `i` igual a `0`, `1` y `2`. Termina cuando llega a `3`.
+>
+> </details>
 
 El bucle while se utiliza para repetir un bloque de código mientras se cumpla una condición. Es ideal cuando no se sabe de antemano cuántas veces debe repetirse una acción, pero sí se conoce la condición que debe mantenerse verdadera. El programa evaluará la condición antes de cada repetición, y saldrá del bucle en cuanto la condición sea falsa. Es importante asegurarse de que la condición cambie en algún momento, para evitar bucles infinitos.
 
@@ -1426,6 +1470,15 @@ saludar()
 ```
 
 ### Input arguments (Argumentos de entrada)
+
+> [!TIP]
+> **🎮 Mini-reto 8:** si una función se define como `def conectar(host, puerto=443)`, ¿qué puerto usa `conectar("example.com")`?
+>
+> <details><summary>🔓 Respuesta</summary>
+>
+> El puerto `443`, porque es el valor predeterminado del parámetro `puerto`.
+>
+> </details>
 
 Los argumentos son la forma más práctica de introducir datos variables en una función, al llamarla. También se usan para modificar su comportamiento.
 
@@ -1677,6 +1730,15 @@ Para desactivar el entorno virtual, al terminar de usar el programa
 
 ### From PyPI
 
+> [!TIP]
+> **🎮 Mini-reto 9:** acabas de clonar un proyecto que incluye `requirements.txt`. ¿Qué comando instala todas sus librerías?
+>
+> <details><summary>🔓 Respuesta</summary>
+>
+> `pip install -r requirements.txt`, con el entorno virtual activado.
+>
+> </details>
+
 [PyPI](https://pypi.org/) (Python Package Index) es el repositorio oficial de librerías de Python, y `pip` es la herramienta que las instala. Ofrece cientos de miles de librerías en todas sus versiones. Ejecuta estos comandos **con el entorno virtual activado**.
 
 ```bash
@@ -1782,7 +1844,7 @@ El debugging es el proceso de encontrar y corregir errores en el código. Siempr
 <p align="center"><img src="images/d-try-except.svg" alt="Flujo try / except" width="100%"></p>
 
 > [!TIP]
-> **🎮 Mini-reto 4:** ¿qué excepción salta con `int("hola")`?
+> **🎮 Mini-reto 10:** ¿qué excepción salta con `int("hola")`?
 >
 > <details><summary>🔓 Respuesta</summary>
 >
@@ -2017,6 +2079,15 @@ print(f"Hola {args.nombre}, tienes {args.edad} años.")
 Python permite trabajar fácilmente con archivos para leer, escribir y modificar datos.
 
 ### Lectura, escritura, append
+
+> [!TIP]
+> **🎮 Mini-reto 11:** quieres añadir una línea a `eventos.log` sin borrar lo anterior. ¿Usas el modo `"w"` o `"a"`?
+>
+> <details><summary>🔓 Respuesta</summary>
+>
+> El modo `"a"` (*append*). El modo `"w"` sobrescribiría todo el archivo.
+>
+> </details>
 
 Al abrir un archivo con la función `open()`, se debe especificar si se desea abrir para solo-lectura (sin alterar el contenido), para escritura (se desea alterar su contenido) o en modo append (solo para añadir datos al final del archivo). Es muy importante definir el tipo de operación y **cerrar el archivo** al terminar de usarlo.
 
