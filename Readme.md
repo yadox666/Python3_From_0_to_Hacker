@@ -3051,7 +3051,7 @@ Sin embargo, es fundamental no depender ciegamente de estas herramientas. Aprend
 |---|---|
 | 📄 [Cheatsheet_Python.pdf](Books/Cheatsheet_Python.pdf) | Guía rápida de referencia de Python |
 | 📘 [Python 3 para todos.pdf](Books/Python%203%20para%20todos.pdf) | Manual completo de Python 3 |
-| 📗 [The_Very_Unofficial_Dummies_Guide_To_Sca.pdf](Books/The_Very_Unofficial_Dummies_Guide_To_Sca.pdf) | Guía no oficial de Scapy para principiantes |
+| 📗 [Scapy Guide](Books/Scapy_Guide.pdf) | Guía no oficial de Scapy para principiantes |
 | 🦈 [WiresharkCheatlist.md](Books/WiresharkCheatlist.md) | Lista de referencia rápida de Wireshark |
 | 🗄️ [Python 2.5 para todos.pdf](Books/Python%202.5%20para%20todos.pdf) | *Histórico.* Python 2 ya no tiene soporte; úsalo solo para leer código antiguo |
 
