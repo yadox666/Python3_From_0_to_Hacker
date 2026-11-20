@@ -6,6 +6,12 @@
 
 **Masterclass de 5 horas para dar tus primeros pasos en Python, orientada a la ciberseguridad**
 
+### 👤 Autor: [Yago Hansen](https://yagohansen.com/)
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Yago_Hansen-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yadox/)
+[![Twitter](https://img.shields.io/badge/Twitter-@yadox-1DA1F2?style=flat-square&logo=x&logoColor=white)](https://twitter.com/yadox)
+[![Web](https://img.shields.io/badge/Web-yagohansen.com-2ea44f?style=flat-square&logo=safari&logoColor=white)](https://yagohansen.com/)
+
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Nivel](https://img.shields.io/badge/Nivel-Principiante-2ea44f?style=for-the-badge)
 ![Duración](https://img.shields.io/badge/Duración-5_horas-orange?style=for-the-badge)
