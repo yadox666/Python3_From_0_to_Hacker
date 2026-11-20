@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+Author: Yago Hansen
+Version: 1.0
+
 WEB CRAWLER (ARAÑA WEB) - Script Educativo
 ===========================================
 Este programa explora un sitio web siguiendo enlaces automáticamente,

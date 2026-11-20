@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+Author: Yago Hansen
+Version: 1.0
+
 ARGPARSE BÁSICO - Script Educativo
 ===================================
 Este script introduce los conceptos básicos de argparse para crear programas

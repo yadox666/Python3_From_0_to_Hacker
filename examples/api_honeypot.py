@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+Author: Yago Hansen
+Version: 1.0
+
 HONEYPOT API SIMPLE - Script Educativo
 =======================================
 Este script crea un "honeypot" (trampa de miel) básico que simula una API
@@ -50,7 +53,7 @@ Luego revisa el archivo "registro_honeypot.json" para ver los datos capturados.
 from flask import Flask, request, jsonify  # Flask: para crear el servidor web
 import json       # Para trabajar con archivos JSON
 import os         # Para operaciones con archivos del sistema
-from datetime import datetime  # Para obtener fecha y hora
+from datetime import datetime, timezone  # Para obtener fecha y hora UTC
 
 # Creamos la aplicación Flask
 app = Flask(__name__)
@@ -106,11 +109,13 @@ def registrar_peticion():
     
     Aquí capturamos toda la información posible del cliente (atacante/visitante).
     """
-    # Creamos un diccionario con toda la información de la petición
+    json_recibido = request.get_json(silent=True)
+
+    # Guardamos nombres de campos, pero no sus valores. Un valor podría ser
+    # una contraseña, un token u otro dato sensible.
     datos = {
-        # Fecha y hora en formato ISO (ej: "2025-11-21T15:30:45.123456")
-        # utcnow() usa tiempo UTC (coordinado universal)
-        "momento": datetime.utcnow().isoformat(),
+        # Fecha y hora UTC en formato ISO, incluyendo la zona horaria
+        "momento": datetime.now(timezone.utc).isoformat(),
         
         # Dirección IP del cliente que hizo la petición
         # Esta es información CRÍTICA para identificar atacantes
@@ -129,21 +134,18 @@ def registrar_peticion():
         # Analizar las rutas ayuda a identificar qué buscan los atacantes
         "ruta": request.path,
         
-        # Parámetros en la URL (ej: en /api/users?id=5 sería {"id": "5"})
-        # Los atacantes pueden intentar inyecciones SQL aquí
-        "params_url": request.args.to_dict(),
+        # En /api/users?id=5 guardamos ["id"], pero no el valor "5".
+        "parametros_url": list(request.args.keys()),
         
-        # Datos enviados en formularios HTML (POST con application/x-www-form-urlencoded)
-        # Captura intentos de login falsos, etc.
-        "formulario": request.form.to_dict(),
+        # Nombres de los campos enviados en un formulario.
+        "campos_formulario": list(request.form.keys()),
         
-        # Datos enviados en formato JSON (muy común en APIs modernas)
-        # silent=True evita errores si no es JSON válido
-        "json_enviado": request.get_json(silent=True),
+        # Nombres de los campos JSON, si el cuerpo contiene un objeto.
+        "campos_json": (
+            list(json_recibido.keys()) if isinstance(json_recibido, dict) else []
+        ),
         
-        # TODAS las cabeceras HTTP de la petición
-        # Contiene información valiosa sobre el cliente
-        "encabezados": dict(request.headers),
+        # No guardamos todas las cabeceras: podrían contener cookies o tokens.
     }
 
     # Guardamos toda esta información en nuestro archivo de logs
@@ -211,7 +213,10 @@ if __name__ == "__main__":
     app.run(
         host="0.0.0.0",
         port=443,
-        ssl_context=("cert.pem", "key.pem")
+        ssl_context=("cert.pem", "key.pem"),
+        # El JSON educativo se lee y escribe completo. Atendemos una petición
+        # cada vez para evitar escrituras simultáneas.
+        threaded=False,
     )
 
 # ANÁLISIS DE LOGS:

@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+Author: Yago Hansen
+Version: 1.0
+
 CONVERTIR DICCIONARIO A ARCHIVO JSON - Script Educativo
 ========================================================
 Este script demuestra cómo convertir un diccionario de Python en un

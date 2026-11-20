@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+Author: Yago Hansen
+Version: 1.0
+
 ESCÁNER DE PUERTOS SIMPLE - Script Educativo
 =============================================
 Este script escanea puertos TCP de forma secuencial (uno tras otro)

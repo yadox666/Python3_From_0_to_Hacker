@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+Author: Yago Hansen
+Version: 1.0
+
 PROCESADOR DE ARCHIVOS CSV - Script Educativo
 ==============================================
 Este script lee un archivo CSV (valores separados por comas) y procesa

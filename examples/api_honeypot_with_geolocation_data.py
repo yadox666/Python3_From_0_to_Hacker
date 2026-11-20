@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+Author: Yago Hansen
+Version: 1.0
+
 HONEYPOT API CON GEOLOCALIZACIÓN - Script Educativo
 ====================================================
 Este script crea un "honeypot" (trampa de miel) que simula una API falsa.
@@ -21,7 +24,8 @@ REQUISITOS PREVIOS:
 from flask import Flask, request, jsonify  # Flask: para crear el servidor web
 import json  # Para trabajar con archivos JSON
 import os  # Para operaciones con el sistema operativo
-from datetime import datetime  # Para obtener la fecha y hora actual
+from datetime import datetime, timezone  # Para obtener la fecha y hora UTC
+from ipaddress import ip_address
 import requests  # Para hacer peticiones HTTP a APIs externas
 
 # Creamos la aplicación Flask (nuestro servidor web)
@@ -46,10 +50,20 @@ def obtener_geolocalizacion(direccion_ip):
     Retorna:
         dict: Diccionario con datos de ubicación, o {} si hay error
     """
+    # Las IP privadas y localhost no tienen una ubicación pública útil.
     try:
-        # Hacemos una petición HTTP a la API de geolocalización
+        direccion = ip_address(direccion_ip)
+    except ValueError:
+        return {}
+
+    if direccion.is_private:
+        return {}
+
+    try:
+        # La versión gratuita de este servicio usa HTTP. No se envían tokens
+        # ni otros datos: únicamente la IP pública que se quiere consultar.
         url = f"http://ip-api.com/json/{direccion_ip}"
-        respuesta = requests.get(url)
+        respuesta = requests.get(url, timeout=5)
         
         # Verificamos que la petición fue exitosa (código 200 = OK)
         if respuesta.status_code == 200:
@@ -122,11 +136,12 @@ def registrar_peticion_entrante():
     """
     # Obtenemos la dirección IP del cliente que está haciendo la petición
     ip_cliente = request.remote_addr
+    json_recibido = request.get_json(silent=True)
     
     # Creamos un diccionario con toda la información de la petición
     datos_registro = {
         # Fecha y hora actual en formato ISO (ej: "2025-11-21T10:30:45")
-        "fecha_hora": datetime.utcnow().isoformat(),
+        "fecha_hora": datetime.now(timezone.utc).isoformat(),
         
         # IP del cliente
         "ip_origen": ip_cliente,
@@ -140,17 +155,16 @@ def registrar_peticion_entrante():
         # Ruta/URL solicitada (ej: "/api/users")
         "ruta_solicitada": request.path,
         
-        # Parámetros de la URL (ej: en /api/users?id=5, sería {"id": "5"})
-        "parametros_url": request.args.to_dict(),
+        # Guardamos nombres de campos, pero no valores que podrían ser secretos.
+        "parametros_url": list(request.args.keys()),
         
-        # Datos enviados en formularios HTML
-        "datos_formulario": request.form.to_dict(),
+        # Nombres de campos enviados en formularios HTML
+        "campos_formulario": list(request.form.keys()),
         
-        # Datos enviados en formato JSON
-        "datos_json": request.get_json(silent=True),
-        
-        # Todas las cabeceras HTTP de la petición
-        "cabeceras_http": dict(request.headers),
+        # Nombres de campos enviados en un objeto JSON
+        "campos_json": (
+            list(json_recibido.keys()) if isinstance(json_recibido, dict) else []
+        ),
         
         # Información geográfica del IP
         "ubicacion_geografica": obtener_geolocalizacion(ip_cliente)
@@ -212,5 +226,6 @@ if __name__ == "__main__":
     app.run(
         host="0.0.0.0",
         port=443,
-        ssl_context=("cert.pem", "key.pem")
+        ssl_context=("cert.pem", "key.pem"),
+        threaded=False,
     )

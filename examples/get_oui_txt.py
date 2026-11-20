@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+Author: Yago Hansen
+Version: 1.0
+
 DESCARGADOR Y PROCESADOR DE DATOS OUI - Script Educativo
 =========================================================
 Este script descarga la base de datos oficial de IEEE que contiene información
@@ -43,7 +46,7 @@ import json      # Para guardar los datos en formato JSON
 # -------------
 # URL oficial de IEEE donde se encuentra la base de datos actualizada de OUI
 # Este archivo contiene información de todos los fabricantes registrados
-URL_OUI = "http://standards-oui.ieee.org/oui/oui.txt"
+URL_OUI = "https://standards-oui.ieee.org/oui/oui.txt"
 
 # Nombre del archivo de salida donde guardaremos los datos procesados
 ARCHIVO_SALIDA = "oui_list.json"
@@ -70,7 +73,7 @@ def descargar_oui(url):
     
     try:
         # requests.get() descarga el contenido de la URL
-        respuesta = requests.get(url)
+        respuesta = requests.get(url, timeout=30)
         
         # raise_for_status() lanza una excepción si hubo error HTTP
         # (códigos 4xx o 5xx como 404 Not Found, 500 Internal Server Error)

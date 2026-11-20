@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+Author: Yago Hansen
+Version: 1.0
+
 API REST SIMPLE DE USUARIOS - Script Educativo
 ===============================================
 Este script crea una API REST básica que devuelve una lista de usuarios.
@@ -137,5 +140,6 @@ if __name__ == "__main__":
     # Iniciamos el servidor Flask
     # host="127.0.0.1": solo acepta conexiones desde este equipo (localhost)
     # port=8000: el servidor escuchará en el puerto 8000
-    # debug=False: modo producción (cambia a True para desarrollo)
+    # debug=False evita mostrar el depurador interactivo.
+    # app.run() es un servidor de prácticas, no un servidor de producción.
     app.run(host="127.0.0.1", port=8000, debug=False)

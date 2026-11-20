@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+Author: Yago Hansen
+Version: 1.0
+
 API FUZZER (DESCUBRIDOR DE ENDPOINTS) - Script Educativo
 =========================================================
 Este script realiza "fuzzing" en una API: prueba muchas rutas posibles
@@ -139,9 +142,9 @@ for ruta in rutas:
             # 4xx = Error del cliente (404 Not Found, 403 Forbidden)
             # 5xx = Error del servidor (500, 503, etc.)
             
-            # Solo nos interesan las respuestas exitosas o redirecciones (< 400)
-            # Estas indican que la ruta EXISTE
-            if respuesta.status_code < 400:
+            # También mostramos 401 y 403: son errores de acceso, pero indican
+            # que la ruta existe y está protegida.
+            if respuesta.status_code < 400 or respuesta.status_code in {401, 403}:
                 rutas_encontradas += 1
                 
                 # Mostramos la ruta encontrada
@@ -185,7 +188,10 @@ print("=" * 70)
 print(f"Estadísticas:")
 print(f"  - Total de peticiones realizadas: {total_peticiones}")
 print(f"  - Rutas/endpoints encontrados: {rutas_encontradas}")
-print(f"  - Tasa de éxito: {(rutas_encontradas/total_peticiones*100):.2f}%")
+tasa_exito = (
+    rutas_encontradas / total_peticiones * 100 if total_peticiones else 0
+)
+print(f"  - Tasa de éxito: {tasa_exito:.2f}%")
 print()
 
 if rutas_encontradas > 0:

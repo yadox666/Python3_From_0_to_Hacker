@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+Author: Yago Hansen
+Version: 1.0
+
 VERIFICADOR DE ESTADO DE URLs - Script Educativo
 =================================================
 Este script verifica si una URL está disponible y devuelve su código

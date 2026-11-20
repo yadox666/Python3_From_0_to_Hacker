@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+Author: Yago Hansen
+Version: 1.0
+
 ARGPARSE AVANZADO - Script Educativo
 =====================================
 Este script demuestra el uso avanzado de argparse para crear programas

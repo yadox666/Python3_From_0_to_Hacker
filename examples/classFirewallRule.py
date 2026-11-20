@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+Author: Yago Hansen
+Version: 1.0
+
 CLASES EN PYTHON - Script Educativo
 ====================================
 Este script enseña los conceptos fundamentales de Programación Orientada

@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+Author: Yago Hansen
+Version: 1.0
+
 SYS.ARGV - Script Educativo
 ============================
 Este script demuestra el uso básico de sys.argv para recibir argumentos

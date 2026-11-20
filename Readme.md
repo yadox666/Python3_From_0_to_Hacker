@@ -36,7 +36,7 @@
 |:---:|:---:|---|
 | 1 | 0:00 – 0:30 | [Introducción](#introducción) y [primeros pasos](#primeros-pasos-y-sintaxis-básica) |
 | 2 | 0:30 – 1:30 | [Estructuras de datos](#estructuras-de-datos): variables, cadenas, listas, diccionarios |
-| 3 | 1:30 – 2:30 | [Condiciones y bucles](#condiciones-switches-y-bucles) |
+| 3 | 1:30 – 2:30 | [Condiciones y bucles](#condiciones-y-bucles) |
 | ☕ | 2:30 – 2:40 | *Descanso* |
 | 4 | 2:40 – 3:20 | [Funciones](#funciones) y [clases](#clases-y-objetos-opcional) |
 | 5 | 3:20 – 4:00 | [Librerías](#instalar-importar-y-usar-librerías), [errores](#debugging), [argumentos](#uso-de-argumentos) y [archivos](#manejo-de-archivos) |
@@ -179,8 +179,16 @@ Hola
 #### Shebang
 ```python
 #!/usr/bin/env python3
-# si ejecutas /usr/bin/env python3 entras en la consola de Python 3
 ```
+
+El *shebang* indica que el sistema debe usar Python 3 para ejecutar el archivo. Para utilizarlo:
+
+```bash
+chmod +x mi_script.py  # Solo hace falta una vez
+./mi_script.py
+```
+
+Para abrir la consola interactiva, ejecuta `python3` sin indicar ningún archivo.
 
 #### Comentarios
 ```python
@@ -190,6 +198,7 @@ Hola
 Nombre del Script: mi_script.py
 Descripción: Breve descripción de lo que hace el script.
 Autor: Tu Nombre
+Versión: 1.0
 Fecha: AAAA-MM-DD
 """
 ```
@@ -287,7 +296,14 @@ chmod +x hola.py   # Permiso de ejecución (solo la primera vez)
 >
 > </details>
 
-Las variables son estructuras de datos que se usan para almacenar valores de diversos tipos (numeros, cadenas de texto, listas, etc.) que pueden variar o ser de tipo constante o fijo. Para definirlas se utiliza el símbolo igual "=".
+Una variable es un **nombre que apunta a un valor**. Se crea con el símbolo `=` y puede apuntar a números, texto, listas y otros objetos.
+
+```python
+puerto = 22          # El nombre "puerto" apunta al entero 22
+puerto = 443         # Ahora apunta a otro entero
+```
+
+Python no tiene constantes obligatorias. Por convenio, escribimos en mayúsculas los valores que no deberían cambiar: `MAX_INTENTOS = 3`.
 
 **Tipos de Variables en Python:**
 
@@ -322,15 +338,22 @@ mi_variable = "Hola Mundo!"
 Es una de las funciones más utilizadas y sirve para mostrar valores en pantalla. Puede imprimir cualquier tipo de variable.
 
 ```python
-# Imprimir texto simple
 print("Hola Mundo")
 
-# Imprimir múltiples elementos
 nombre = "Ana"
 edad = 25
 print("Nombre:", nombre, "Edad:", edad)
-# Nombre: Ana Edad: 25
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+Hola Mundo
+Nombre: Ana Edad: 25
+```
+
+</details>
 
 ##### Uso de comillas y comillas dobles
 
@@ -354,24 +377,29 @@ nombre = "María"
 edad = 30
 altura = 1.65
 
-# f-strings: formato más moderno y legible
 print(f"Hola, soy {nombre}")
 print(f"Tengo {edad} años y mido {altura} metros")
-# Hola, soy María
-# Tengo 30 años y mido 1.65 metros
 
-# Con expresiones
 precio = 100
 descuento = 20
 print(f"Precio final: {precio - descuento} €")
-# Precio final: 80 €
-
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+Hola, soy María
+Tengo 30 años y mido 1.65 metros
+Precio final: 80 €
+```
+
+</details>
 
 
 <p align="center"><img src="images/d-indices.svg" alt="Índices positivos y negativos" width="100%"></p>
 
-Uso de índices: En Python, las cadenas de tipo string funcionan como listas de caracteres, pudiendo indexarse por el orden de los caracteres del 0 a n.
+Uso de índices: una cadena es una **secuencia de caracteres**. Por eso podemos acceder a sus caracteres mediante posiciones que empiezan en `0`. A diferencia de una lista, una cadena no se puede modificar después de crearla.
 
 <div align="center">
 
@@ -385,74 +413,107 @@ Uso de índices: En Python, las cadenas de tipo string funcionan como listas de 
 ```python
 texto = "Python"
 
-# Acceder a caracteres individuales
-print(texto[0])   # 'P' - primer carácter
-print(texto[1])   # 'y' - segundo carácter
-print(texto[-1])  # 'n' - último carácter
-print(texto[-2])  # 'o' - penúltimo carácter
+print(texto[0])
+print(texto[1])
+print(texto[-1])
+print(texto[-2])
 
-# Slicing (rebanadas)
-print(texto[:3])   # 'Pyt' - desde el inicio hasta el índice 3
-print(texto[3:])   # 'hon' - desde el índice 3 hasta el final
-print(texto[1:4])  # 'yth' - desde el índice 1 hasta el 4
-print(texto[:-1])  # 'Pytho' - todo excepto el último
+print(texto[:3])
+print(texto[3:])
+print(texto[1:4])
+print(texto[:-1])
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+'P'
+'y'
+'n'
+'o'
+'Pyt'
+'hon'
+'yth'
+'Pytho'
+```
+
+</details>
 
 Concatenación: Para concatenar cadenas de texto se puede utilizar el símbolo más "+" de forma general, aunque como ya hemos visto, resulta más práctico el uso del f-string.
 
 ```python
-# Unir cadenas con +
 nombre = "Ana"
 apellido = "García"
 nombre_completo = nombre + " " + apellido
-print(nombre_completo)  # "Ana García"
+print(nombre_completo)
 
-# Utilizar formato f-string
 nombre = "Ana"
 apellido = "García"
-print(f"{nombre} {apellido}")  # "Ana García"
+print(f"{nombre} {apellido}")
 
-# Repetir cadenas
-print("Hola " * 3)  # "Hola Hola Hola "
+print("Hola " * 3)
 
-# Concatenar con números (convertir primero)
 edad = 25
 mensaje = "Tengo " + str(edad) + " años"
-print(mensaje)  # "Tengo 25 años"
+print(mensaje)
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+Ana García
+Ana García
+Hola Hola Hola
+Tengo 25 años
+```
+
+</details>
 
 Unicode y caracteres especiales: En la mayoría de lenguajes de programación se permite el uso de caracteres especiales como el retorno de carro "\n", el tabulador "\t" para tabular columnas, así como el uso de caracteres no ASCII o unicode, además de caracteres de tipo binario o bits.
 
 ```python
-# Caracteres especiales
 mensaje = "Línea 1\nLínea 2\nLínea 3"
 print(mensaje)
-# Línea 1
-# Línea 2
-# Línea 3
 
-# Tabulaciones
 print("Nombre:\tJuan\nEdad:\t25")
-# Nombre: Juan
-# Edad:   25 
 
-# Unicode
 print("Símbolos: ★ ♥ € ñ á")
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+Línea 1
+Línea 2
+Línea 3
+Nombre:	Juan
+Edad:	25
+Símbolos: ★ ♥ € ñ á
+```
+
+</details>
 
 ##### User input
 
 La función `input()` permite recibir datos del usuario durante la ejecución del programa.
 
 ```python
-# Pedir el nombre al usuario
 nombre = input("¿Cuál es tu nombre? ")
 print(f"Hola, {nombre}!")
-
-# Ejemplo de ejecución:
-# ¿Cuál es tu nombre? Juan
-# Hola, Juan!
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+¿Cuál es tu nombre? Juan
+Hola, Juan!
+```
+
+</details>
 
 #### Alcance
 
@@ -482,22 +543,30 @@ print(nombre_local)    # ❌ Error: no existe fuera de la función
 Los enteros son variables de tipo numérico entero, no decimal.
 
 ```python
-# Entero
 edad = 10
-print(type(edad))          # <class 'int'>
+print(type(edad))
 
-# Float (decimal)
 temperatura = 10.2
-print(type(temperatura))   # <class 'float'>
+print(type(temperatura))
 
-# Hexadecimal (base 16)
-hex_num = 0xA              # 10 en decimal
-print(hex_num)             # 10
+hex_num = 0xA
+print(hex_num)
 
-# Octal (base 8)
-oct_num = 0o12             # 10 en decimal
-print(oct_num)             # 10
+oct_num = 0o12
+print(oct_num)
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+<class 'int'>
+<class 'float'>
+10
+10
+```
+
+</details>
 - Entero (10)
 - Float (10.2)
 - Hexadecimal (0xA)
@@ -511,52 +580,76 @@ Python permite de forma genérica, sin el uso de librerías externas, realizar o
 a = 10
 b = 3
 
-# Suma
-print(a + b)  # 13
+print(a + b)
 
-# Resta
-print(a - b)  # 7
+print(a - b)
 
-# Multiplicación
-print(a * b)  # 30
+print(a * b)
 
-# División
-print(a / b)  # 3.333...
+print(a / b)
 
-# División entera (truncada)
-print(a // b)  # 3
+print(a // b)
 
-# Módulo (resto de la división)
-print(a % b)  # 1
+print(a % b)
 
-# Potencia
-print(a ** b)  # 1000 (10 elevado a 3)
+print(a ** b)
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+13
+7
+30
+3.3333333333333335
+3
+1
+1000
+```
+
+</details>
 
 Uso de variables en operaciones:
 ```python
-# Operaciones con variables
 precio = 100
 descuento = 20
 precio_final = precio - descuento
-print(f"El precio final es: ${precio_final}")  # El precio final es: $80
+print(f"El precio final es: ${precio_final}")
 
-# Reasignar valores
 contador = 0
-contador = contador + 1   # Ahora contador vale 1
-contador += 1             # Forma corta, ahora vale 2
-print(contador)           # 2
+contador = contador + 1
+contador += 1
+print(contador)
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+El precio final es: $80
+2
+```
+
+</details>
 
 Ejemplo: Par o impar?
 ```python
-# Verificar si un número es par o impar comprobando el resto
 numero = 17
 if numero % 2 == 0:
     print(f"{numero} es par")
 else:
-    print(f"{numero} es impar")  # 17 es impar
+    print(f"{numero} es impar")
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+17 es impar
+```
+
+</details>
 
 #### Booleanos
 
@@ -564,41 +657,65 @@ Los booleanos o variables lógicas solo pueden valer `True` (verdadero) o `False
 
 Ejemplo: Valores booleanos y comparaciones
 ```python
-# Valores booleanos básicos
 verdadero = True
 falso = False
 
-print(verdadero)  # True
-print(falso)      # False
+print(verdadero)
+print(falso)
 
-# Comparaciones que retornan booleanos
-print(5 > 3)      # True
-print(5 < 3)      # False
-print(5 == 5)     # True (igualdad)
-print(5 != 3)     # True (diferente)
-print(5 >= 5)     # True (mayor o igual)
+print(5 > 3)
+print(5 < 3)
+print(5 == 5)
+print(5 != 3)
+print(5 >= 5)
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+True
+False
+True
+False
+True
+True
+True
+```
+
+</details>
 
 Ejemplo: Operadores lógicos
 ```python
-# AND (ambos deben ser verdaderos)
-print(True and True)   # True
-print(True and False)  # False
+print(True and True)
+print(True and False)
 
-# OR (al menos uno debe ser verdadero)
-print(True or False)   # True
-print(False or False)  # False
+print(True or False)
+print(False or False)
 
-# NOT (invierte el valor)
-print(not True)        # False
-print(not False)       # True
+print(not True)
+print(not False)
 
-# Ejemplo práctico
 edad = 20
 tiene_licencia = True
 puede_conducir = edad >= 18 and tiene_licencia
-print(f"¿Puede conducir? {puede_conducir}")  # True
+print(f"¿Puede conducir? {puede_conducir}")
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+True
+False
+True
+False
+False
+True
+True
+```
+
+</details>
 
 #### Variables no definidas o None
 
@@ -611,9 +728,20 @@ def saludar():
     print("Hola!")
 
 resultado = saludar()
-print(resultado)   # Imprime: None
-print(vacio)   # Imprime: None
+print(resultado)
+print(vacio)
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+Hola!
+None
+None
+```
+
+</details>
 
 **¿Qué NO representa None?**
 | Concepto | ¿Es igual a `None`? | Explicación |
@@ -631,55 +759,73 @@ Ejemplo: Métodos de cadenas
 ```python
 texto = "Hola Mundo"
 
-# Ver todos los métodos disponibles de la clase texto
 print(dir(texto))
 
-# Convertir a minúsculas
-print(texto.lower())       # "hola mundo"
+print(texto.lower())
 
-# Convertir a mayúsculas
-print(texto.upper())       # "HOLA MUNDO"
+print(texto.upper())
 
-# Convertir a tipo frase
-print(texto.capitalize())  # "Hola mundo"
+print(texto.capitalize())
 
-# Convertir a Titulos
-print(texto.title())       # "Hola Mundo"
+print(texto.title())
 
-# Dividir la cadena
-palabras = texto.split()   # Divide por espacios
-print(palabras)            # ['Hola', 'Mundo']
+palabras = texto.split()
+print(palabras)
 
-# Ejemplo con email
 email = "usuario@ejemplo.com"
 usuario, dominio = email.split('@')
-print(f"Usuario: {usuario}")           # Usuario: usuario
-print(f"Dominio: {dominio}")           # Dominio: ejemplo.com
+print(f"Usuario: {usuario}")
+print(f"Dominio: {dominio}")
 
-cadena = "123"    # aunque podría ser un entero, se define como cadena
-print(cadena.isnumeric())    # devuelve True porque podría ser convertido a entero
+cadena = "123"
+print(cadena.isascii() and cadena.isdigit())
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+[... métodos disponibles de str ...]
+hola mundo
+HOLA MUNDO
+Hola mundo
+Hola Mundo
+['Hola', 'Mundo']
+Usuario: usuario
+Dominio: ejemplo.com
+True
+```
+
+</details>
 
 Ejemplo: Más métodos útiles
 ```python
 frase = "  Python es genial  "
 
-# Eliminar espacios al inicio y final
-print(frase.strip())                         # "Python es genial"
+print(frase.strip())
 
-# Reemplazar texto
-print(frase.replace("genial", "increíble"))  # "  Python es increíble  "
+print(frase.replace("genial", "increíble"))
 
-# Verificar si empieza con algo
-print(frase.strip().startswith("Python"))    # True
+print(frase.strip().startswith("Python"))
 
-# Contar ocurrencias
-print("banana".count("a"))                   # 3
+print("banana".count("a"))
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+Python es genial
+  Python es increíble
+True
+3
+```
+
+</details>
 
 ---
 
-### Arrays o colecciones
+### Colecciones
 
 Las colecciones permiten guardar **varios valores en una sola variable**. Python tiene cuatro tipos principales:
 
@@ -687,7 +833,7 @@ Las colecciones permiten guardar **varios valores en una sola variable**. Python
 |---|:---:|:---:|:---:|:---:|---|
 | Lista `list` | `[ ]` | ✅ | ✅ | ✅ | Puertos a escanear |
 | Tupla `tuple` | `( )` | ✅ | ❌ | ✅ | Coordenadas, `(ip, puerto)` |
-| Conjunto `set` | `{ }` | ❌ | ✅ | ❌ | IPs únicas vistas en un log |
+| Conjunto `set` | `{1, 2}` / `set()` | ❌ | ✅ | ❌ | IPs únicas vistas en un log |
 | Diccionario `dict` | `{clave: valor}` | ✅ | ✅ | Claves no | Servicio → puerto |
 
 #### Listas o `list()`
@@ -708,149 +854,234 @@ Las colecciones permiten guardar **varios valores en una sola variable**. Python
 Una lista es un objeto que almacena multiples valores en un orden establecido. Esta lista de valores no es inmutable y puede modificarse, crecer o reducirse mediante diferentes operaciones.
 
 ```python
-# Crear una lista
 lista = [1, 3, 5, 7, 9]
-print(lista)  # [1, 3, 5, 7, 9]
+print(lista)
 
-# Lista con diferentes tipos
 mixta = [1, "texto", 3.14, True]
-print(mixta)  # [1, 'texto', 3.14, True]
+print(mixta)
 
-# Lista vacía
 vacia = []
-# o también: vacia = list()
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+[1, 3, 5, 7, 9]
+[1, 'texto', 3.14, True]
+```
+
+</details>
 
 Ejemplo: Acceder a elementos
 ```python
 frutas = ["manzana", "banana", "cereza", "durazno"]
 
-# Acceder por índice
-print(frutas[0])   # "manzana" - primer elemento
-print(frutas[2])   # "cereza"
-print(frutas[-1])  # "durazno" - último elemento
+print(frutas[0])
+print(frutas[2])
+print(frutas[-1])
 
-# Lista de listas (matriz)
 matriz = [
     [1, 2, 3],
     [4, 5, 6],
     [7, 8, 9]
 ]
-print(matriz[0][0])  # 1
-print(matriz[1][2])  # 6
+print(matriz[0][0])
+print(matriz[1][2])
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+manzana
+cereza
+durazno
+1
+6
+```
+
+</details>
 
 Métodos de listas:
 ```python
 numeros = [2, 1, 4, 3]
 
-# append() - añadir al final
 numeros.append(5)
-print(numeros)  # [2, 1, 4, 3, 5]
+print(numeros)
 
-# extend() - añadir múltiples elementos
 numeros.extend([7, 6])
-print(numeros)  # [2, 1, 4, 3, 5, 7, 6]
+print(numeros)
 
-# sort() - ordenar
 numeros.sort()
-print(numeros)  # [1, 2, 3, 4, 5, 6, 7]
+print(numeros)
 
-# sort(reverse=True) - ordenar descendente
 numeros.sort(reverse=True)
-print(numeros)  # [7, 6, 5, 4, 3, 2, 1]
+print(numeros)
 
-# pop() - eliminar y retornar el último
 ultimo = numeros.pop()
-print(ultimo)   # 1
-print(numeros)  # [7, 6, 5, 4, 3, 2]
+print(ultimo)
+print(numeros)
 
-# del - eliminar por índice
 del numeros[0]
-print(numeros)  # [6, 5, 4, 3, 2]
+print(numeros)
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+[2, 1, 4, 3, 5]
+[2, 1, 4, 3, 5, 7, 6]
+[1, 2, 3, 4, 5, 6, 7]
+[7, 6, 5, 4, 3, 2, 1]
+1
+[7, 6, 5, 4, 3, 2]
+[6, 5, 4, 3, 2]
+```
+
+</details>
 
 Índices de una lista:
 ```python
 lista = [1, 3, 5, 7]
-print(lista[0])                    # 1
+print(lista[0])
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+1
+```
+
+</details>
 
 Ejemplo para convertir a csv una lista
 ```python
 lista = [1, 3, 5, "pan"]
-csv = ','.join(map(str, lista))  # Convierte todos los elementos a string primero
-print(csv)                # "1,3,5,pan"
+csv = ','.join(map(str, lista))
+print(csv)
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+1,3,5,pan
+```
+
+</details>
 
 #### Conjuntos o `set()`
 
 Los conjuntos son colecciones sin orden fijo y sin elementos duplicados. Esto ayuda a mantener una lista libre de duplicados, por lo tanto con valores únicos.
 
 ```python
-# Crear un conjunto o set
 consonantes = set(['b', 'c', 'd', 'f','b'])
-print(consonantes)  # {'f', 'c', 'd', 'b'} (el orden puede variar)
+print(consonantes)
 
-# Otra forma de crear conjuntos
 numeros = {1, 2, 3, 4, 5, 1}
-print(numeros)  # {1, 2, 3, 4, 5}    # Los duplicados se eliminan automáticamente
+print(numeros)
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+{'b', 'c', 'd', 'f'}
+{1, 2, 3, 4, 5}
+
+El orden de los elementos de un conjunto puede variar.
+```
+
+</details>
 
 Ejemplo: Operaciones con conjuntos
 ```python
 a = {1, 2, 3, 4}
 b = {3, 4, 5, 6}
 
-# Unión (elementos en a o b)
-print(a | b)  # {1, 2, 3, 4, 5, 6}
+print(a | b)
 
-# Intersección (elementos en a y b)
-print(a & b)  # {3, 4}
+print(a & b)
 
-# Diferencia (elementos en a pero no en b)
-print(a - b)  # {1, 2}
+print(a - b)
 
-# Añadir elemento
 a.add(7)
-print(a)     # {1, 2, 3, 4, 7}
+print(a)
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+{1, 2, 3, 4, 5, 6}
+{3, 4}
+{1, 2}
+{1, 2, 3, 4, 7}
+```
+
+</details>
 
 #### Tuplas o `tuple()`
 
 Las tuplas son como listas pero **inmutables** (no se pueden modificar después de creadas).
 
 ```python
-# Crear tuplas
 vocales = ("a", "e", "i", "o", "u")
-print(vocales)  # ('a', 'e', 'i', 'o', 'u')
+print(vocales)
 
-# También sin paréntesis
 dias = "lunes", "martes", "miércoles"
-print(dias)  # ('lunes', 'martes', 'miércoles')
+print(dias)
 
-# Acceder a elementos (como en listas)
-print(vocales[0])   # 'a'
-print(vocales[-1])  # 'u'
+print(vocales[0])
+print(vocales[-1])
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+('a', 'e', 'i', 'o', 'u')
+('lunes', 'martes', 'miércoles')
+a
+u
+```
+
+</details>
 
 Ejemplo: ¿Por qué usar tuplas?
 ```python
-# Las tuplas son inmutables
 coordenadas = (10, 20)
-print(coordenadas)       # (10, 20)
-
-# Esto daría error:
-# coordenadas[0] = 15    # ❌ TypeError
+print(coordenadas)
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+(10, 20)
+```
+
+</details>
 
 Ejemplo: Desempaquetar una tupla en varias variables
 ```python
 destino = ("10.0.0.5", 443)
 
 ip, puerto = destino
-print(f"Conectando a {ip}:{puerto}")  # Conectando a 10.0.0.5:443
+print(f"Conectando a {ip}:{puerto}")
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+Conectando a 10.0.0.5:443
+```
+
+</details>
 
 > [!TIP]
 > Así es justo como recibe la dirección la librería `socket`: `s.connect((ip, puerto))` usa una tupla.
@@ -869,18 +1100,27 @@ print(f"Conectando a {ip}:{puerto}")  # Conectando a 10.0.0.5:443
 Los diccionarios almacenan pares clave-valor. Son muy útiles para organizar datos relacionados entre si.
 
 ```python
-# Crear un diccionario
 services = {"FTP": 21, "SSH": 22, "SMTP": 25, "HTTP": 80}
-print(services)  # {'FTP': 21, 'SSH': 22, 'SMTP': 25, 'HTTP': 80}
+print(services)
 
-# Acceder a valores por clave
-print(services['SSH'])  # 22
-print(services['HTTP']) # 80
+print(services['SSH'])
+print(services['HTTP'])
 
-# Añadir nuevos elementos
 services['HTTPS'] = 443
-print(services)  # {'FTP': 21, 'SSH': 22, 'SMTP': 25, 'HTTP': 80, 'HTTPS': 443}
+print(services)
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+{'FTP': 21, 'SSH': 22, 'SMTP': 25, 'HTTP': 80}
+22
+80
+{'FTP': 21, 'SSH': 22, 'SMTP': 25, 'HTTP': 80, 'HTTPS': 443}
+```
+
+</details>
 
 Ejemplo: Diccionario de información personal
 ```python
@@ -891,42 +1131,62 @@ persona = {
     "profesion": "Programador"
 }
 
-print(persona["nombre"])     # Juan
-print(persona["profesion"])  # Programador
+print(persona["nombre"])
+print(persona["profesion"])
 
-# Modificar valores
 persona["edad"] = 31
-print(persona["edad"])  # 31
+print(persona["edad"])
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+Juan
+Programador
+31
+```
+
+</details>
 
 **Métodos importantes:**
 
 ```python
 services = {"FTP": 21, "SSH": 22, "HTTP": 80}
 
-# get() - obtener valor (con valor por defecto si no existe)
-print(services.get("SSH"))         # 22
-print(services.get("HTTPS", 443))  # 443 (retorna 443 si no existe)
+print(services.get("SSH"))
+print(services.get("HTTPS", 443))
 
-# Actualizar con otro diccionario
 services2 = {"HTTPS": 443, "DNS": 53}
 services.update(services2)
-print(services)  # {'FTP': 21, 'SSH': 22, 'HTTP': 80, 'HTTPS': 443, 'DNS': 53}
+print(services)
 
-# pop() - eliminar y retornar valor
 puerto_ftp = services.pop("FTP")
-print(puerto_ftp)  # 21
-print(services)    # Ya no está FTP
+print(puerto_ftp)
+print(services)
 
-# del - eliminar clave
 del services["DNS"]
-print(services)  # DNS eliminado
+print(services)
 
-# clear() - vaciar diccionario
 services_temp = {"A": 1, "B": 2}
 services_temp.clear()
-print(services_temp)  # {}
+print(services_temp)
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+22
+443
+{'FTP': 21, 'SSH': 22, 'HTTP': 80, 'HTTPS': 443, 'DNS': 53}
+21
+{'SSH': 22, 'HTTP': 80, 'HTTPS': 443, 'DNS': 53}
+{'SSH': 22, 'HTTP': 80, 'HTTPS': 443}
+{}
+```
+
+</details>
 
 ### Identificación y conversión de tipos
 
@@ -935,50 +1195,72 @@ En muchos casos, recibimos un valor de una función desconocida o librería y de
 La función `type()` te permite saber qué tipo de dato es una variable.
 
 ```python
-# Verificar tipos de datos
 numero = 42
-print(type(numero))  # <class 'int'>
+print(type(numero))
 
 decimal = 3.14
-print(type(decimal))  # <class 'float'>
+print(type(decimal))
 
 texto = "Hola"
-print(type(texto))  # <class 'str'>
+print(type(texto))
 
 lista = [1, 2, 3]
-print(type(lista))  # <class 'list'>
+print(type(lista))
 
 diccionario = {"clave": "valor"}
-print(type(diccionario))  # <class 'dict'>
+print(type(diccionario))
 
 booleano = True
-print(type(booleano))  # <class 'bool'>
+print(type(booleano))
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+<class 'int'>
+<class 'float'>
+<class 'str'>
+<class 'list'>
+<class 'dict'>
+<class 'bool'>
+```
+
+</details>
 
 Métodos de conversión entre tipos:
 ```python
-# Convertir string a entero
 edad_str = "25"
 edad_int = int(edad_str)
-print(type(edad_int))  # <class 'int'>
-print(edad_int + 5)    # 30
+print(type(edad_int))
+print(edad_int + 5)
 
-# Convertir a float
 numero_str = "3.14"
 numero_float = float(numero_str)
-print(numero_float * 2)  # 6.28
+print(numero_float * 2)
 
-# Convertir a string
 numero = 100
 numero_str = str(numero)
 mensaje = "El número es: " + numero_str
-print(mensaje)  # El número es: 100
+print(mensaje)
 
-# Convertir a lista
 texto = "Python"
 lista_letras = list(texto)
-print(lista_letras)  # ['P', 'y', 't', 'h', 'o', 'n']
+print(lista_letras)
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+<class 'int'>
+30
+6.28
+El número es: 100
+['P', 'y', 't', 'h', 'o', 'n']
+```
+
+</details>
 
 > [!WARNING]
 > `input()` **siempre devuelve una cadena**. Si pides un puerto, conviértelo: `puerto = int(input("Puerto: "))`.
@@ -1008,9 +1290,9 @@ print(f"Host {objetivo['hostname']} ({objetivo['ip']}) tiene {len(objetivo['puer
 </details>
 </details>
 
-## Condiciones, switches y bucles
+## Condiciones y bucles
 
-<p align="center"><img src="images/04-condiciones-bucles.svg" alt="Condiciones, switches y bucles" width="100%"></p>
+<p align="center"><img src="images/04-condiciones-bucles.svg" alt="Condiciones y bucles" width="100%"></p>
 
 Esta sección explora las estructuras fundamentales que permiten a un programa tomar decisiones y repetir acciones.
 
@@ -1047,8 +1329,16 @@ if edad >= 18:
     print("Eres mayor de edad")
 else:
     print("Eres menor de edad")
-# Eres mayor de edad
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+Eres mayor de edad
+```
+
+</details>
 
 Ejemplo: Programa interactivo
 ```python
@@ -1140,8 +1430,16 @@ if edad >= 18:
         print("Mayor de edad pero sin licencia")
 else:
     print("Menor de edad")
-# Puede conducir
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+Puede conducir
+```
+
+</details>
 
 #### Negación
 
@@ -1167,26 +1465,35 @@ Ejemplo: Asignación condicional (operador ternario)
 ```python
 edad = 20
 
-# Forma tradicional
 if edad >= 18:
     mensaje = "Mayor de edad"
 else:
     mensaje = "Menor de edad"
-print(mensaje)  # Mayor de edad
+print(mensaje)
 
-# Forma compacta (operador ternario)
 mensaje = "Mayor de edad" if edad >= 18 else "Menor de edad"
-print(mensaje)  # Mayor de edad
+print(mensaje)
 
-# Con None
 nombre = None
 nombre_mostrar = nombre or "Anónimo"
-print(nombre_mostrar)  # Anónimo
+print(nombre_mostrar)
 
 nombre = "Juan"
 nombre_mostrar = nombre or "Anónimo"
-print(nombre_mostrar)  # Juan
+print(nombre_mostrar)
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+Mayor de edad
+Mayor de edad
+Anónimo
+Juan
+```
+
+</details>
 
 Ejemplo práctico: Sistema de descuentos
 ```python
@@ -1194,7 +1501,6 @@ precio = 100
 es_estudiante = True
 tiene_cupon = False
 
-# Calcular descuento
 descuento = 0
 if es_estudiante and tiene_cupon:
     descuento = 30
@@ -1207,10 +1513,18 @@ precio_final = precio - (precio * descuento / 100)
 print(f"Precio original: ${precio}")
 print(f"Descuento: {descuento}%")
 print(f"Precio final: ${precio_final}")
-# Precio original: $100
-# Descuento: 15%
-# Precio final: $85.0
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+Precio original: $100
+Descuento: 15%
+Precio final: $85.0
+```
+
+</details>
 
 ### Bucle For
 
@@ -1235,29 +1549,70 @@ print(f"Tabla de multiplicar del {numero}:")
 for i in range(1, 11):
     resultado = numero * i
     print(f"{numero} x {i} = {resultado}")
-
-# Salida:
-# Tabla de multiplicar del 5:
-# 5 x 1 = 5
-# 5 x 2 = 10
-# ... hasta 50
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+Tabla de multiplicar del 5:
+5 x 1 = 5
+5 x 2 = 10
+5 x 3 = 15
+5 x 4 = 20
+5 x 5 = 25
+5 x 6 = 30
+5 x 7 = 35
+5 x 8 = 40
+5 x 9 = 45
+5 x 10 = 50
+```
+
+</details>
 
 Ejemplo: Diferentes usos de range
 
 ```python
-# range(stop) - desde 0 hasta stop-1
 for i in range(5):
-    print(i)  # 0, 1, 2, 3, 4
+    print(i)
 
-# range(start, stop, step) - con incremento personalizado
 for i in range(0, 11, 2):
-    print(i)  # 0, 2, 4, 6, 8, 10
+    print(i)
 
-# Rango descendente (usa step -1)
 for i in range(10, 0, -1):
-    print(i)  # 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
+    print(i)
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+0
+1
+2
+3
+4
+
+0
+2
+4
+6
+8
+10
+
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+```
+
+</details>
 
 Ejemplo: Iterar sobre una cadena
 ```python
@@ -1269,8 +1624,16 @@ for letra in palabra:
         contador = contador + 1
 
 print(f"La letra 'a' aparece {contador} veces")
-# La letra 'a' aparece 3 veces
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+La letra 'a' aparece 3 veces
+```
+
+</details>
 
 Ejemplo: Iterar sobre una lista
 ```python
@@ -1278,12 +1641,19 @@ frutas = ["manzana", "banana", "cereza", "durazno"]
 
 for fruta in frutas:
     print(f"Me gusta la {fruta}")
-
-# Salida:
-# Me gusta la manzana
-# Me gusta la banana
-# ...
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+Me gusta la manzana
+Me gusta la banana
+Me gusta la cereza
+Me gusta la durazno
+```
+
+</details>
 
 Ejemplo: Iterar con índice (enumerate)
 ```python
@@ -1291,12 +1661,18 @@ colores = ["rojo", "verde", "azul"]
 
 for indice, color in enumerate(colores):
     print(f"{indice}: {color}")
-
-# Salida:
-# 0: rojo
-# 1: verde
-# 2: azul
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+0: rojo
+1: verde
+2: azul
+```
+
+</details>
 
 Ejemplo: Iterar sobre diccionario
 ```python
@@ -1306,15 +1682,20 @@ estudiante = {
     "carrera": "Ingeniería"
 }
 
-# Iterar sobre clave y valor
 for clave, valor in estudiante.items():
     print(f"{clave}: {valor}")
-
-# Salida:
-# nombre: Ana
-# edad: 20
-# carrera: Ingeniería
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+nombre: Ana
+edad: 20
+carrera: Ingeniería
+```
+
+</details>
 
 ### Bucle While
 
@@ -1340,21 +1721,25 @@ El bucle while se utiliza para repetir un bloque de código mientras se cumpla u
 
 Ejemplo básico: Contar del 1 al 5
 ```python
-# Inicializar contador
 i = 1
 
-# Bucle while
 while i <= 5:
     print(f"Número: {i}")
-    i += 1  # Incrementar (equivale a i = i + 1)
-
-# Salida:
-# Número: 1
-# Número: 2
-# Número: 3
-# Número: 4
-# Número: 5
+    i += 1
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+Número: 1
+Número: 2
+Número: 3
+Número: 4
+Número: 5
+```
+
+</details>
 
 #### Break (salir del bucle)
 
@@ -1362,12 +1747,21 @@ Ejemplo: Uso de break
 ```python
 for i in range(1, 11):
     if i == 5:
-        break  # Sale del bucle cuando i es 5
+        break
     print(i)
-
-# Salida: 1, 2, 3, 4
-# No imprime 5 ni los números siguientes
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+1
+2
+3
+4
+```
+
+</details>
 
 Ejemplo práctico: Buscar un número
 ```python
@@ -1380,8 +1774,16 @@ for num in numeros:
         break
 else:
     print(f"Número {buscar} no encontrado")
-# ¡Número 15 encontrado!
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+¡Número 15 encontrado!
+```
+
+</details>
 
 #### Continue (saltar a la siguiente iteración)
 
@@ -1389,22 +1791,47 @@ Ejemplo: Uso de continue
 ```python
 for i in range(1, 11):
     if i == 5:
-        continue  # Salta a la siguiente iteración cuando i es 5
+        continue
     print(i)
-
-# Salida: 1, 2, 3, 4, 6, 7, 8, 9, 10
-# No imprime el 5
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+1
+2
+3
+4
+6
+7
+8
+9
+10
+```
+
+</details>
 
 Ejemplo: Imprimir solo números pares
 ```python
 for i in range(1, 11):
-    if i % 2 != 0:  # Si es impar
-        continue    # Saltar
+    if i % 2 != 0:
+        continue
     print(i)
-
-# Salida: 2, 4, 6, 8, 10
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+2
+4
+6
+8
+10
+```
+
+</details>
 
 #### Bucle infinito
 
@@ -1464,16 +1891,22 @@ print(f"Puertos desconocidos: {desconocidos}")
 Las funciones son bloques de código reutilizable que realizan una tarea específica.
 
 ```python
-# Definir una función simple
 def saludar():
     print("¡Hola!")
     print("Bienvenido a Python")
 
-# Llamar a la función
 saludar()
-# ¡Hola!
-# Bienvenido a Python
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+¡Hola!
+Bienvenido a Python
+```
+
+</details>
 
 ### Input arguments (Argumentos de entrada)
 
@@ -1489,21 +1922,31 @@ saludar()
 Los argumentos son la forma más práctica de introducir datos variables en una función, al llamarla. También se usan para modificar su comportamiento.
 
 ```python
-# Función con múltiples parámetros
 def suma(a, b):
     resultado = a + b
     print(f"{a} + {b} = {resultado}")
 
-suma(5, 3)   # 5 + 3 = 8
-suma(10, 20) # 10 + 20 = 30
+suma(5, 3)
+suma(10, 20)
 
-# Parámetros con valores por defecto
 def presentar(nombre, edad=18):
     print(f"Me llamo {nombre} y tengo {edad} años")
 
-presentar("Juan", 25)  # Me llamo Juan y tengo 25 años
-presentar("Ana")       # Me llamo Ana y tengo 18 años
+presentar("Juan", 25)
+presentar("Ana")
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+5 + 3 = 8
+10 + 20 = 30
+Me llamo Juan y tengo 25 años
+Me llamo Ana y tengo 18 años
+```
+
+</details>
 
 ### Return (Retornar valores)
 
@@ -1514,40 +1957,49 @@ Algunas funciones son autónomas y realizan un trabajo sin devolver un valor. Pe
 Piensa en una función como una **caja negra**: le das datos de entrada (argumentos), hace su trabajo y te devuelve un resultado con `return`.
 
 ```python
-# Función que retorna un valor
 def sumar(a, b):
     return a + b
 
 resultado = sumar(10, 5)
-print(resultado)  # 15
+print(resultado)
 
-# Usar el resultado en operaciones
 total = sumar(20, 30) + sumar(5, 5)
-print(total)  # 60
+print(total)
 
-# Función con múltiples returns
 def es_par(numero):
     if numero % 2 == 0:
         return True
     else:
         return False
 
-print(es_par(4))  # True
-print(es_par(7))  # False
+print(es_par(4))
+print(es_par(7))
 
-# Función que retorna múltiples valores
 def calcular_rectangulo(ancho, alto):
     area = ancho * alto
     perimetro = 2 * (ancho + alto)
-    return area, perimetro  # Retorna una tupla
+    return area, perimetro
 
 a, p = calcular_rectangulo(5, 3)
-print(f"Área: {a}, Perímetro: {p}")  # Área: 15, Perímetro: 16
+print(f"Área: {a}, Perímetro: {p}")
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+15
+60
+True
+False
+Área: 15, Perímetro: 16
+```
+
+</details>
 
 ### Main function
 
-La función `main()` es una convención que se debe de utilizar para organizar el código principal del programa.
+La función `main()` es una convención útil para organizar el código principal del programa. Python no obliga a utilizarla, pero hace que los scripts sean más fáciles de leer.
 
 ```python
 x = 10
@@ -1556,22 +2008,27 @@ def saludar():
     print("Hola desde la función saludar")
 
 def main():
-    # Código principal aquí
+
     print("Iniciando programa...")
     print(f"Variable global x: {x}")
     saludar()
     print("Programa finalizado")
 
-# Solo ejecutar main si este archivo se ejecuta directamente
 if __name__ == "__main__":
     main()
-
-# Salida:
-# Iniciando programa...
-# Variable global x: 10
-# Hola desde la función saludar
-# Programa finalizado
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+Iniciando programa...
+Variable global x: 10
+Hola desde la función saludar
+Programa finalizado
+```
+
+</details>
 
 **¿Por qué usar `if __name__ == "__main__":`?**
 
@@ -1589,13 +2046,12 @@ Esto permite que el archivo pueda:
 
 <p align="center"><img src="images/d-clase-objeto.svg" alt="Clase y objetos" width="100%"></p>
 
-Este código define una clase llamada FirewallRule que representa una regla de firewall: especifica si se debe permitir o bloquear el tráfico de red desde una IP origen a una IP destino en un puerto específico. Cada objeto de esta clase contiene los datos de una regla y puede mostrarla o evaluar si cierto tráfico está permitido. Este ejemplo es ideal para aprender sobre clases, atributos, métodos y lógica condicional en Python aplicados a un caso práctico de ciberseguridad.
+Este código define una clase llamada `ReglaFirewall` que representa una regla de firewall: especifica si se debe permitir o bloquear el tráfico de red desde una IP origen a una IP destino en un puerto específico. Cada objeto de esta clase contiene los datos de una regla y puede mostrarla o evaluar si cierto tráfico está permitido. Este ejemplo es ideal para aprender sobre clases, atributos, métodos y lógica condicional en Python aplicados a un caso práctico de ciberseguridad.
 
 **Ver ejemplo completo:** [`examples/classFirewallRule.py`](examples/classFirewallRule.py)
 
 Ejemplo de uso clases: `classFirewallRule.py`
 ```python
-# Clase para representar una regla de firewall
 class ReglaFirewall:
     def __init__(self, ip_origen, ip_destino, puerto, accion):
         """
@@ -1608,7 +2064,7 @@ class ReglaFirewall:
         self.ip_origen = ip_origen
         self.ip_destino = ip_destino
         self.puerto = puerto
-        self.accion = accion.lower()  # Aseguramos que siempre esté en minúsculas
+        self.accion = accion.lower()
 
     def mostrar_regla(self):
         """Imprime la regla en formato legible."""
@@ -1625,24 +2081,32 @@ class ReglaFirewall:
             return self.accion == "permitir"
         return False
 
-# Crear objetos (reglas) de ejemplo
 regla1 = ReglaFirewall("192.168.1.10", "10.0.0.5", 80, "permitir")
 regla2 = ReglaFirewall("192.168.1.20", "10.0.0.5", 22, "denegar")
 
-# Mostrar las reglas creadas
-regla1.mostrar_regla()  # Salida: PERMITIR tráfico de 192.168.1.10 hacia 10.0.0.5 en el puerto 80
-regla2.mostrar_regla()  # Salida: DENEGAR tráfico de 192.168.1.20 hacia 10.0.0.5 en el puerto 22
+regla1.mostrar_regla()
+regla2.mostrar_regla()
 
-# Probar si ciertas conexiones están permitidas
-print(regla1.esta_permitido("192.168.1.10", 80))  # True → la regla permite este tráfico
-print(regla2.esta_permitido("192.168.1.20", 22))  # False → la regla explícitamente lo bloquea
-
+print(regla1.esta_permitido("192.168.1.10", 80))
+print(regla2.esta_permitido("192.168.1.20", 22))
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+Regla: PERMITIR tráfico de 192.168.1.10 hacia 10.0.0.5 en el puerto 80
+Regla: DENEGAR tráfico de 192.168.1.20 hacia 10.0.0.5 en el puerto 22
+True
+False
+```
+
+</details>
 
 <details>
 <summary><b>🏋️ Ejercicio 4 · Validar una IP</b></summary>
 
-Escribe una función `es_ip_valida(ip)` que devuelva `True` si la cadena tiene 4 números separados por puntos, todos entre 0 y 255. Pruébala con `"192.168.1.10"`, `"300.1.1.1"` y `"hola"`. Pista: `split(".")`, `isnumeric()` e `int()`.
+Escribe una función `es_ip_valida(ip)` que devuelva `True` si la cadena tiene 4 números separados por puntos, todos entre 0 y 255. Pruébala con `"192.168.1.10"`, `"300.1.1.1"` y `"hola"`. Pista: `split(".")`, `isascii()`, `isdigit()` e `int()`.
 
 <details>
 <summary>👀 Ver solución</summary>
@@ -1652,15 +2116,31 @@ def es_ip_valida(ip):
     partes = ip.split(".")
     if len(partes) != 4:
         return False
+
     for parte in partes:
-        if not parte.isnumeric() or int(parte) > 255:
+
+        if not parte.isascii() or not parte.isdigit():
             return False
+        if not 0 <= int(parte) <= 255:
+            return False
+
     return True
 
-print(es_ip_valida("192.168.1.10"))  # True
-print(es_ip_valida("300.1.1.1"))     # False
-print(es_ip_valida("hola"))          # False
+print(es_ip_valida("192.168.1.10"))
+print(es_ip_valida("300.1.1.1"))
+print(es_ip_valida("hola"))
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+True
+False
+False
+```
+
+</details>
 
 </details>
 </details>
@@ -1705,7 +2185,7 @@ python3 -m venv venv
 ```
 
 Esto crea una carpeta con:
-- Un enlace al intérprete de Python
+- Un intérprete de Python para el entorno
 - pip independiente
 - Espacio para librerías aisladas
 
@@ -1749,27 +2229,29 @@ Para desactivar el entorno virtual, al terminar de usar el programa
 
 ```bash
 # Instalar una librería específica
-pip3 install scapy
+pip install scapy
 
 # Instalar múltiples librerías
-pip3 install requests beautifulsoup4 selenium
+pip install requests beautifulsoup4
 
 # Instalar desde un archivo de requisitos (muy utilizado al descargar programas)
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 
 # Actualizar una librería
-pip3 install --upgrade requests
+pip install --upgrade requests
 
 # Ver librerías instaladas
-pip3 list
+pip list
 ```
 
-Ejemplo de archivo requirements.txt:
+Este es un resumen del archivo [`examples/requirements.txt`](examples/requirements.txt) utilizado por el curso:
 ```text
-requests==2.28.0
-beautifulsoup4==4.11.1
-scapy==2.5.0
-flask==2.2.2
+requests>=2.31.0
+flask>=3.0.0
+beautifulsoup4>=4.12.0
+python-nmap>=0.7.1
+scapy>=2.5.0
+urllib3>=2.0.0
 ```
 
 ### From debian packages
@@ -1795,9 +2277,6 @@ import json
 directorio_actual = os.getcwd()
 print(directorio_actual)
 
-# Importar múltiples módulos en una línea
-import os, sys, json
-
 # Importar función específica
 from datetime import datetime
 ahora = datetime.now()
@@ -1814,13 +2293,13 @@ Ejemplo: Librería requests (HTTP)
 import requests
 
 # Hacer una petición GET a una API
-respuesta = requests.get('https://api.github.com')
+respuesta = requests.get("https://api.github.com", timeout=10)
 print(f"Código de estado: {respuesta.status_code}")
 print(f"Contenido: {respuesta.json()}")
 
 # Hacer una petición POST a un formulario de login
-datos = {'username': 'usuario', 'password': 'clave'}
-respuesta = requests.post('https://ejemplo.com/login', json=datos)
+datos = {"username": "usuario", "password": "clave_de_ejemplo"}
+respuesta = requests.post("https://example.com/login", json=datos, timeout=10)
 ```
 
 Ejemplo: Trabajar con módulos estándar de Python
@@ -1861,17 +2340,21 @@ El debugging es el proceso de encontrar y corregir errores en el código. Siempr
 En Python, try y except se usan para manejar errores de forma controlada, evitando que el programa se detenga bruscamente cuando ocurre un problema. El bloque try contiene el código que puede causar un error, y si ocurre una excepción (como dividir entre cero o abrir un archivo que no existe), Python salta al bloque except, donde puedes capturar el error y responder adecuadamente, como mostrar un mensaje o intentar otra acción. Es una herramienta fundamental para hacer que tus programas sean más robustos y seguros frente a situaciones inesperadas.
 
 ```python
-# Sin manejo de errores (esto causaría un error)
-# numero = int("texto")  # ValueError
-
-# Con manejo de errores
 try:
     numero = int("texto")
     print(numero)
 except Exception as e:
     print(f"Error: {e}")
-# Error: invalid literal for int() with base 10: 'texto'
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+Error: invalid literal for int() with base 10: 'texto'
+```
+
+</details>
 
 Ejemplo: Errores específicos
 ```python
@@ -1897,24 +2380,34 @@ def dividir(a, b):
         print("Error: Tipo de dato incorrecto")
         return None
     else:
-        # Se ejecuta si NO hay error
+
         print("División exitosa")
         return resultado
     finally:
-        # Se ejecuta SIEMPRE
+
         print("Fin de la operación")
 
-# Pruebas
 print(dividir(10, 2))
-# División exitosa
-# Fin de la operación
-# 5.0
 
 print(dividir(10, 0))
-# Error: División por cero
-# Fin de la operación
-# None
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+Primera llamada:
+División exitosa
+Fin de la operación
+5.0
+
+Segunda llamada:
+Error: División por cero
+Fin de la operación
+None
+```
+
+</details>
 
 Ejemplo práctico: Lectura segura de archivos
 ```python
@@ -2056,11 +2549,18 @@ import sys
 
 print("Número de argumentos:", len(sys.argv))
 print("Lista de argumentos:", sys.argv)
-
-# python3 argv_usage.py uno dos tres
-# Número de argumentos: 4
-# Lista de argumentos: ['argv_usage.py', 'uno', 'dos', 'tres']
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+python3 argv_usage.py uno dos tres
+Número de argumentos: 4
+Lista de argumentos: ['argv_usage.py', 'uno', 'dos', 'tres']
+```
+
+</details>
 
 Ejemplo usando libreria argparse: `argparse_usage.py` (más versátil)
 ```python
@@ -2071,12 +2571,22 @@ parser.add_argument("--nombre", required=True, help="Tu nombre")
 parser.add_argument("--edad", type=int, help="Tu edad")
 
 args = parser.parse_args()
-print(f"Hola {args.nombre}, tienes {args.edad} años.")
 
-# python3 argparse_usage.py --nombre Ana --edad 30
-# Salida:
-# Hola Ana, tienes 30 años.
+if args.edad is not None:
+    print(f"Hola {args.nombre}, tienes {args.edad} años.")
+else:
+    print(f"Hola {args.nombre}.")
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+python3 argparse_usage.py --nombre Ana --edad 30
+Hola Ana, tienes 30 años.
+```
+
+</details>
 
 ## Manejo de archivos
 
@@ -2358,7 +2868,7 @@ import requests
 import json
 
 # URL donde se encuentra el archivo original con los datos OUI
-URL_OUI = "http://standards-oui.ieee.org/oui/oui.txt"
+URL_OUI = "https://standards-oui.ieee.org/oui/oui.txt"
 
 # Nombre del archivo de salida en formato JSON
 ARCHIVO_SALIDA = "oui_list.json"
@@ -2366,7 +2876,7 @@ ARCHIVO_SALIDA = "oui_list.json"
 # Función que descarga el archivo desde internet
 def descargar_oui(url):
     try:
-        respuesta = requests.get(url)
+        respuesta = requests.get(url, timeout=30)
         respuesta.raise_for_status()  # Verifica que la descarga sea exitosa
         return respuesta.text
     except requests.RequestException as error:
@@ -2452,7 +2962,7 @@ def escanear_puertos(host, rango_puertos):
 escanear_puertos(objetivo, puertos)
 ```
 
-### Uso de Threads y Procesos
+### Uso de hilos (threads)
 
 #### 1. Ejemplo de Versión usando multihilo: `socket_scanner_multithreaded.py`
 ---
@@ -2523,7 +3033,7 @@ def main():
 
     site = sys.argv[1]
     try:
-        response = requests.get(site)
+        response = requests.get(site, timeout=10)
         html = response.text
     except requests.RequestException as e:
         print(f"Error al acceder al sitio: {e}")
@@ -2623,6 +3133,9 @@ pyinstaller --onefile api_fuzzer.py
 
 Este programa permite comprobar si una página web responde correctamente cuando intentamos visitarla. El usuario introduce una URL, y el script envía una petición al sitio usando la librería requests. Según la respuesta del servidor, el programa muestra un código de estado (por ejemplo, 200, 404, 503) junto con una breve explicación. Es un ejercicio útil para aprender cómo funcionan las solicitudes HTTP, cómo manejar errores y cómo trabajar con argumentos desde la línea de comandos en Python.
 
+> [!NOTE]
+> El siguiente fragmento muestra la lógica principal. El script completo añade títulos e iconos para que la salida sea más fácil de leer.
+
 ```python
 import requests
 import argparse
@@ -2679,11 +3192,22 @@ else:
 #### 2. Ejemplo: Crear una API simple mediante Flask `api_users.py` y `api_users_443.py` (SSL en puerto 443)
 ---
 
-Este programa crea un pequeño servidor web usando Flask, una librería muy popular en Python para construir APIs. Cuando se accede a la ruta /users, el servidor responde con una lista de usuarios simulados en formato JSON. Si se intenta acceder a cualquier otra ruta, el servidor devolverá un mensaje de error (404). Es una excelente forma de entender cómo funcionan las rutas, las respuestas HTTP y el trabajo con datos en formato JSON.
+Este programa crea un pequeño servidor web usando Flask, una librería muy popular en Python para construir APIs. La versión HTTP responde en `/users`; la versión HTTPS utiliza `/api/users`. Si se intenta acceder a cualquier otra ruta, el servidor devuelve un error `404`. Es una forma sencilla de entender rutas, respuestas HTTP y datos JSON.
 
 **Ver ejemplos completos:**
 - [`examples/api_users.py`](examples/api_users.py) - API simple en HTTP (puerto 8000)
 - [`examples/api_users_443.py`](examples/api_users_443.py) - API con HTTPS (puerto 443)
+
+| Script | URL para probar | Cómo ejecutarlo |
+|---|---|---|
+| `api_users.py` | `http://127.0.0.1:8000/users` | `python3 api_users.py` |
+| `api_users_443.py` | `https://127.0.0.1/api/users` | `sudo python3 api_users_443.py` |
+
+La versión HTTPS necesita los archivos `cert.pem` y `key.pem` y utiliza un certificado autofirmado. Por eso `curl` necesita la opción `-k` en este laboratorio.
+
+```bash
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+```
 
 ```python
 # Requiere instalación previa de Flask: pip install flask
@@ -2694,9 +3218,9 @@ app = Flask(__name__)
 
 # Datos falsos de ejemplo (como si fueran sacados de una base de datos)
 usuarios_falsos = [
-    {"id": 1, "nombre": "Alice", "email": "alice@example.com"},
-    {"id": 2, "nombre": "Bob", "email": "bob@example.com"},
-    {"id": 3, "nombre": "Charlie", "email": "charlie@example.com"},
+    {"id": 1, "nombre": "Alicia García", "email": "alicia@ejemplo.com"},
+    {"id": 2, "nombre": "Roberto Martínez", "email": "roberto@ejemplo.com"},
+    {"id": 3, "nombre": "Carlos López", "email": "carlos@ejemplo.com"},
 ]
 
 # Ruta principal para obtener la lista de usuarios
@@ -2718,11 +3242,19 @@ if __name__ == "__main__":
 #### 3. Ejemplo: Crear una API honeypot `api_honeypot.py` y `api_honeypot_with_geolocation_data.py`
 ---
 
-Este programa es un honeypot web básico: un servidor que aparenta ser una API real, pero en realidad registra toda interacción sospechosa que reciba. Cualquier acceso a la ruta /api/ (o cualquier subruta de esta) será registrado con detalles como dirección IP, encabezados, tipo de petición, etc., y se guarda todo en un archivo JSON. Además, el servidor usa HTTPS (SSL), lo cual simula una API segura. Esto puede ayudar a detectar escaneos automáticos, bots o intentos de acceso no autorizados.
+Este programa es un honeypot web básico: un servidor que aparenta ser una API real, pero en realidad registra cada interacción que recibe. Cualquier acceso a `/api/` queda registrado con la dirección IP, el método, la ruta y los datos enviados. No guardamos cookies ni cabeceras de autorización, porque podrían contener credenciales. El servidor usa HTTPS con un certificado de laboratorio.
 
 **Ver ejemplos completos:**
 - [`examples/api_honeypot.py`](examples/api_honeypot.py) - Honeypot básico
 - [`examples/api_honeypot_with_geolocation_data.py`](examples/api_honeypot_with_geolocation_data.py) - Honeypot con geolocalización
+
+| Script | Archivo de salida | Diferencia |
+|---|---|---|
+| `api_honeypot.py` | `registro_honeypot.json` | Registra los datos básicos de la petición |
+| `api_honeypot_with_geolocation_data.py` | `honeypot_log.json` | Consulta además la ubicación aproximada de la IP |
+
+> [!WARNING]
+> El ejemplo con geolocalización envía la IP a un servicio externo (`ip-api.com`). Úsalo solo en el laboratorio y nunca con datos reales sin revisar antes las obligaciones de privacidad.
 
 ```python
 # Para usar HTTPS necesitas certificados:
@@ -2732,7 +3264,7 @@ Este programa es un honeypot web básico: un servidor que aparenta ser una API r
 from flask import Flask, request, jsonify
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 
 app = Flask(__name__)  # Creamos la app Flask
 
@@ -2755,16 +3287,20 @@ def guardar_log(data):
 # Esta función se ejecuta automáticamente antes de cada petición
 @app.before_request
 def registrar_peticion():
+    json_recibido = request.get_json(silent=True)
+
     datos = {
-        "momento": datetime.utcnow().isoformat(),
+        "momento": datetime.now(timezone.utc).isoformat(),
         "ip_origen": request.remote_addr,
         "user_agent": request.headers.get("User-Agent"),
         "metodo": request.method,
         "ruta": request.path,
-        "params_url": request.args.to_dict(),
-        "formulario": request.form.to_dict(),
-        "json_enviado": request.get_json(silent=True),
-        "encabezados": dict(request.headers),
+        # Guardamos los nombres de los campos, nunca contraseñas o tokens.
+        "parametros_url": list(request.args.keys()),
+        "campos_formulario": list(request.form.keys()),
+        "campos_json": (
+            list(json_recibido.keys()) if isinstance(json_recibido, dict) else []
+        ),
     }
 
     guardar_log(datos)  # Guardamos la información
@@ -2777,13 +3313,21 @@ def todo_no_encontrado(path):
 
 # Ejecutamos la app con soporte SSL
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=443, ssl_context=("cert.pem", "key.pem"))
+    app.run(
+        host="0.0.0.0",
+        port=443,
+        ssl_context=("cert.pem", "key.pem"),
+        threaded=False,  # Evita escrituras simultáneas en el JSON del laboratorio
+    )
 ```
+
+> [!CAUTION]
+> Este guardado en JSON está pensado para aprender y para recibir pocas peticiones. Una aplicación real usaría una base de datos o un sistema de logs preparado para accesos simultáneos.
 
 #### 4. Crear un fuzzer simple para pentesting API `api_fuzzer.py`
 ---
 
-Este script intenta encontrar rutas válidas en una API enviando solicitudes a una lista de posibles endpoints, usando métodos HTTP como GET y POST. Por ejemplo, prueba si existen rutas como /login, /user, /admin, etc. Si el servidor responde con un código exitoso (como 200 o 302), el script lo muestra por pantalla. Esto es útil para aprender cómo interactuar con APIs, automatizar pruebas de seguridad básicas o verificar rutas activas.
+Este script intenta encontrar rutas válidas en una API enviando solicitudes a una lista de posibles endpoints, usando métodos HTTP como GET y POST. Por ejemplo, prueba si existen rutas como `/login`, `/user` o `/admin`. Muestra respuestas exitosas, redirecciones y rutas protegidas con `401` o `403`.
 
 **Ver ejemplo completo:** [`examples/api_fuzzer.py`](examples/api_fuzzer.py)
 
@@ -2812,21 +3356,23 @@ for ruta in rutas:
         try:
             # Enviamos la petición dependiendo del método
             if metodo == "GET":
-                respuesta = requests.get(url_completa, verify=False)  # verify=False para ignorar SSL autofirmado
+                respuesta = requests.get(url_completa, verify=False, timeout=5)
             elif metodo == "POST":
-                respuesta = requests.post(url_completa, verify=False)
+                respuesta = requests.post(url_completa, verify=False, timeout=5)
 
-            # Mostramos solo si la ruta devuelve un código exitoso (< 400)
-            if respuesta.status_code < 400:
+            # 401 y 403 también indican que la ruta existe, aunque esté protegida.
+            if respuesta.status_code < 400 or respuesta.status_code in {401, 403}:
                 print(f"[{metodo}] {url_completa} - Código: {respuesta.status_code}")
 
-        except requests.RequestException as error:
-            print(f"Error con {metodo} {url_completa}: {error}")
+        except requests.RequestException:
+            pass  # Un error de conexión no significa que exista una ruta
 
 ```
 
 > [!NOTE]
-> `verify=False` desactiva la comprobación del certificado HTTPS. Aquí es necesario porque la API de laboratorio usa un certificado autofirmado; **no lo uses contra servicios reales**. El script completo de `examples/` además oculta el aviso que imprime `requests` y añade un `timeout`.
+> `verify=False` desactiva la comprobación del certificado HTTPS. Aquí es necesario porque la API de laboratorio usa un certificado autofirmado; **no lo uses contra servicios reales**.
+>
+> El honeypot de este curso responde `404` a todas las rutas. Por eso el fuzzer no mostrará rutas encontradas, aunque el honeypot sí guardará cada intento en `registro_honeypot.json`.
 
 #### 5. Ejemplo: Crear una araña `crawler_spider.py`
 ---
@@ -2861,8 +3407,8 @@ def simple_spider(start_url, max_depth=2):
         visited.add(url)  # Marcamos la URL como visitada
 
         try:
-            response = requests.get(url)
-            response.raise_for_status()  # Verifica que la respuesta sea exitosa (código 200)
+            response = requests.get(url, timeout=10)
+            response.raise_for_status()  # Lanza un error para respuestas HTTP 4xx o 5xx
         except requests.RequestException as e:
             print(f"No se pudo acceder a {url}: {e}")
             return
@@ -2888,7 +3434,7 @@ if __name__ == "__main__":
 
 ### Uso de Python para la monitorización y control de tráfico de Redes
 
-#### 1. Ejemplo: Escáner de APs Wi-Fi avanzado usando scapy y OUI.txt `scapy_get_aps_around.py`
+#### 1. Ejemplo: Escáner de APs Wi-Fi avanzado usando Scapy y `oui_list.json`: `scapy_get_aps_around.py`
 ---
 
 Este script en Python escanea redes Wi-Fi cercanas y muestra el nombre de la red (SSID), su dirección MAC (BSSID) y, si es posible, el nombre del fabricante del dispositivo que la emite, usando un archivo de datos llamado oui_list.json. Los puntos de acceso Wi-Fi (routers, por ejemplo) emiten señales llamadas tramas beacon, que este programa detecta usando la librería scapy. Cada dispositivo tiene una dirección MAC, y los primeros tres bloques (el OUI) indican quién lo fabricó (por ejemplo, TP-Link, Cisco, etc.).
@@ -2905,25 +3451,25 @@ Cuando el programa detecta una de estas señales, extrae el BSSID, obtiene el OU
 
 **Ver ejemplo completo:** [`examples/scapy_get_aps_around.py`](examples/scapy_get_aps_around.py)
 
-- Necesita tener la OUI list actualizada con el nombre `oui_list.json`. El repositorio ya incluye una, y puedes regenerarla con [`get_oui_txt.py`](examples/get_oui_txt.py), que produce exactamente el formato que espera este escáner.
+- Primero genera la lista OUI con `python3 get_oui_txt.py`. Este comando crea `oui_list.json` con el formato que espera el escáner.
 
 ```python
 # IMPORTANTE: asegúrate de que la interfaz esté en modo monitor (ej. "wlan0mon") y ejecuta este script como root (sudo)
 
-from scapy.all import *
 import json
-from scapy.layers.dot11 import Dot11, Dot11Beacon
+from scapy.all import sniff
+from scapy.layers.dot11 import Dot11, Dot11Beacon, Dot11Elt
 
 # Ruta al archivo JSON con datos OUI
-OUI_JSON_FILE = "oui_list.json"
+ARCHIVO_OUI = "oui_list.json"
 
 # Interfaz Wi-Fi a usar para el escaneo (ej. "wlan0mon")
-INTERFACE = "wlan0mon"
+INTERFAZ_WIFI = "wlan0mon"
 
 # Cargar los datos OUI desde el archivo JSON
-def load_oui_data():
+def cargar_datos_fabricantes():
     try:
-        with open(OUI_JSON_FILE, "r") as f:
+        with open(ARCHIVO_OUI, "r") as f:
             oui_data = json.load(f)
             # Convertir la lista OUI a un diccionario para búsquedas más rápidas
             return {entry["oui"]: entry["organization"] for entry in oui_data}
@@ -2932,33 +3478,40 @@ def load_oui_data():
         return {}
 
 # Extraer la parte OUI (primeros tres octetos) de un BSSID
-def get_oui_from_bssid(bssid):
+def extraer_oui_de_bssid(bssid):
     return "".join(bssid.split(":")[:3]).upper()
 
 # Función de callback para procesar paquetes
-def packet_handler(packet, oui_lookup):
+def procesar_paquete(packet, diccionario_fabricantes):
     # Verificar si el paquete es una trama beacon de un AP
     if packet.haslayer(Dot11Beacon):
         bssid = packet[Dot11].addr2  # Obtener el BSSID (dirección MAC del AP)
-        ssid = packet[Dot11Elt].info.decode() if packet[Dot11Elt].info else "SSID Oculto"
-        oui = get_oui_from_bssid(bssid)  # Extraer la parte OUI del BSSID
-        organization = oui_lookup.get(oui, "Desconocido")  # Buscar la organización
+        ssid_bytes = packet[Dot11Elt].info
+        ssid = ssid_bytes.decode(errors="replace") if ssid_bytes else "SSID Oculto"
+        oui = extraer_oui_de_bssid(bssid)
+        fabricante = diccionario_fabricantes.get(oui, "Desconocido")
 
         # Imprimir información del AP
-        print(f"SSID: {ssid}, BSSID: {bssid}, Organización: {organization}")
+        print(f"Nombre Red: {ssid}")
+        print(f"Dirección MAC: {bssid}")
+        print(f"Fabricante: {fabricante}")
 
 # Función principal
 def main():
     # Cargar los datos OUI
-    oui_lookup = load_oui_data()
-    if not oui_lookup:
+    diccionario_fabricantes = cargar_datos_fabricantes()
+    if not diccionario_fabricantes:
         print("No se pudieron cargar los datos OUI.")
         return
 
     print("Iniciando escaneo Wi-Fi... (Presiona Ctrl+C para detener)")
 
     # Iniciar captura de tramas beacon 802.11 en la interfaz especificada
-    sniff(iface=INTERFACE, prn=lambda pkt: packet_handler(pkt, oui_lookup), store=0)
+    sniff(
+        iface=INTERFAZ_WIFI,
+        prn=lambda pkt: procesar_paquete(pkt, diccionario_fabricantes),
+        store=0,
+    )
 
 if __name__ == "__main__":
     main()

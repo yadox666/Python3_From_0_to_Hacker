@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+Author: Yago Hansen
+Version: 1.0
+
 WEB SCRAPING CON EXPRESIONES REGULARES - Script Educativo
 ==========================================================
 Este script descarga el HTML de una página web y extrae información
@@ -64,7 +67,7 @@ def main():
     try:
         # requests.get() hace una petición HTTP GET al sitio
         # Es como abrir la página en un navegador, pero obteniendo el HTML crudo
-        response = requests.get(site)
+        response = requests.get(site, timeout=10)
         
         # response.text contiene el HTML de la página como texto
         html = response.text

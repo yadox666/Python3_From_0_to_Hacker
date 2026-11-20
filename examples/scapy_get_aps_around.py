@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+Author: Yago Hansen
+Version: 1.0
+
 ESCÁNER DE REDES WI-FI - Script Educativo
 ==========================================
 Este script escanea redes Wi-Fi cercanas y muestra información sobre ellas.
@@ -38,9 +41,9 @@ Usa este script solo con fines educativos y en tus propias redes o con permiso.
 """
 
 # Importamos las librerías necesarias
-from scapy.all import *  # Librería para manipular paquetes de red
 import json  # Librería para trabajar con archivos JSON
-from scapy.layers.dot11 import Dot11, Dot11Beacon  # Clases específicas para Wi-Fi
+from scapy.all import sniff  # Función para capturar paquetes
+from scapy.layers.dot11 import Dot11, Dot11Beacon, Dot11Elt
 
 # CONFIGURACIÓN DEL SCRIPT
 # ------------------------
@@ -131,7 +134,8 @@ def procesar_paquete(paquete, diccionario_fabricantes):
         # Extraemos el SSID (nombre de la red Wi-Fi)
         # Si el nombre está oculto, mostramos "SSID Oculto"
         if paquete[Dot11Elt].info:
-            ssid = paquete[Dot11Elt].info.decode()
+            # errors="replace" evita que un SSID con bytes extraños detenga el script
+            ssid = paquete[Dot11Elt].info.decode(errors="replace")
         else:
             ssid = "SSID Oculto"
         

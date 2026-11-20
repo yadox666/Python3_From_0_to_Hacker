@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+Author: Yago Hansen
+Version: 1.0
+
 ESCÁNER DE PUERTOS CON NMAP - Script Educativo
 ===============================================
 Este script utiliza Nmap para escanear puertos de un equipo y detectar

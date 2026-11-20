@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+Author: Yago Hansen
+Version: 1.0
+
 LEER ARCHIVO JSON Y CONVERTIRLO A DICCIONARIO - Script Educativo
 =================================================================
 Este script demuestra cómo leer un archivo JSON y convertirlo en

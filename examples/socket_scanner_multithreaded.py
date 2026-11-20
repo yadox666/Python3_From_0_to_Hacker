@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+Author: Yago Hansen
+Version: 1.0
+
 ESCÁNER DE PUERTOS MULTIHILO - Script Educativo
 ================================================
 Este script escanea puertos TCP de forma paralela usando múltiples hilos,

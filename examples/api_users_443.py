@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+Author: Yago Hansen
+Version: 1.0
+
 API REST SEGURA CON HTTPS (Puerto 443) - Script Educativo
 ==========================================================
 Este script crea una API REST que usa HTTPS (conexión segura cifrada)
@@ -163,7 +166,8 @@ if __name__ == "__main__":
     # port=443: puerto estándar para HTTPS (requiere permisos de administrador)
     # ssl_context: tupla con los archivos de certificado y clave privada
     #              Estos archivos permiten el cifrado SSL/TLS
-    # debug=False: modo producción (cambia a True para desarrollo)
+    # debug=False evita mostrar el depurador interactivo.
+    # app.run() es un servidor de prácticas, no un servidor de producción.
     app.run(
         host="127.0.0.1", 
         port=443, 
