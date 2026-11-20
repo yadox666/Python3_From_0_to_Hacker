@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 WEB CRAWLER (ARAÑA WEB) - Script Educativo
 ===========================================

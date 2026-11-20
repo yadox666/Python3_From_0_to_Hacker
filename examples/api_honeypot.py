@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 HONEYPOT API SIMPLE - Script Educativo
 =======================================

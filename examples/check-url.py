@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 VERIFICADOR DE ESTADO DE URLs - Script Educativo
 =================================================

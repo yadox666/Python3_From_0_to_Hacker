@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 API FUZZER (DESCUBRIDOR DE ENDPOINTS) - Script Educativo
 =========================================================

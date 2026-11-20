@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 CLASES EN PYTHON - Script Educativo
 ====================================

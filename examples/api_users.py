@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 API REST SIMPLE DE USUARIOS - Script Educativo
 ===============================================

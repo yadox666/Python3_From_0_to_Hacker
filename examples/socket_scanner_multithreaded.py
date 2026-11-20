@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 ESCÁNER DE PUERTOS MULTIHILO - Script Educativo
 ================================================

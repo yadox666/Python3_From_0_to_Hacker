@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 DESCARGADOR Y PROCESADOR DE DATOS OUI - Script Educativo
 =========================================================

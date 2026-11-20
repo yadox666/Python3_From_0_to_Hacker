@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 ARGPARSE AVANZADO - Script Educativo
 =====================================

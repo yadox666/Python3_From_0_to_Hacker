@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 ESCÁNER DE PUERTOS CON NMAP - Script Educativo
 ===============================================

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 LEER ARCHIVO JSON Y CONVERTIRLO A DICCIONARIO - Script Educativo
 =================================================================

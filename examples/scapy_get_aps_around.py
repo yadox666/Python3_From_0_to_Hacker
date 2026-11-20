@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 ESCÁNER DE REDES WI-FI - Script Educativo
 ==========================================

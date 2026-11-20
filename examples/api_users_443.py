@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 API REST SEGURA CON HTTPS (Puerto 443) - Script Educativo
 ==========================================================

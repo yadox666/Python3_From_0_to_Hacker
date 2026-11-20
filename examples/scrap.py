@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 WEB SCRAPING CON EXPRESIONES REGULARES - Script Educativo
 ==========================================================
