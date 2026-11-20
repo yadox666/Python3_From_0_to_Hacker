@@ -219,9 +219,21 @@ saludar()
 ```python
 # ❌ ERROR - Sin indentación
 def saludar():
-print("Hola")              # IndentationError!
+print("Hola")
 print("Bienvenido")
 ```
+
+<details>
+<summary>Ver resultado</summary>
+
+```text
+  File "<python-input-1>", line 2
+    print("Hola")
+    ^^^^^
+IndentationError: expected an indented block after function definition on line 1
+```
+
+</details>
 
 ```python
 # ✅ CORRECTO - Múltiples niveles
